@@ -144,6 +144,9 @@ public class BytecodeCreator {
         }
         List<JavaClass> classes = new ArrayList<>();
             for (Map.Entry<String, ClassGen> entry : javaClassMap.entrySet()) {
+                if (entry.getKey().equals("IO")) {
+                    continue;
+                }
                 String className = entry.getKey();
                 ClassGen classGen = entry.getValue();
                 List<Method> methods = new ArrayList<>();
@@ -161,6 +164,7 @@ public class BytecodeCreator {
                 classGen.setMethods(methods.toArray(new Method[methods.size()]));
                 classes.add(classGen.getJavaClass());
             }
+            classes.add(IO().getJavaClass());
        // OutputStream o = new BufferedOutputStream(new FileOutputStream(f));
         for (JavaClass jClass : classes) {
             File f = new File("C:/Users/Sam/Documents/BrownCS/" +
@@ -174,8 +178,28 @@ public class BytecodeCreator {
         //o.close();
     }
 
-    private static void blockToBytecode(BlockStatement s) {
+    private static ClassGen IO() {
+        ClassGen classGen = new ClassGen("IO", "java.lang.Object", null, Constants.ACC_PUBLIC, null);
+        InstructionList body = new InstructionList();
+        ConstantPoolGen constantPoolGen = classGen.getConstantPool();
+        body.append(new GETSTATIC(constantPoolGen.addFieldref("java.lang.System", "out", "Ljava/io/PrintStream;")));
+        body.append(new ALOAD(0));
+        body.append(new INVOKEVIRTUAL(constantPoolGen.addMethodref("java.io.PrintStream", "print", "(Ljava/lang/String;)V")));
+        body.append(new RETURN());
 
+        MethodGen putStringGen = new MethodGen(Constants.ACC_PUBLIC | Constants.ACC_STATIC,
+                                               Type.VOID,
+                                               new Type[]{Type.STRING},
+                                               new String[]{"x"},
+                                               "putString",
+                                               "IO",
+                                               body,
+                                               constantPoolGen);
+        putStringGen.setMaxLocals();
+        putStringGen.setMaxStack();
+        classGen.addMethod(putStringGen.getMethod());
+        classGen.addEmptyConstructor(Constants.ACC_PRIVATE);
+        return classGen;
     }
 
 }

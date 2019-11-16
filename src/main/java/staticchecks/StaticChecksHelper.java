@@ -1,9 +1,11 @@
 package staticchecks;
 
 import ast.*;
+import astPojos.BlockStatement;
 import astPojos.Expression;
 import astPojos.FieldResolvable;
 import astPojos.MethodResolvable;
+import com.google.common.collect.Lists;
 import staticchecks.resolvedInfo.*;
 
 import java.util.*;
@@ -12,7 +14,7 @@ import java.util.stream.Collectors;
 public class StaticChecksHelper {
 
     public static boolean isSubclass(ResolvedType sub, ResolvedType parent, StaticState s) {
-        if (sub == parent) {
+        if (sub.equals(parent)) {
             return true;
         } else {
             throw new RuntimeException("not yet implemented");
@@ -134,14 +136,35 @@ public class StaticChecksHelper {
         List<ClassASTNode> classes = p.getClasses();
         Map<String, ClassInfo> classInfoMap = new HashMap<>();
         ClassInfo objectInfo = ClassInfo.builder().setSuperClassName("")
-                .setConstructor(ResolvedConstructor.defaultConstructor)
-                .build();
+                                        .setConstructor(ResolvedConstructor.defaultConstructor)
+                                        .build();
         classInfoMap.put("Object", objectInfo);
         ClassInfo stringInfo = ClassInfo.builder()
-                .setSuperClassName("Object")
-                .setConstructor(ResolvedConstructor.defaultConstructor)
-                .build();
+                                        .setSuperClassName("Object")
+                                        .setConstructor(ResolvedConstructor.defaultConstructor)
+                                        .build();
         classInfoMap.put("String", stringInfo);
+        //TODO: Private constructor
+        ResolvedMethod putString = ResolvedMethod.builder()
+                                                 .setReturnType(PrimitiveType.VOID)
+                                                 .setArguments(Lists.newArrayList(
+                                                         ResolvedParam.builder()
+                                                                      .setName("x")
+                                                                      .setType(ClassType.builder()
+                                                                                        .setClassName("String")
+                                                                                        .build())
+                                                                      .build()))
+                                                 .setBody(new BlockStatement(Collections.emptyList()))
+                                                 .setModifiers(new HashSet<>(Arrays.asList(Modifier.STATIC, Modifier.PUBLIC)))
+                                                 .build();
+
+        ClassInfo ioInfo = ClassInfo.builder()
+                                    .setSuperClassName("Object")
+                                    .putMethods("putString", putString)
+                                    .setConstructor(ResolvedConstructor.defaultConstructor
+                                                            .withModifiers(new HashSet<>(Collections.singleton(Modifier.PRIVATE))))
+                .build();
+        classInfoMap.put("IO", ioInfo);
         for (ClassASTNode classNode : classes) {
             String superName = classNode.getSuper().isPresent() ? classNode.getSuper().get() : "Object";
             classInfoMap.put(classNode.getClassName(), ClassInfo.builder().setSuperClassName(superName).build());
@@ -191,7 +214,7 @@ public class StaticChecksHelper {
                                                               .setArguments(resolvedParams)
                                                               .setModifiers(modifierSet)
                                                               .build();
-               methods.put(m.getMethodName(), resolvedMethod);
+                methods.put(m.getMethodName(), resolvedMethod);
             }
 
             Map<String, ResolvedField> fields = new HashMap<>();
@@ -261,15 +284,16 @@ public class StaticChecksHelper {
             }
             String superName = classInfoMap.get(classNode.getClassName()).getSuperClassName();
             ClassInfo info = ClassInfo.builder()
-                     .setFields(fields)
-                     .setMethods(methods)
-                     .setConstructor(resolvedConstructor)
-                     .setSuperClassName(superName)
-                    .build();
+                                      .setFields(fields)
+                                      .setMethods(methods)
+                                      .setConstructor(resolvedConstructor)
+                                      .setSuperClassName(superName)
+                                      .build();
             toReturn.put(classNode.getClassName(), info);
         }
         toReturn.put("String", stringInfo);
         toReturn.put("Object", objectInfo);
+        toReturn.put("IO", ioInfo);
         return toReturn;
     }
 

@@ -27,23 +27,30 @@ public class Identifier extends Expression implements FieldResolvable {
         this.identifier = identifier;
     }
 
-
-    @Override
-    protected ResolvedType typeCheckCore(StaticState s) {
+    public Optional<ResolvedType> typeCheckSoft(StaticState s) {
         ResolvedType t = s.getEnvironment().get(identifier);
         if (t != null) {
             // As mentioned in top TODO, we'll likely need to record
             // which exact local this came from
-            return t;
+            return Optional.of(t);
         }
         Optional<ResolvedField> field =
                 StaticChecksHelper.optionallyResolveField(this,
                                                           s.getCurrentClass(),
                                                           s);
         if (field.isPresent()) {
-            return field.get().getType();
+            return Optional.of(field.get().getType());
         }
-        throw new RuntimeException("Unbound identifier: " + identifier);
+        return Optional.empty();
+    }
+
+    @Override
+    protected ResolvedType typeCheckCore(StaticState s) {
+       Optional<ResolvedType> resolvedType = typeCheckSoft(s);
+       if (!resolvedType.isPresent()) {
+           throw new RuntimeException("Unbound identifier: " + identifier);
+       }
+       return resolvedType.get();
     }
 
     public String getIdentifier() {
