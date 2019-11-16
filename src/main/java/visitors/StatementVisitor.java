@@ -1,11 +1,14 @@
 package visitors;
 
-import ast.*;
+
+import ast.Type;
+import astPojos.*;
 import grammar.DecafParser;
 import grammar.DecafParserBaseVisitor;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class StatementVisitor extends DecafParserBaseVisitor<Statement> {
@@ -23,74 +26,70 @@ public class StatementVisitor extends DecafParserBaseVisitor<Statement> {
                 expressions.add(expressionVisitor.visitExpression(exprList.expression()));
                 exprList = exprList.exprList();
             }
-            return SuperCall.builder()
-                    .setArgs(expressions)
-                    .build();
+            return new SuperConstructorCall(expressions);
         }
 
         if (ctx.BREAK() != null) {
-            return BreakStatement.builder().build();
+            return new BreakStatement();
         }
 
         if (ctx.RETURN() != null) {
             if (ctx.expression() != null) {
-                return ReturnStatement.builder()
-                        .setReturnExpression(expressionVisitor.visitExpression(ctx.expression()))
-                        .build();
+                return new ReturnStatement(expressionVisitor.visitExpression(ctx.expression()));
             }
-            return ReturnStatement.builder().build();
+            return new ReturnStatement();
         }
 
         if (ctx.CONTINUE() != null) {
-            return ContinueStatement.builder().build();
+            return new ContinueStatement();
         }
 
         if (ctx.WHILE() != null) {
-            return WhileStatement.builder()
-                    .setTestExpression(expressionVisitor.visitExpression(ctx.expression()))
-                    .setBody(visitStatement(ctx.statement(0)))
-                    .build();
+            return new WhileStatement(expressionVisitor.visitExpression(ctx.expression()),
+                                      visitStatement(ctx.statement(0)));
         }
 
         if (ctx.getChildCount() == 2 && ctx.expression() != null) {
-            return expressionVisitor.visitExpression(ctx.expression());
+            return new ExpressionStatement(expressionVisitor.visitExpression(ctx.expression()));
         }
 
         if (ctx.IF() != null) {
-            IfStatement.Builder ifBuilder = IfStatement.builder()
-                    .setCondition(expressionVisitor.visitExpression(ctx.expression()))
-                    .setConsequence(visitStatement(ctx.statement(0)));
+            Expression condition = expressionVisitor.visitExpression(ctx.expression());
+            Statement consequence = visitStatement(ctx.statement(0));
+            Optional<Statement> alternate = Optional.empty();
             if (ctx.ELSE() != null) {
-                ifBuilder.setAltern(visitStatement(ctx.statement(1)));
+                alternate = Optional.of(visitStatement(ctx.statement(1)));
             }
-            return ifBuilder.build();
+            return new IfStatement(condition, consequence, alternate);
         }
 
         if (ctx.type() != null) {
             Type type = new TypeVisitor().visitType(ctx.type());
             DecafParser.VarDeclarationListContext varListContext = ctx.varDeclarationList();
-            VariableDeclarationList.Builder declarations = VariableDeclarationList.builder();
+            List<VariableDeclarationStatement> declarations = new ArrayList<>();
             while (varListContext != null) {
-                VariableDeclarationStatement.Builder declaration = VariableDeclarationStatement.builder();
-                DecafParser.VarDeclaratorContext varDeclarator = varListContext.varDeclarator();
+               DecafParser.VarDeclaratorContext varDeclarator = varListContext.varDeclarator();
+               Optional<Expression> initialValue = Optional.empty();
                 if (varListContext.varDeclarator().BIND() != null) {
-                    declaration.setInitialVal(expressionVisitor.visitExpression(varDeclarator.expression()));
+                    initialValue = Optional.of(expressionVisitor.visitExpression(varDeclarator.expression()));
                 }
-                Param param = ParamIF.createParam(type, varDeclarator.varDeclaratorId());
-                declarations.addDeclarations(declaration.setVar(param).build());
+                declarations.add(new VariableDeclarationStatement(varDeclarator.varDeclaratorId().getText(),
+                                                                  initialValue,
+                                                                  type));
                 varListContext = varListContext.varDeclarationList();
             }
-            return declarations.build();
+            return new VariableDeclaratorList(declarations);
         }
 
         assert (ctx.getChildCount() == 1 && ctx.SEMICOLON() != null);
-        return EmptyStatement.builder().build();
+        return new EmptyStatement();
     }
 
     @Override
     public BlockStatement visitBlock(DecafParser.BlockContext ctx) {
-        return BlockStatement.builder()
-        .setStatements(ctx.statement().stream().map(this::visitStatement).collect(Collectors.toList()))
-        .build();
+        List<Statement> statements = ctx.statement().stream()
+                                        .map(this::visitStatement)
+                                        .collect(Collectors.toList());
+        return new BlockStatement(statements);
     }
 }

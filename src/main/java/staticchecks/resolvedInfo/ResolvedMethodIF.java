@@ -1,7 +1,7 @@
 package staticchecks.resolvedInfo;
 
-import ast.BlockStatement;
 import ast.Modifier;
+import astPojos.BlockStatement;
 import org.immutables.value.Value;
 import styles.ImmutableStyle;
 

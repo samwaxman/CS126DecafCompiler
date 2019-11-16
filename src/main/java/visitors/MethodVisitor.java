@@ -1,7 +1,7 @@
 package visitors;
 
-import ast.*;
 
+import ast.*;
 import grammar.DecafParser;
 import grammar.DecafParserBaseVisitor;
 

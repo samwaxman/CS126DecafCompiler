@@ -1,6 +1,5 @@
 package staticchecks;
 
-import ast.ClassASTNode;
 import com.sun.istack.internal.Nullable;
 import org.immutables.value.Value;
 import staticchecks.resolvedInfo.ClassInfo;
@@ -22,10 +21,10 @@ public interface StaticStateIF {
     default boolean isInsideBreakableStatement() {
         return false;
     };
-    // To know if a super constructor call is allowed.
 
+    // To know if a super constructor call is allowed.
     @Value.Default
-    default boolean isInsideConstructorCall() {
+    default boolean isFirstStatementInConstructorCall() {
         return false;
     };
     Optional<ResolvedType> getReturnType();

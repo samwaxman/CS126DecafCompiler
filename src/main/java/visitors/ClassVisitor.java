@@ -1,6 +1,8 @@
 package visitors;
 
-import ast.*;
+import ast.ClassASTNode;
+import ast.Constructor;
+import ast.Method;
 import grammar.DecafParser;
 import grammar.DecafParserBaseVisitor;
 

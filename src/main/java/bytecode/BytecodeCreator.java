@@ -1,12 +1,11 @@
 package bytecode;
 
-import ast.Constructor;
 import ast.Modifier;
 import ast.Program;
 import com.sun.org.apache.bcel.internal.Constants;
 import org.apache.bcel.classfile.JavaClass;
-import org.apache.bcel.generic.*;
 import org.apache.bcel.generic.ArrayType;
+import org.apache.bcel.generic.*;
 import staticchecks.StaticChecksHelper;
 import staticchecks.resolvedInfo.*;
 
@@ -14,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class BytecodeCreator {
 
@@ -117,6 +115,6 @@ public class BytecodeCreator {
             classGen.addMethod(constructorGen.getMethod());
             classes.add(classGen.getJavaClass());
         }
-        classes.get(0).
+        //classes.get(0);
     }
 }

@@ -1,10 +1,10 @@
 package ast;
 
-import java.util.List;
-import java.util.Optional;
-
 import org.immutables.value.Value;
 import styles.ImmutableStyle;
+
+import java.util.List;
+import java.util.Optional;
 
 @Value.Immutable
 @ImmutableStyle

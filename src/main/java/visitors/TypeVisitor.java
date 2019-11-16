@@ -1,6 +1,5 @@
 package visitors;
 
-import ast.Method;
 import ast.Type;
 import grammar.DecafParser;
 import grammar.DecafParserBaseVisitor;

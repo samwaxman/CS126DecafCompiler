@@ -1,9 +1,9 @@
 package visitors;
 
-import ast.*;
+import ast.Type;
+import astPojos.*;
 import grammar.DecafParser;
 import grammar.DecafParserBaseVisitor;
-import org.antlr.v4.runtime.tree.ParseTree;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +14,7 @@ public class PrimaryVisitor extends DecafParserBaseVisitor<Expression> {
     @Override
     public Expression visitPrimary(DecafParser.PrimaryContext ctx) {
         if (ctx.IDENTIFIER() != null) {
-            return Identifier.builder().setIdentifier(ctx.IDENTIFIER().getText()).build();
+            return new Identifier(ctx.IDENTIFIER().getText());
         }
         if (ctx.newArrayExpr() != null) {
             return visitNewArrayExpr(ctx.newArrayExpr());
@@ -22,58 +22,59 @@ public class PrimaryVisitor extends DecafParserBaseVisitor<Expression> {
         if (ctx.nonNewArrayExpr() != null) {
             return visitNonNewArrayExpr(ctx.nonNewArrayExpr());
         }
-        assert(false);
+        assert (false);
         return null;
     }
 
     @Override
     public Expression visitNewArrayExpr(DecafParser.NewArrayExprContext ctx) {
-        String baseType = ctx.primitiveType() != null ?
+        //TODO: Not a raw string. Use a type visitor.
+        String baseTypeId = ctx.primitiveType() != null ?
                 ctx.primitiveType().getText() :
                 ctx.IDENTIFIER().getText();
 
+        Type baseType = Type.builder()
+                            .setTypeIdentifier(baseTypeId)
+                            .build();
+
         List<DecafParser.DimensionContext> dimensions = ctx.dimension();
         ExpressionVisitor expressionVisitor = new ExpressionVisitor();
-        return NewArrayExpression.builder()
-                                 .setBaseType(baseType)
-                                 .setDimensions(dimensions.stream()
+        List<Expression> dimensionExpressions = dimensions.stream()
                                                           .map(d -> expressionVisitor.visitExpression(d.expression()))
-                                                          .collect(Collectors.toList()))
-                                 .build();
+                                                          .collect(Collectors.toList());
+        return new NewArrayExpression(baseType, dimensionExpressions);
     }
+
     @Override
     public Expression visitNonNewArrayExpr(DecafParser.NonNewArrayExprContext ctx) {
         if (ctx.literal() != null) {
             DecafParser.LiteralContext literalContext = ctx.literal();
             if (literalContext.CHARACTER_LITERAL() != null) {
-                //   return
+                //TODO: Extract character from text
+                return new CharacterLiteral('a');
             }
             if (literalContext.NULL() != null) {
-                return Null.builder().build();
+                return new Null();
             }
             if (literalContext.TRUE() != null) {
-                return True.builder().build();
+                return new True();
             }
             if (literalContext.FALSE() != null) {
-                return False.builder().build();
+                return new False();
             }
             if (literalContext.INTEGER_LITERAL() != null) {
                 // If Decaf has a different integer precision than Java (doubtful) we'll want to store as
                 // a string or some other data type.
-                return IntegerLiteral.builder()
-                              .setInt(Integer.parseInt(literalContext.INTEGER_LITERAL().getText(), 10))
-                              .build();
+                return new IntegerLiteral(Integer.parseInt(literalContext.INTEGER_LITERAL().getText(), 10));
             }
             if (literalContext.STRING() != null) {
-                // Will need to normalize
-                return StringLiteral.builder()
-                                    .setString(literalContext.STRING().getText())
-                                    .build();
+                //TODO: Will need to normalize
+                return new StringLiteral(literalContext.STRING().getText());
             }
         }
         if (ctx.THIS() != null) {
             // I don't see a reason to not just treat this as a variable as of yet
-            return Identifier.builder().setIdentifier(ctx.THIS().getText()).build();
+            return new Identifier(ctx.THIS().getText());
         }
 
         ExpressionVisitor expressionVisitor = new ExpressionVisitor();
@@ -91,10 +92,7 @@ public class PrimaryVisitor extends DecafParserBaseVisitor<Expression> {
             }
 
             if (ctx.NEW() != null) {
-                return ConstructorCall.builder()
-                        .setClassName(ctx.IDENTIFIER(0).getText())
-                        .setArguments(expressions)
-                        .build();
+                return new ConstructorCall(ctx.IDENTIFIER(0).getText(), expressions);
             }
 
             // Simple function call
@@ -103,61 +101,49 @@ public class PrimaryVisitor extends DecafParserBaseVisitor<Expression> {
             // we don't know if it's a static call or not,
             // thus we can't just prepend this to it
             if (ctx.getChildCount() == 2) {
-                return FunctionCall.builder()
-                        .addAllArgs(expressions)
-                        .setFunctionName(ctx.IDENTIFIER(0).getText())
-                        .build();
+                return new FunctionCall(expressions, ctx.IDENTIFIER(0).getText());
             }
 
             Expression object = null;
-            String methodName = ctx.IDENTIFIER(0).getText();;
+            String methodName = ctx.IDENTIFIER(0).getText();
+            ;
             if (ctx.SUPER() != null) {
-                object = Identifier.builder().setIdentifier("super").build();
+                object = new Identifier("super");
             }
             if (ctx.nonNewArrayExpr() != null) {
                 object = visitNonNewArrayExpr(ctx.nonNewArrayExpr());
             } else if (ctx.newArrayExpr() != null) {
                 object = visitNewArrayExpr(ctx.newArrayExpr());
             } else if (ctx.IDENTIFIER(1) != null) {
-                object = Identifier.builder().setIdentifier(ctx.IDENTIFIER(0).getText()).build();
+                object = new Identifier(ctx.IDENTIFIER(0).getText());
                 methodName = ctx.IDENTIFIER(1).getText();
             }
-            assert(object != null);
-            return MethodCall.builder()
-                    .setArguments(expressions)
-                    .setObject(object)
-                    .setMethodName(methodName)
-                    .build();
+            assert (object != null);
+            return new MethodCall(object, methodName, expressions);
         }
 
         if (ctx.dimension() != null) {
             Expression array;
             if (ctx.IDENTIFIER(0) != null) {
-                array = Identifier.builder().setIdentifier(ctx.IDENTIFIER(0).getText()).build();
+                array = new Identifier(ctx.IDENTIFIER(0).getText());
             } else {
                 array = visitNonNewArrayExpr(ctx.nonNewArrayExpr());
             }
-            ArrayAccess.builder()
-                       .setExpr(array)
-                       .setIndex(expressionVisitor.visitExpression(ctx.dimension().expression()))
-                       .build();
+            return new ArrayAccess(array, expressionVisitor.visitExpression(ctx.dimension().expression()));
         }
 
         Expression object;
         String fieldName = ctx.IDENTIFIER(0).getText();
         if (ctx.SUPER() != null) {
-            object = Identifier.builder().setIdentifier("super").build();
+            object = new Identifier("super");
         } else if (ctx.nonNewArrayExpr() != null) {
             object = visitNonNewArrayExpr(ctx.nonNewArrayExpr());
         } else if (ctx.newArrayExpr() != null) {
             object = visitNewArrayExpr(ctx.newArrayExpr());
         } else {
-            object = Identifier.builder().setIdentifier(ctx.IDENTIFIER(0).getText()).build();
+            object = new Identifier(ctx.IDENTIFIER(0).getText());
             fieldName = ctx.IDENTIFIER(1).getText();
         }
-        return FieldAccess.builder()
-                .setObject(object)
-                .setFieldName(fieldName)
-                .build();
+        return new FieldAccess(object, fieldName);
     }
 }

@@ -6,14 +6,11 @@ import grammar.DecafParser;
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
-import org.rpgleparser.RpgParser;
 import org.rpgleparser.utils.TreePrinterListener;
-import org.rpgleparser.utils.TreeUtils;
 import visitors.ProgramVisitor;
 
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.List;
 
 public class Lexer {
     public static String printTree(ParseTree parseTree, Parser parser) {

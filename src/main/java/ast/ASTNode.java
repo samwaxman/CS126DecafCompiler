@@ -1,7 +1,7 @@
 package ast;
 
-import staticchecks.resolvedInfo.ResolvedType;
 import staticchecks.StaticState;
+import staticchecks.resolvedInfo.ResolvedType;
 
 public interface ASTNode {
     ResolvedType typeCheck(StaticState s);

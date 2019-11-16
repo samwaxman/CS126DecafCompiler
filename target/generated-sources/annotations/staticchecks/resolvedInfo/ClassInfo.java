@@ -6,7 +6,6 @@ import com.google.common.collect.Lists;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Optional;
 import javax.annotation.Generated;
 
 /**
@@ -54,8 +53,8 @@ public final class ClassInfo implements ClassInfoIF {
    * @return The value of the {@code superClassName} attribute
    */
   @Override
-  public Optional<String> getSuperClassName() {
-    return Optional.ofNullable(superClassName);
+  public String getSuperClassName() {
+    return superClassName;
   }
 
   /**
@@ -93,26 +92,15 @@ public final class ClassInfo implements ClassInfoIF {
   }
 
   /**
-   * Copy the current immutable object by setting a <i>present</i> value for the optional {@link ClassInfoIF#getSuperClassName() superClassName} attribute.
-   * @param value The value for superClassName
-   * @return A modified copy of {@code this} object
+   * Copy the current immutable object by setting a value for the {@link ClassInfoIF#getSuperClassName() superClassName} attribute.
+   * An equals check used to prevent copying of the same value by returning {@code this}.
+   * @param value A new value for superClassName
+   * @return A modified copy of the {@code this} object
    */
   public final ClassInfo withSuperClassName(String value) {
+    if (this.superClassName.equals(value)) return this;
     String newValue = Objects.requireNonNull(value, "superClassName");
-    if (Objects.equals(this.superClassName, newValue)) return this;
     return new ClassInfo(this.fields, this.methods, newValue, this.constructor);
-  }
-
-  /**
-   * Copy the current immutable object by setting an optional value for the {@link ClassInfoIF#getSuperClassName() superClassName} attribute.
-   * An equality check is used on inner nullable value to prevent copying of the same value by returning {@code this}.
-   * @param optional A value for superClassName
-   * @return A modified copy of {@code this} object
-   */
-  public final ClassInfo withSuperClassName(Optional<String> optional) {
-    String value = optional.orElse(null);
-    if (Objects.equals(this.superClassName, value)) return this;
-    return new ClassInfo(this.fields, this.methods, value, this.constructor);
   }
 
   /**
@@ -141,7 +129,7 @@ public final class ClassInfo implements ClassInfoIF {
   private boolean equalTo(ClassInfo another) {
     return fields.equals(another.fields)
         && methods.equals(another.methods)
-        && Objects.equals(superClassName, another.superClassName)
+        && superClassName.equals(another.superClassName)
         && constructor.equals(another.constructor);
   }
 
@@ -154,7 +142,7 @@ public final class ClassInfo implements ClassInfoIF {
     int h = 5381;
     h += (h << 5) + fields.hashCode();
     h += (h << 5) + methods.hashCode();
-    h += (h << 5) + Objects.hashCode(superClassName);
+    h += (h << 5) + superClassName.hashCode();
     h += (h << 5) + constructor.hashCode();
     return h;
   }
@@ -206,8 +194,9 @@ public final class ClassInfo implements ClassInfoIF {
    * but instead used immediately to create instances.</em>
    */
   public static final class Builder {
-    private static final long INIT_BIT_CONSTRUCTOR = 0x1L;
-    private long initBits = 0x1L;
+    private static final long INIT_BIT_SUPER_CLASS_NAME = 0x1L;
+    private static final long INIT_BIT_CONSTRUCTOR = 0x2L;
+    private long initBits = 0x3L;
 
     private ImmutableMap.Builder<String, ResolvedField> fields = ImmutableMap.builder();
     private ImmutableMap.Builder<String, ResolvedMethod> methods = ImmutableMap.builder();
@@ -229,10 +218,7 @@ public final class ClassInfo implements ClassInfoIF {
       Objects.requireNonNull(instance, "instance");
       putAllFields(instance.getFields());
       putAllMethods(instance.getMethods());
-      Optional<String> superClassNameOptional = instance.getSuperClassName();
-      if (superClassNameOptional.isPresent()) {
-        setSuperClassName(superClassNameOptional);
-      }
+      setSuperClassName(instance.getSuperClassName());
       setConstructor(instance.getConstructor());
       return this;
     }
@@ -320,22 +306,13 @@ public final class ClassInfo implements ClassInfoIF {
     }
 
     /**
-     * Initializes the optional value {@link ClassInfoIF#getSuperClassName() superClassName} to superClassName.
-     * @param superClassName The value for superClassName
-     * @return {@code this} builder for chained invocation
+     * Initializes the value for the {@link ClassInfoIF#getSuperClassName() superClassName} attribute.
+     * @param superClassName The value for superClassName 
+     * @return {@code this} builder for use in a chained invocation
      */
     public final Builder setSuperClassName(String superClassName) {
       this.superClassName = Objects.requireNonNull(superClassName, "superClassName");
-      return this;
-    }
-
-    /**
-     * Initializes the optional value {@link ClassInfoIF#getSuperClassName() superClassName} to superClassName.
-     * @param superClassName The value for superClassName
-     * @return {@code this} builder for use in a chained invocation
-     */
-    public final Builder setSuperClassName(Optional<String> superClassName) {
-      this.superClassName = superClassName.orElse(null);
+      initBits &= ~INIT_BIT_SUPER_CLASS_NAME;
       return this;
     }
 
@@ -364,6 +341,7 @@ public final class ClassInfo implements ClassInfoIF {
 
     private String formatRequiredAttributesMessage() {
       List<String> attributes = Lists.newArrayList();
+      if ((initBits & INIT_BIT_SUPER_CLASS_NAME) != 0) attributes.add("superClassName");
       if ((initBits & INIT_BIT_CONSTRUCTOR) != 0) attributes.add("constructor");
       return "Cannot build ClassInfo, some of required attributes are not set " + attributes;
     }

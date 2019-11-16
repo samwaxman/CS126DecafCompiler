@@ -26,7 +26,7 @@ public final class StaticState implements StaticStateIF {
   private final ImmutableMap<String, ClassInfo> classes;
   private final ImmutableMap<String, ResolvedType> environment;
   private final boolean insideBreakableStatement;
-  private final boolean insideConstructorCall;
+  private final boolean firstStatementInConstructorCall;
   private final ResolvedType returnType;
 
   private StaticState(StaticState.Builder builder) {
@@ -37,11 +37,11 @@ public final class StaticState implements StaticStateIF {
     if (builder.insideBreakableStatementIsSet()) {
       initShim.setInsideBreakableStatement(builder.insideBreakableStatement);
     }
-    if (builder.insideConstructorCallIsSet()) {
-      initShim.setInsideConstructorCall(builder.insideConstructorCall);
+    if (builder.firstStatementInConstructorCallIsSet()) {
+      initShim.setFirstStatementInConstructorCall(builder.firstStatementInConstructorCall);
     }
     this.insideBreakableStatement = initShim.isInsideBreakableStatement();
-    this.insideConstructorCall = initShim.isInsideConstructorCall();
+    this.firstStatementInConstructorCall = initShim.isFirstStatementInConstructorCall();
     this.initShim = null;
   }
 
@@ -50,13 +50,13 @@ public final class StaticState implements StaticStateIF {
       ImmutableMap<String, ClassInfo> classes,
       ImmutableMap<String, ResolvedType> environment,
       boolean insideBreakableStatement,
-      boolean insideConstructorCall,
+      boolean firstStatementInConstructorCall,
       ResolvedType returnType) {
     this.currentClass = currentClass;
     this.classes = classes;
     this.environment = environment;
     this.insideBreakableStatement = insideBreakableStatement;
-    this.insideConstructorCall = insideConstructorCall;
+    this.firstStatementInConstructorCall = firstStatementInConstructorCall;
     this.returnType = returnType;
     this.initShim = null;
   }
@@ -84,28 +84,28 @@ public final class StaticState implements StaticStateIF {
       this.insideBreakableStatement = insideBreakableStatement;
       insideBreakableStatementBuildStage = STAGE_INITIALIZED;
     }
-    private boolean insideConstructorCall;
-    private int insideConstructorCallBuildStage;
+    private boolean firstStatementInConstructorCall;
+    private int firstStatementInConstructorCallBuildStage;
 
-    boolean isInsideConstructorCall() {
-      if (insideConstructorCallBuildStage == STAGE_INITIALIZING) throw new IllegalStateException(formatInitCycleMessage());
-      if (insideConstructorCallBuildStage == STAGE_UNINITIALIZED) {
-        insideConstructorCallBuildStage = STAGE_INITIALIZING;
-        this.insideConstructorCall = isInsideConstructorCallInitialize();
-        insideConstructorCallBuildStage = STAGE_INITIALIZED;
+    boolean isFirstStatementInConstructorCall() {
+      if (firstStatementInConstructorCallBuildStage == STAGE_INITIALIZING) throw new IllegalStateException(formatInitCycleMessage());
+      if (firstStatementInConstructorCallBuildStage == STAGE_UNINITIALIZED) {
+        firstStatementInConstructorCallBuildStage = STAGE_INITIALIZING;
+        this.firstStatementInConstructorCall = isFirstStatementInConstructorCallInitialize();
+        firstStatementInConstructorCallBuildStage = STAGE_INITIALIZED;
       }
-      return this.insideConstructorCall;
+      return this.firstStatementInConstructorCall;
     }
 
-    void setInsideConstructorCall(boolean insideConstructorCall) {
-      this.insideConstructorCall = insideConstructorCall;
-      insideConstructorCallBuildStage = STAGE_INITIALIZED;
+    void setFirstStatementInConstructorCall(boolean firstStatementInConstructorCall) {
+      this.firstStatementInConstructorCall = firstStatementInConstructorCall;
+      firstStatementInConstructorCallBuildStage = STAGE_INITIALIZED;
     }
 
     private String formatInitCycleMessage() {
       ArrayList<String> attributes = Lists.newArrayList();
       if (insideBreakableStatementBuildStage == STAGE_INITIALIZING) attributes.add("insideBreakableStatement");
-      if (insideConstructorCallBuildStage == STAGE_INITIALIZING) attributes.add("insideConstructorCall");
+      if (firstStatementInConstructorCallBuildStage == STAGE_INITIALIZING) attributes.add("firstStatementInConstructorCall");
       return "Cannot build StaticState, attribute initializers form cycle" + attributes;
     }
   }
@@ -114,8 +114,8 @@ public final class StaticState implements StaticStateIF {
     return StaticStateIF.super.isInsideBreakableStatement();
   }
 
-  private boolean isInsideConstructorCallInitialize() {
-    return StaticStateIF.super.isInsideConstructorCall();
+  private boolean isFirstStatementInConstructorCallInitialize() {
+    return StaticStateIF.super.isFirstStatementInConstructorCall();
   }
 
   /**
@@ -154,14 +154,14 @@ public final class StaticState implements StaticStateIF {
   }
 
   /**
-   * @return The value of the {@code insideConstructorCall} attribute
+   * @return The value of the {@code firstStatementInConstructorCall} attribute
    */
   @Override
-  public boolean isInsideConstructorCall() {
+  public boolean isFirstStatementInConstructorCall() {
     InitShim shim = this.initShim;
     return shim != null
-        ? shim.isInsideConstructorCall()
-        : this.insideConstructorCall;
+        ? shim.isFirstStatementInConstructorCall()
+        : this.firstStatementInConstructorCall;
   }
 
   /**
@@ -185,7 +185,7 @@ public final class StaticState implements StaticStateIF {
         this.classes,
         this.environment,
         this.insideBreakableStatement,
-        this.insideConstructorCall,
+        this.firstStatementInConstructorCall,
         this.returnType);
   }
 
@@ -204,7 +204,7 @@ public final class StaticState implements StaticStateIF {
         newValue,
         this.environment,
         this.insideBreakableStatement,
-        this.insideConstructorCall,
+        this.firstStatementInConstructorCall,
         this.returnType);
   }
 
@@ -223,7 +223,7 @@ public final class StaticState implements StaticStateIF {
         this.classes,
         newValue,
         this.insideBreakableStatement,
-        this.insideConstructorCall,
+        this.firstStatementInConstructorCall,
         this.returnType);
   }
 
@@ -240,18 +240,18 @@ public final class StaticState implements StaticStateIF {
         this.classes,
         this.environment,
         value,
-        this.insideConstructorCall,
+        this.firstStatementInConstructorCall,
         this.returnType);
   }
 
   /**
-   * Copy the current immutable object by setting a value for the {@link StaticStateIF#isInsideConstructorCall() insideConstructorCall} attribute.
+   * Copy the current immutable object by setting a value for the {@link StaticStateIF#isFirstStatementInConstructorCall() firstStatementInConstructorCall} attribute.
    * A value equality check is used to prevent copying of the same value by returning {@code this}.
-   * @param value A new value for insideConstructorCall
+   * @param value A new value for firstStatementInConstructorCall
    * @return A modified copy of the {@code this} object
    */
-  public final StaticState withInsideConstructorCall(boolean value) {
-    if (this.insideConstructorCall == value) return this;
+  public final StaticState withFirstStatementInConstructorCall(boolean value) {
+    if (this.firstStatementInConstructorCall == value) return this;
     return new StaticState(
         this.currentClass,
         this.classes,
@@ -274,7 +274,7 @@ public final class StaticState implements StaticStateIF {
         this.classes,
         this.environment,
         this.insideBreakableStatement,
-        this.insideConstructorCall,
+        this.firstStatementInConstructorCall,
         newValue);
   }
 
@@ -292,7 +292,7 @@ public final class StaticState implements StaticStateIF {
         this.classes,
         this.environment,
         this.insideBreakableStatement,
-        this.insideConstructorCall,
+        this.firstStatementInConstructorCall,
         value);
   }
 
@@ -312,12 +312,12 @@ public final class StaticState implements StaticStateIF {
         && classes.equals(another.classes)
         && environment.equals(another.environment)
         && insideBreakableStatement == another.insideBreakableStatement
-        && insideConstructorCall == another.insideConstructorCall
+        && firstStatementInConstructorCall == another.firstStatementInConstructorCall
         && Objects.equals(returnType, another.returnType);
   }
 
   /**
-   * Computes a hash code from attributes: {@code currentClass}, {@code classes}, {@code environment}, {@code insideBreakableStatement}, {@code insideConstructorCall}, {@code returnType}.
+   * Computes a hash code from attributes: {@code currentClass}, {@code classes}, {@code environment}, {@code insideBreakableStatement}, {@code firstStatementInConstructorCall}, {@code returnType}.
    * @return hashCode value
    */
   @Override
@@ -327,7 +327,7 @@ public final class StaticState implements StaticStateIF {
     h += (h << 5) + classes.hashCode();
     h += (h << 5) + environment.hashCode();
     h += (h << 5) + Booleans.hashCode(insideBreakableStatement);
-    h += (h << 5) + Booleans.hashCode(insideConstructorCall);
+    h += (h << 5) + Booleans.hashCode(firstStatementInConstructorCall);
     h += (h << 5) + Objects.hashCode(returnType);
     return h;
   }
@@ -344,7 +344,7 @@ public final class StaticState implements StaticStateIF {
         .add("classes", classes)
         .add("environment", environment)
         .add("insideBreakableStatement", insideBreakableStatement)
-        .add("insideConstructorCall", insideConstructorCall)
+        .add("firstStatementInConstructorCall", firstStatementInConstructorCall)
         .add("returnType", returnType)
         .toString();
   }
@@ -382,14 +382,14 @@ public final class StaticState implements StaticStateIF {
    */
   public static final class Builder {
     private static final long OPT_BIT_INSIDE_BREAKABLE_STATEMENT = 0x1L;
-    private static final long OPT_BIT_INSIDE_CONSTRUCTOR_CALL = 0x2L;
+    private static final long OPT_BIT_FIRST_STATEMENT_IN_CONSTRUCTOR_CALL = 0x2L;
     private long optBits;
 
     private String currentClass;
     private ImmutableMap.Builder<String, ClassInfo> classes = ImmutableMap.builder();
     private ImmutableMap.Builder<String, ResolvedType> environment = ImmutableMap.builder();
     private boolean insideBreakableStatement;
-    private boolean insideConstructorCall;
+    private boolean firstStatementInConstructorCall;
     private ResolvedType returnType;
 
     private Builder() {
@@ -412,7 +412,7 @@ public final class StaticState implements StaticStateIF {
       putAllClasses(instance.getClasses());
       putAllEnvironment(instance.getEnvironment());
       setInsideBreakableStatement(instance.isInsideBreakableStatement());
-      setInsideConstructorCall(instance.isInsideConstructorCall());
+      setFirstStatementInConstructorCall(instance.isFirstStatementInConstructorCall());
       Optional<ResolvedType> returnTypeOptional = instance.getReturnType();
       if (returnTypeOptional.isPresent()) {
         setReturnType(returnTypeOptional);
@@ -525,14 +525,14 @@ public final class StaticState implements StaticStateIF {
     }
 
     /**
-     * Initializes the value for the {@link StaticStateIF#isInsideConstructorCall() insideConstructorCall} attribute.
-     * <p><em>If not set, this attribute will have a default value as returned by the initializer of {@link StaticStateIF#isInsideConstructorCall() insideConstructorCall}.</em>
-     * @param insideConstructorCall The value for insideConstructorCall 
+     * Initializes the value for the {@link StaticStateIF#isFirstStatementInConstructorCall() firstStatementInConstructorCall} attribute.
+     * <p><em>If not set, this attribute will have a default value as returned by the initializer of {@link StaticStateIF#isFirstStatementInConstructorCall() firstStatementInConstructorCall}.</em>
+     * @param firstStatementInConstructorCall The value for firstStatementInConstructorCall 
      * @return {@code this} builder for use in a chained invocation
      */
-    public final Builder setInsideConstructorCall(boolean insideConstructorCall) {
-      this.insideConstructorCall = insideConstructorCall;
-      optBits |= OPT_BIT_INSIDE_CONSTRUCTOR_CALL;
+    public final Builder setFirstStatementInConstructorCall(boolean firstStatementInConstructorCall) {
+      this.firstStatementInConstructorCall = firstStatementInConstructorCall;
+      optBits |= OPT_BIT_FIRST_STATEMENT_IN_CONSTRUCTOR_CALL;
       return this;
     }
 
@@ -569,8 +569,8 @@ public final class StaticState implements StaticStateIF {
       return (optBits & OPT_BIT_INSIDE_BREAKABLE_STATEMENT) != 0;
     }
 
-    private boolean insideConstructorCallIsSet() {
-      return (optBits & OPT_BIT_INSIDE_CONSTRUCTOR_CALL) != 0;
+    private boolean firstStatementInConstructorCallIsSet() {
+      return (optBits & OPT_BIT_FIRST_STATEMENT_IN_CONSTRUCTOR_CALL) != 0;
     }
   }
 }

@@ -1,13 +1,15 @@
 package staticchecks.resolvedInfo;
 
-import ast.BlockStatement;
 import ast.Modifier;
 import ast.SuperCall;
+import astPojos.BlockStatement;
+import astPojos.SuperConstructorCall;
 import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.Lists;
 import org.immutables.value.Value;
 import styles.ImmutableStyle;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -20,9 +22,7 @@ public interface ResolvedConstructorIF {
 
     ResolvedConstructor defaultConstructor =
             ResolvedConstructor.builder()
-                               .setBody(BlockStatement.builder()
-                                                      .addStatements(SuperCall.builder().build())
-                                                      .build())
+                               .setBody(new BlockStatement(Lists.newArrayList(new SuperConstructorCall(new ArrayList<>()))))
                                .setModifiers(ImmutableSet.of(Modifier.PUBLIC))
                                .build();
 

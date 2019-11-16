@@ -1,6 +1,9 @@
 package staticchecks;
 
 import ast.*;
+import astPojos.Expression;
+import astPojos.FieldResolvable;
+import astPojos.MethodResolvable;
 import staticchecks.resolvedInfo.*;
 
 import java.util.*;
@@ -36,17 +39,19 @@ public class StaticChecksHelper {
         ResolvedType baseType = null;
         switch (t.getTypeIdentifier()) {
             case "boolean":
-                baseType = PrimitiveType.bool;
+                baseType = PrimitiveType.BOOLEAN;
                 break;
             case "int":
-                baseType = PrimitiveType.num;
+                baseType = PrimitiveType.INT;
                 break;
             case "void":
-                baseType = PrimitiveType.voidT;
+                baseType = PrimitiveType.VOID;
                 break;
             case "char":
-                baseType = PrimitiveType.character;
+                baseType = PrimitiveType.CHAR;
                 break;
+            case "Object":
+                baseType = ClassType.builder().setClassName("Object").build();
             default:
         }
         if (baseType == null) {
@@ -56,7 +61,7 @@ public class StaticChecksHelper {
             baseType = ClassType.builder().setClassName(t.getTypeIdentifier()).build();
         }
         if (t.getArrayLevel() != 0) {
-            if (baseType == PrimitiveType.voidT) {
+            if (baseType == PrimitiveType.VOID) {
                 throw new RuntimeException("Arrays cannot have an element type of void.");
             }
             return ArrayType.builder().setType(baseType).setDimension(t.getArrayLevel()).build();
@@ -64,7 +69,15 @@ public class StaticChecksHelper {
         return baseType;
     }
 
-    public static ResolvedMethod resolveMethod(String methodName, String className, StaticState s) {
+    public static ResolvedMethod resolveMethod(MethodResolvable methodResolvable,
+                                               String className,
+                                               StaticState s) {
+        String methodName = methodResolvable.getMethodName();
+        //TODO: Object should be a constant string somewhere (not for performance,
+        //it'll get interned anyway -- just for clean revision and centrality)
+        if (className.equals("Object")) {
+            throw new RuntimeException("Could not find method " + methodName);
+        }
         ClassInfo classInfo = s.getClasses().get(className);
         //Probably impossible due to checks prior to this
         if (classInfo == null) {
@@ -75,39 +88,40 @@ public class StaticChecksHelper {
         //actually overloading, so nvm, but no harm in doing this.)
         ResolvedMethod resolvedMethod = classInfo.getMethods().get(methodName);
         if (resolvedMethod != null) {
+            methodResolvable.setFromClass(className);
             return resolvedMethod;
         }
-        if (classInfo.getSuperClassName().isPresent()) {
-            return resolveMethod(methodName, classInfo.getSuperClassName().get(), s);
-        }
-        throw new RuntimeException("Could not find method " + methodName);
+        return resolveMethod(methodResolvable, classInfo.getSuperClassName(), s);
+
     }
 
-    public static ResolvedField resolveField(String fieldName, String className, StaticState s) {
-        Optional<ResolvedField> field = optionallyResolveField(fieldName, className, s);
+    public static ResolvedField resolveField(FieldResolvable fieldResolvable, String className, StaticState s) {
+        Optional<ResolvedField> field = optionallyResolveField(fieldResolvable, className, s);
         if (field.isPresent()) {
             return field.get();
         }
-        throw new RuntimeException("Could not find field " + fieldName);
+        throw new RuntimeException("Could not find field " + fieldResolvable.getFieldName());
     }
 
-    public static Optional<ResolvedField> optionallyResolveField(String fieldName, String className, StaticState s) {
+    public static Optional<ResolvedField> optionallyResolveField(FieldResolvable fieldResolvable,
+                                                                 String className,
+                                                                 StaticState s) {
+        String fieldName = fieldResolvable.getFieldName();
+        if (className.equals("Object")) {
+            return Optional.empty();
+        }
         ClassInfo classInfo = s.getClasses().get(className);
         //Probably impossible due to checks prior to this
         if (classInfo == null) {
             throw new RuntimeException("Could not find class " + className + ".");
         }
-        //So it doesn't return the class constructor. We don't throw an error because
-        //the superclass might have a method with the name of the subclass (Maybe? That's probably
-        //actually overloading, so nvm, but no harm in doing this.)
+
         ResolvedField resolvedField = classInfo.getFields().get(fieldName);
         if (resolvedField != null) {
+            fieldResolvable.setFromClass(className);
             return Optional.of(resolvedField);
         }
-        if (classInfo.getSuperClassName().isPresent()) {
-            return optionallyResolveField(fieldName, classInfo.getSuperClassName().get(), s);
-        }
-        return Optional.empty();
+        return optionallyResolveField(fieldResolvable, classInfo.getSuperClassName(), s);
     }
 
     //An ugly method. You can do better. Either pull things out and make them more reusable
@@ -116,7 +130,6 @@ public class StaticChecksHelper {
     public static Map<String, ClassInfo> buildClassInfo(Program p) {
         List<ClassASTNode> classes = p.getClasses();
         Map<String, ClassInfo> classInfoMap = new HashMap<>();
-        classInfoMap.put("Object", ClassInfo.builder().build());
         for (ClassASTNode classNode : classes) {
             String superName = classNode.getSuper().isPresent() ? classNode.getSuper().get() : "Object";
             classInfoMap.put(classNode.getClassName(), ClassInfo.builder().setSuperClassName(superName).build());
@@ -194,6 +207,8 @@ public class StaticChecksHelper {
                                                            .setType(resolveType(f.getParam().getType(), state))
                                                            .setModifiers(modifierSet)
                                                            .build();
+                //TODO: Static state can't be an immutable. This is an immutable map.
+                //put isn't allowed.
                 classInfo.getFields().put(f.getParam().getName(), resolvedField);
             }
             Optional<Constructor> constructor = classNode.getConstructor();
@@ -223,10 +238,10 @@ public class StaticChecksHelper {
                     modifierSet.add(Modifier.PUBLIC);
                 }
                 resolvedConstructor = ResolvedConstructor.builder()
-                        .setBody(constructor.get().getBody())
-                        .setArguments(resolvedParams)
-                        .setModifiers(modifierSet)
-                        .build();
+                                                         .setBody(constructor.get().getBody())
+                                                         .setArguments(resolvedParams)
+                                                         .setModifiers(modifierSet)
+                                                         .build();
             } else {
                 resolvedConstructor = ResolvedConstructor.defaultConstructor;
             }
