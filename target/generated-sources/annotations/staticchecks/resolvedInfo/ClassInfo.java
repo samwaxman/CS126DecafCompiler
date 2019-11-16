@@ -3,6 +3,7 @@ package staticchecks.resolvedInfo;
 import com.google.common.base.MoreObjects;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
+import com.sun.istack.internal.Nullable;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -20,13 +21,13 @@ public final class ClassInfo implements ClassInfoIF {
   private final ImmutableMap<String, ResolvedField> fields;
   private final ImmutableMap<String, ResolvedMethod> methods;
   private final String superClassName;
-  private final ResolvedConstructor constructor;
+  private final @Nullable ResolvedConstructor constructor;
 
   private ClassInfo(
       ImmutableMap<String, ResolvedField> fields,
       ImmutableMap<String, ResolvedMethod> methods,
       String superClassName,
-      ResolvedConstructor constructor) {
+      @Nullable ResolvedConstructor constructor) {
     this.fields = fields;
     this.methods = methods;
     this.superClassName = superClassName;
@@ -61,7 +62,7 @@ public final class ClassInfo implements ClassInfoIF {
    * @return The value of the {@code constructor} attribute
    */
   @Override
-  public ResolvedConstructor getConstructor() {
+  public @Nullable ResolvedConstructor getConstructor() {
     return constructor;
   }
 
@@ -106,13 +107,12 @@ public final class ClassInfo implements ClassInfoIF {
   /**
    * Copy the current immutable object by setting a value for the {@link ClassInfoIF#getConstructor() constructor} attribute.
    * A shallow reference equality check is used to prevent copying of the same value by returning {@code this}.
-   * @param value A new value for constructor
+   * @param value A new value for constructor (can be {@code null})
    * @return A modified copy of the {@code this} object
    */
-  public final ClassInfo withConstructor(ResolvedConstructor value) {
+  public final ClassInfo withConstructor(@Nullable ResolvedConstructor value) {
     if (this.constructor == value) return this;
-    ResolvedConstructor newValue = Objects.requireNonNull(value, "constructor");
-    return new ClassInfo(this.fields, this.methods, this.superClassName, newValue);
+    return new ClassInfo(this.fields, this.methods, this.superClassName, value);
   }
 
   /**
@@ -130,7 +130,7 @@ public final class ClassInfo implements ClassInfoIF {
     return fields.equals(another.fields)
         && methods.equals(another.methods)
         && superClassName.equals(another.superClassName)
-        && constructor.equals(another.constructor);
+        && Objects.equals(constructor, another.constructor);
   }
 
   /**
@@ -143,7 +143,7 @@ public final class ClassInfo implements ClassInfoIF {
     h += (h << 5) + fields.hashCode();
     h += (h << 5) + methods.hashCode();
     h += (h << 5) + superClassName.hashCode();
-    h += (h << 5) + constructor.hashCode();
+    h += (h << 5) + Objects.hashCode(constructor);
     return h;
   }
 
@@ -195,8 +195,7 @@ public final class ClassInfo implements ClassInfoIF {
    */
   public static final class Builder {
     private static final long INIT_BIT_SUPER_CLASS_NAME = 0x1L;
-    private static final long INIT_BIT_CONSTRUCTOR = 0x2L;
-    private long initBits = 0x3L;
+    private long initBits = 0x1L;
 
     private ImmutableMap.Builder<String, ResolvedField> fields = ImmutableMap.builder();
     private ImmutableMap.Builder<String, ResolvedMethod> methods = ImmutableMap.builder();
@@ -219,7 +218,10 @@ public final class ClassInfo implements ClassInfoIF {
       putAllFields(instance.getFields());
       putAllMethods(instance.getMethods());
       setSuperClassName(instance.getSuperClassName());
-      setConstructor(instance.getConstructor());
+      @Nullable ResolvedConstructor constructorValue = instance.getConstructor();
+      if (constructorValue != null) {
+        setConstructor(constructorValue);
+      }
       return this;
     }
 
@@ -318,12 +320,11 @@ public final class ClassInfo implements ClassInfoIF {
 
     /**
      * Initializes the value for the {@link ClassInfoIF#getConstructor() constructor} attribute.
-     * @param constructor The value for constructor 
+     * @param constructor The value for constructor (can be {@code null})
      * @return {@code this} builder for use in a chained invocation
      */
-    public final Builder setConstructor(ResolvedConstructor constructor) {
-      this.constructor = Objects.requireNonNull(constructor, "constructor");
-      initBits &= ~INIT_BIT_CONSTRUCTOR;
+    public final Builder setConstructor(@Nullable ResolvedConstructor constructor) {
+      this.constructor = constructor;
       return this;
     }
 
@@ -342,7 +343,6 @@ public final class ClassInfo implements ClassInfoIF {
     private String formatRequiredAttributesMessage() {
       List<String> attributes = Lists.newArrayList();
       if ((initBits & INIT_BIT_SUPER_CLASS_NAME) != 0) attributes.add("superClassName");
-      if ((initBits & INIT_BIT_CONSTRUCTOR) != 0) attributes.add("constructor");
       return "Cannot build ClassInfo, some of required attributes are not set " + attributes;
     }
   }

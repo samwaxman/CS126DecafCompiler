@@ -1,7 +1,7 @@
 package staticchecks.resolvedInfo;
 
-import ast.BlockStatement;
 import ast.Modifier;
+import astPojos.BlockStatement;
 import com.google.common.base.MoreObjects;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;

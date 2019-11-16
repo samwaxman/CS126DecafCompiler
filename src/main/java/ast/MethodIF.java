@@ -8,7 +8,7 @@ import java.util.List;
 
 @Value.Immutable
 @ImmutableStyle
-public interface MethodIF extends ASTNode {
+public interface MethodIF {
     String getMethodName();
     List<Modifier> getModifiers();
     List<Param> getParams();

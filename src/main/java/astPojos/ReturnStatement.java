@@ -1,10 +1,13 @@
 package astPojos;
 
+import org.apache.bcel.generic.*;
 import staticchecks.StaticChecksHelper;
 import staticchecks.StaticState;
+import staticchecks.resolvedInfo.ClassType;
 import staticchecks.resolvedInfo.PrimitiveType;
 import staticchecks.resolvedInfo.ResolvedType;
 
+import java.util.Map;
 import java.util.Optional;
 
 public class ReturnStatement extends Statement {
@@ -40,6 +43,22 @@ public class ReturnStatement extends Statement {
             throw new RuntimeException("Bad return type: Expected " + expectedReturnType +
             " but found " + returnType + ".");
         }
+    }
+
+    @Override
+    public InstructionHandle toBytecode(Map<String, ClassGen> javaClassMap, InstructionList il, ConstantPoolGen cp) {
+        InstructionHandle start;
+        if (returnExpression.isPresent()) {
+            start = returnExpression.get().toBytecode(javaClassMap, il, cp);
+            if (returnExpression.get().getType() instanceof ClassType) {
+                il.append(new ARETURN());
+            } else {
+                il.append(new IRETURN());
+            }
+        } else {
+            start = il.append(new RETURN());
+        }
+        return start;
     }
 
     public Optional<Expression> getReturnExpression() {

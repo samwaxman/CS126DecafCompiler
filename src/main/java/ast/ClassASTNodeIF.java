@@ -8,7 +8,7 @@ import java.util.Optional;
 
 @Value.Immutable
 @ImmutableStyle
-public interface ClassASTNodeIF extends ASTNode {
+public interface ClassASTNodeIF {
     String getClassName();
     List<Method> getMethods();
     List<Field> getFields();

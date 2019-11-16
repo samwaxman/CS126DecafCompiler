@@ -1,6 +1,6 @@
 lexer grammar DecafLexer;
 
-WHITESPACE: (' ' | '\t' | '\n') -> skip;
+WHITESPACE: (' ' | '\t' | '\n' | '\r') -> skip;
 
 //KEYWORDS
 BREAK: 'break' ;

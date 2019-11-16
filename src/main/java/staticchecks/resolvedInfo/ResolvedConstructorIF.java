@@ -1,7 +1,6 @@
 package staticchecks.resolvedInfo;
 
 import ast.Modifier;
-import ast.SuperCall;
 import astPojos.BlockStatement;
 import astPojos.SuperConstructorCall;
 import com.google.common.collect.ImmutableSet;

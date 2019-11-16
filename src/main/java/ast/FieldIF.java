@@ -7,7 +7,7 @@ import java.util.List;
 
 @Value.Immutable
 @ImmutableStyle
-public interface FieldIF extends ASTNode {
+public interface FieldIF {
     Param getParam();
     List<Modifier> getModifiers();
 }

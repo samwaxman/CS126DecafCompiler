@@ -12,7 +12,11 @@ import java.util.stream.Collectors;
 public class StaticChecksHelper {
 
     public static boolean isSubclass(ResolvedType sub, ResolvedType parent, StaticState s) {
-        return false;
+        if (sub == parent) {
+            return true;
+        } else {
+            throw new RuntimeException("not yet implemented");
+        }
     }
 
     public static boolean isLValue(Expression e) {
@@ -50,8 +54,6 @@ public class StaticChecksHelper {
             case "char":
                 baseType = PrimitiveType.CHAR;
                 break;
-            case "Object":
-                baseType = ClassType.builder().setClassName("Object").build();
             default:
         }
         if (baseType == null) {
@@ -75,6 +77,7 @@ public class StaticChecksHelper {
         String methodName = methodResolvable.getMethodName();
         //TODO: Object should be a constant string somewhere (not for performance,
         //it'll get interned anyway -- just for clean revision and centrality)
+        //TODO make sure this doesn't mess up instantiating an Object
         if (className.equals("Object")) {
             throw new RuntimeException("Could not find method " + methodName);
         }
@@ -130,6 +133,15 @@ public class StaticChecksHelper {
     public static Map<String, ClassInfo> buildClassInfo(Program p) {
         List<ClassASTNode> classes = p.getClasses();
         Map<String, ClassInfo> classInfoMap = new HashMap<>();
+        ClassInfo objectInfo = ClassInfo.builder().setSuperClassName("")
+                .setConstructor(ResolvedConstructor.defaultConstructor)
+                .build();
+        classInfoMap.put("Object", objectInfo);
+        ClassInfo stringInfo = ClassInfo.builder()
+                .setSuperClassName("Object")
+                .setConstructor(ResolvedConstructor.defaultConstructor)
+                .build();
+        classInfoMap.put("String", stringInfo);
         for (ClassASTNode classNode : classes) {
             String superName = classNode.getSuper().isPresent() ? classNode.getSuper().get() : "Object";
             classInfoMap.put(classNode.getClassName(), ClassInfo.builder().setSuperClassName(superName).build());
@@ -143,6 +155,7 @@ public class StaticChecksHelper {
         Map<String, ClassInfo> toReturn = new HashMap<>();
         for (ClassASTNode classNode : classes) {
             ClassInfo classInfo = classInfoMap.get(classNode.getClassName());
+            HashMap<String, ResolvedMethod> methods = new HashMap<>();
             for (Method m : classNode.getMethods()) {
                 ResolvedType returnType = resolveType(m.getReturnType(), state);
                 List<ResolvedParam> resolvedParams = m.getParams().stream()
@@ -178,9 +191,10 @@ public class StaticChecksHelper {
                                                               .setArguments(resolvedParams)
                                                               .setModifiers(modifierSet)
                                                               .build();
-                classInfo.getMethods().put(m.getMethodName(), resolvedMethod);
+               methods.put(m.getMethodName(), resolvedMethod);
             }
 
+            Map<String, ResolvedField> fields = new HashMap<>();
             for (Field f : classNode.getFields()) {
                 if (classInfo.getFields().get(f.getParam().getName()) != null) {
                     throw new RuntimeException("Duplicate field " + f.getParam().getName()
@@ -209,7 +223,7 @@ public class StaticChecksHelper {
                                                            .build();
                 //TODO: Static state can't be an immutable. This is an immutable map.
                 //put isn't allowed.
-                classInfo.getFields().put(f.getParam().getName(), resolvedField);
+                fields.put(f.getParam().getName(), resolvedField);
             }
             Optional<Constructor> constructor = classNode.getConstructor();
             ResolvedConstructor resolvedConstructor;
@@ -245,8 +259,17 @@ public class StaticChecksHelper {
             } else {
                 resolvedConstructor = ResolvedConstructor.defaultConstructor;
             }
-            toReturn.put(classNode.getClassName(), classInfo.withConstructor(resolvedConstructor));
+            String superName = classInfoMap.get(classNode.getClassName()).getSuperClassName();
+            ClassInfo info = ClassInfo.builder()
+                     .setFields(fields)
+                     .setMethods(methods)
+                     .setConstructor(resolvedConstructor)
+                     .setSuperClassName(superName)
+                    .build();
+            toReturn.put(classNode.getClassName(), info);
         }
+        toReturn.put("String", stringInfo);
+        toReturn.put("Object", objectInfo);
         return toReturn;
     }
 

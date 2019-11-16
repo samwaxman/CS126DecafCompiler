@@ -1,9 +1,11 @@
 package astPojos;
 
+import org.apache.bcel.generic.*;
 import staticchecks.StaticState;
 import staticchecks.resolvedInfo.PrimitiveType;
 import staticchecks.resolvedInfo.ResolvedType;
 
+import java.util.Map;
 import java.util.Optional;
 
 public class IfStatement extends Statement {
@@ -29,6 +31,23 @@ public class IfStatement extends Statement {
                                                "of type boolean for its condition. Received " +
                                                conditionType);
         }
+    }
+
+    @Override
+    public InstructionHandle toBytecode(Map<String, ClassGen> javaClassMap, InstructionList il, ConstantPoolGen cp) {
+        InstructionHandle start = condition.toBytecode(javaClassMap, il, cp);
+        IFEQ ifIns = new IFEQ(null);
+        il.append(ifIns);
+        consequence.toBytecode(javaClassMap, il, cp);
+        if (alternate.isPresent()) {
+            GOTO gotoIns = new GOTO(null);
+            il.append(gotoIns);
+            ifIns.setTarget(alternate.get().toBytecode(javaClassMap, il, cp));
+            gotoIns.setTarget(il.append(new NOP()));
+        } else {
+            ifIns.setTarget(il.append(new NOP()));
+        }
+        return start;
     }
 
     public Expression getCondition() {

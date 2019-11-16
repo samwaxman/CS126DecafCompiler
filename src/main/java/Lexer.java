@@ -1,4 +1,5 @@
 import ast.Program;
+import bytecode.BytecodeCreator;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import grammar.DecafLexer;
@@ -21,13 +22,14 @@ public class Lexer {
 
     public static void main(String[] args) throws IOException {
 
-        CharStream in = CharStreams.fromFileName("/Users/Sam/Downloads/decaf/short.decaf");
+        CharStream in = CharStreams.fromFileName("C:/Users/Sam/Downloads/decaf/simple.txt");
         DecafLexer lexer = new DecafLexer(in);
         //List<? extends Token> tokens = lexer.getAllTokens();
         //System.out.println(tokens);
         TokenStream stream = new CommonTokenStream(lexer);
         DecafParser parser = new DecafParser(stream);
         Program p = new ProgramVisitor().visitStart(parser.start());
+        BytecodeCreator.toBytecode(p);
         Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();
         System.out.println(gson.toJson(p));
         //ParseTree tree = new RuleContext().;
