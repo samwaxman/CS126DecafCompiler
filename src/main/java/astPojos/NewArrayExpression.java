@@ -1,6 +1,10 @@
 package astPojos;
 
 import ast.Type;
+import bytecode.ByteCodeState;
+import bytecode.BytecodeCreator;
+import org.apache.bcel.generic.MULTIANEWARRAY;
+import org.apache.bcel.generic.NEWARRAY;
 import staticchecks.StaticChecksHelper;
 import staticchecks.StaticState;
 import staticchecks.resolvedInfo.ArrayType;
@@ -24,17 +28,40 @@ public class NewArrayExpression extends Expression {
     @Override
     protected ResolvedType typeCheckCore(StaticState s) {
         ResolvedType type = StaticChecksHelper.resolveType(baseType, s);
+        if (!(type == PrimitiveType.BOOLEAN || type == PrimitiveType.INT || type == PrimitiveType.CHAR)) {
+            throw new RuntimeException("Decaf only supports creation of primitive non-void arrays. " +
+                                               "Got array base type of " + type);
+        }
         for (Expression index : dimensions) {
             if (index.typeCheck(s) != PrimitiveType.INT) {
                 throw new RuntimeException("Expected integer for indexing into array but received" +
                 index.getType());
             }
         }
+        if (dimensions.size() > 32767) {
+            throw new RuntimeException("Dimension count for arrays must be within short range.");
+        }
 
        return ArrayType.builder()
                .setType(type)
                .setDimension(dimensions.size())
                .build();
+    }
+
+    @Override
+    public void toBytecode(ByteCodeState state) {
+        org.apache.bcel.generic.Type bcelType = BytecodeCreator.resolvedTypeToBcelType(getType());
+        if (dimensions.size() == 1) {
+            dimensions.get(0).toBytecode(state);
+            state.append(new NEWARRAY(bcelType.getType()));
+        } else {
+            for (Expression e : dimensions) {
+                e.toBytecode(state);
+            }
+            //TODO: It's expecting a place into the constant pool. I don't think this will work?
+            //Maybe you put the type byte into the CP and get it out?
+            state.append(new MULTIANEWARRAY(bcelType.getType(), (short)dimensions.size()));
+        }
     }
 
     public Type getBaseType() {

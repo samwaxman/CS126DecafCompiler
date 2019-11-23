@@ -35,6 +35,11 @@ public class ConstructorCall extends Expression {
         return ClassType.builder().setClassName(className).build();
     }
 
+   // @Override
+    //public InstructionHandle toBytecode(ByteCodeState state) {
+      //  return null;
+    //}
+
     public String getClassName() {
         return className;
     }

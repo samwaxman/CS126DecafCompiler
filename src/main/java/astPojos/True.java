@@ -1,11 +1,10 @@
 package astPojos;
 
+import bytecode.ByteCodeState;
 import org.apache.bcel.generic.*;
 import staticchecks.StaticState;
 import staticchecks.resolvedInfo.PrimitiveType;
 import staticchecks.resolvedInfo.ResolvedType;
-
-import java.util.Map;
 
 public class True extends LiteralExpression {
 
@@ -15,7 +14,6 @@ public class True extends LiteralExpression {
     }
 
     @Override
-    public InstructionHandle toBytecode(Map<String, ClassGen> javaClassMap, InstructionList il, ConstantPoolGen cp) {
-       return il.append(new ICONST(1));
+    public void toBytecode(ByteCodeState state) { state.append(new ICONST(1));
     }
 }

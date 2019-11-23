@@ -1,11 +1,11 @@
 package astPojos;
 
+import bytecode.ByteCodeState;
 import org.apache.bcel.generic.*;
 import staticchecks.StaticState;
 import staticchecks.resolvedInfo.PrimitiveType;
 import staticchecks.resolvedInfo.ResolvedType;
 
-import java.util.Map;
 import java.util.Optional;
 
 public class IfStatement extends Statement {
@@ -34,20 +34,23 @@ public class IfStatement extends Statement {
     }
 
     @Override
-    public InstructionHandle toBytecode(Map<String, ClassGen> javaClassMap, InstructionList il, ConstantPoolGen cp) {
-        InstructionHandle start = condition.toBytecode(javaClassMap, il, cp);
+    public void toBytecode(ByteCodeState state) {
+        condition.toBytecode(state);
         IFEQ ifIns = new IFEQ(null);
-        il.append(ifIns);
-        consequence.toBytecode(javaClassMap, il, cp);
+        state.append(ifIns);
+        consequence.toBytecode(state);
         if (alternate.isPresent()) {
             GOTO gotoIns = new GOTO(null);
-            il.append(gotoIns);
-            ifIns.setTarget(alternate.get().toBytecode(javaClassMap, il, cp));
-            gotoIns.setTarget(il.append(new NOP()));
+            state.append(gotoIns);
+            InstructionHandle current =  state.getInstructionList().getEnd();
+            alternate.get().toBytecode(state);
+            InstructionHandle alternateStart = current.getNext();
+            assert alternateStart != null : "alternate should have added instructions";
+            ifIns.setTarget(alternateStart);
+            gotoIns.setTarget(state.append(new NOP()));
         } else {
-            ifIns.setTarget(il.append(new NOP()));
+            ifIns.setTarget(state.append(new NOP()));
         }
-        return start;
     }
 
     public Expression getCondition() {

@@ -8,6 +8,7 @@ import org.apache.bcel.classfile.JavaClass;
 import org.apache.bcel.classfile.Method;
 import org.apache.bcel.generic.ArrayType;
 import org.apache.bcel.generic.*;
+import staticchecks.LocalVariableInfoTable;
 import staticchecks.StaticChecksHelper;
 import staticchecks.StaticState;
 import staticchecks.resolvedInfo.*;
@@ -37,7 +38,7 @@ public class BytecodeCreator {
         return accessFlag;
     }
 
-    private static Type resolvedTypeToBcelType(ResolvedType t) {
+    public static Type resolvedTypeToBcelType(ResolvedType t) {
         if (t == PrimitiveType.VOID) {
             return Type.VOID;
         }
@@ -69,10 +70,14 @@ public class BytecodeCreator {
         Map<String, ClassInfo> classInfoMap = StaticChecksHelper.buildClassInfo(p);
         for (Map.Entry<String, ClassInfo> classInfoEntry : classInfoMap.entrySet()) {
             for (ResolvedMethod resolvedMethod : classInfoEntry.getValue().getMethods().values()) {
+                boolean isVirtual = !resolvedMethod.getModifiers().contains(Modifier.STATIC);
+                LocalVariableInfoTable variableTable = new LocalVariableInfoTable(isVirtual,
+                                                                                  resolvedMethod.getArguments());
                 StaticState s = StaticState.builder()
                                            .setClasses(classInfoMap)
                                            .setReturnType(resolvedMethod.getReturnType())
                                            .setCurrentClass(classInfoEntry.getKey())
+                                           .setLocalVariableTable(variableTable)
                                            .build();
                 resolvedMethod.getBody().typeCheck(s);
             }
@@ -143,29 +148,34 @@ public class BytecodeCreator {
             javaClassMap.put(classEntry.getKey(), classGen);
         }
         List<JavaClass> classes = new ArrayList<>();
-            for (Map.Entry<String, ClassGen> entry : javaClassMap.entrySet()) {
-                if (entry.getKey().equals("IO")) {
-                    continue;
-                }
-                String className = entry.getKey();
-                ClassGen classGen = entry.getValue();
-                List<Method> methods = new ArrayList<>();
-                ConstantPoolGen constantPool = classGen.getConstantPool();
-                for (Method method : classGen.getMethods()) {
-                    BlockStatement body = classInfoMap.get(className).getMethods().get(method.getName()).getBody();
-                    MethodGen methodGen = new MethodGen(method, className, constantPool);
-                    InstructionList instructionList = new InstructionList();
-                    body.toBytecode(javaClassMap, instructionList, constantPool);
-                    methodGen.setInstructionList(instructionList);
-                    methodGen.setMaxLocals();
-                    methodGen.setMaxStack();
-                    methods.add(methodGen.getMethod());
-                }
-                classGen.setMethods(methods.toArray(new Method[methods.size()]));
-                classes.add(classGen.getJavaClass());
+        for (Map.Entry<String, ClassGen> entry : javaClassMap.entrySet()) {
+            if (entry.getKey().equals("IO")) {
+                continue;
             }
-            classes.add(IO().getJavaClass());
-       // OutputStream o = new BufferedOutputStream(new FileOutputStream(f));
+            String className = entry.getKey();
+            ClassGen classGen = entry.getValue();
+            List<Method> methods = new ArrayList<>();
+            ConstantPoolGen constantPool = classGen.getConstantPool();
+            for (Method method : classGen.getMethods()) {
+                BlockStatement body = classInfoMap.get(className).getMethods().get(method.getName()).getBody();
+                MethodGen methodGen = new MethodGen(method, className, constantPool);
+                InstructionList instructionList = new InstructionList();
+                ByteCodeState state = ByteCodeState.builder()
+                                                   .setConstantPoolGen(classGen.getConstantPool())
+                                                   .setClassMap(javaClassMap)
+                                                   .setInstructionList(instructionList)
+                                                   .build();
+                body.toBytecode(state);
+                methodGen.setInstructionList(instructionList);
+                methodGen.setMaxLocals();
+                methodGen.setMaxStack();
+                methods.add(methodGen.getMethod());
+            }
+            classGen.setMethods(methods.toArray(new Method[methods.size()]));
+            classes.add(classGen.getJavaClass());
+        }
+        classes.add(IO().getJavaClass());
+        // OutputStream o = new BufferedOutputStream(new FileOutputStream(f));
         for (JavaClass jClass : classes) {
             File f = new File("C:/Users/Sam/Documents/BrownCS/" +
                                       URLEncoder.encode(jClass.getClassName(), UTF_8) +
@@ -174,7 +184,7 @@ public class BytecodeCreator {
             jClass.dump(f);
             System.out.println(jClass);
         }
-      //  o.flush();
+        //  o.flush();
         //o.close();
     }
 

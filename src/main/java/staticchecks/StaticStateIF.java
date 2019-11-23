@@ -15,7 +15,8 @@ public interface StaticStateIF {
     @Nullable
     String getCurrentClass();
     Map<String, ClassInfo> getClasses();
-    Map<String, ResolvedType> getEnvironment();
+    @Nullable
+    LocalVariableInfoTable getLocalVariableTable();
 
     @Value.Default
     default boolean isInsideBreakableStatement() {

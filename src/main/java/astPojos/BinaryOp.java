@@ -1,5 +1,6 @@
 package astPojos;
 
+import bytecode.ByteCodeState;
 import org.apache.bcel.generic.*;
 import staticchecks.StaticChecksHelper;
 import staticchecks.StaticState;
@@ -7,8 +8,6 @@ import staticchecks.resolvedInfo.ArrayType;
 import staticchecks.resolvedInfo.ClassType;
 import staticchecks.resolvedInfo.PrimitiveType;
 import staticchecks.resolvedInfo.ResolvedType;
-
-import java.util.Map;
 
 public class BinaryOp extends Expression {
     private final Expression left;
@@ -101,9 +100,9 @@ public class BinaryOp extends Expression {
     }
 
     @Override
-    public InstructionHandle toBytecode(Map<String, ClassGen> javaClassMap, InstructionList il, ConstantPoolGen cp) {
-        InstructionHandle start = left.toBytecode(javaClassMap, il, cp);
-        right.toBytecode(javaClassMap, il, cp);
+    public void toBytecode(ByteCodeState state) {
+        left.toBytecode(state);
+        right.toBytecode(state);
         Instruction op = null;
         switch (operator) {
             case "+":
@@ -133,8 +132,8 @@ public class BinaryOp extends Expression {
             //   throw new RuntimeException("Not yet implemented");
         }
         if (op != null) {
-            il.append(op);
-            return start;
+            state.append(op);
+            return;
         }
         boolean negate = false;
         IfInstruction branch = null;
@@ -164,17 +163,16 @@ public class BinaryOp extends Expression {
         if (negate) {
             branch = branch.negate();
         }
-        il.append(branch);
-        il.append(new ICONST(0));
+        state.append(branch);
+        state.append(new ICONST(0));
         GOTO gotoIns = new GOTO(null);
-        il.append(gotoIns);
-        InstructionHandle trueHandle = il.append(new ICONST(1));
+        state.append(gotoIns);
+        InstructionHandle trueHandle = state.append(new ICONST(1));
         //TODO: A touch dirty. We need it to point to after the other branch
         //but it can't because there is nothing after the other branch right now
-        il.append(new NOP());
+        state.append(new NOP());
         gotoIns.setTarget(trueHandle.getNext());
         branch.setTarget(trueHandle);
-        return start;
     }
 
     public Expression getLeft() {

@@ -1,6 +1,9 @@
 package astPojos;
 
 import ast.Type;
+import bytecode.ByteCodeState;
+import org.apache.bcel.generic.ASTORE;
+import org.apache.bcel.generic.ISTORE;
 import staticchecks.StaticChecksHelper;
 import staticchecks.StaticState;
 import staticchecks.resolvedInfo.ResolvedType;
@@ -11,6 +14,8 @@ public class VariableDeclarationStatement extends Statement {
     private final String variableName;
     private final Optional<Expression> initialValue;
     private final Type type;
+    private ResolvedType resolvedType;
+    private Integer index;
 
     public VariableDeclarationStatement(String variableName,
                                         Optional<Expression> initialValue,
@@ -22,12 +27,8 @@ public class VariableDeclarationStatement extends Statement {
 
     @Override
     public void typeCheck(StaticState s) {
-        //TODO: Probably need to rethink the enivornment
-        //This isn't like Racket where the AST node for a binding
-        //explictly has its scope built into it.
-        //Will need to push and pop current scopes onto and off off the
-        //static state
         ResolvedType variableType = StaticChecksHelper.resolveType(type, s);
+        resolvedType = variableType;
         if (initialValue.isPresent()) {
             ResolvedType initialValueType = initialValue.get().typeCheck(s);
             if (!StaticChecksHelper.isSubclass(initialValueType, variableType, s)) {
@@ -36,7 +37,19 @@ public class VariableDeclarationStatement extends Statement {
                                                    variableType + ".");
             }
         }
-      //TODO: store in environment
+        s.getLocalVariableTable().addLocalVariable(this);
+    }
+
+    @Override
+    public void toBytecode(ByteCodeState state) {
+        initialValue.ifPresent(iv -> {
+            iv.toBytecode(state);
+            state.append(resolvedType.isRef() ? new ASTORE(index) : new ISTORE(index));
+        });
+    }
+
+    public void setIndex(Integer index) {
+        this.index = index;
     }
 
     public String getVariableName() {
@@ -48,7 +61,14 @@ public class VariableDeclarationStatement extends Statement {
     }
 
     public Type getType() {
-
         return type;
+    }
+
+    public ResolvedType getResolvedType() {
+        return resolvedType;
+    }
+
+    public void setResolvedType(ResolvedType resolvedType) {
+        this.resolvedType = resolvedType;
     }
 }

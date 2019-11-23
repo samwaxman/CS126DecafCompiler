@@ -24,7 +24,7 @@ import staticchecks.resolvedInfo.ResolvedType;
 public final class StaticState implements StaticStateIF {
   private final @Nullable String currentClass;
   private final ImmutableMap<String, ClassInfo> classes;
-  private final ImmutableMap<String, ResolvedType> environment;
+  private final @Nullable LocalVariableInfoTable localVariableTable;
   private final boolean insideBreakableStatement;
   private final boolean firstStatementInConstructorCall;
   private final ResolvedType returnType;
@@ -32,7 +32,7 @@ public final class StaticState implements StaticStateIF {
   private StaticState(StaticState.Builder builder) {
     this.currentClass = builder.currentClass;
     this.classes = builder.classes.build();
-    this.environment = builder.environment.build();
+    this.localVariableTable = builder.localVariableTable;
     this.returnType = builder.returnType;
     if (builder.insideBreakableStatementIsSet()) {
       initShim.setInsideBreakableStatement(builder.insideBreakableStatement);
@@ -48,13 +48,13 @@ public final class StaticState implements StaticStateIF {
   private StaticState(
       @Nullable String currentClass,
       ImmutableMap<String, ClassInfo> classes,
-      ImmutableMap<String, ResolvedType> environment,
+      @Nullable LocalVariableInfoTable localVariableTable,
       boolean insideBreakableStatement,
       boolean firstStatementInConstructorCall,
       ResolvedType returnType) {
     this.currentClass = currentClass;
     this.classes = classes;
-    this.environment = environment;
+    this.localVariableTable = localVariableTable;
     this.insideBreakableStatement = insideBreakableStatement;
     this.firstStatementInConstructorCall = firstStatementInConstructorCall;
     this.returnType = returnType;
@@ -135,11 +135,11 @@ public final class StaticState implements StaticStateIF {
   }
 
   /**
-   * @return The value of the {@code environment} attribute
+   * @return The value of the {@code localVariableTable} attribute
    */
   @Override
-  public ImmutableMap<String, ResolvedType> getEnvironment() {
-    return environment;
+  public @Nullable LocalVariableInfoTable getLocalVariableTable() {
+    return localVariableTable;
   }
 
   /**
@@ -183,7 +183,7 @@ public final class StaticState implements StaticStateIF {
     return new StaticState(
         value,
         this.classes,
-        this.environment,
+        this.localVariableTable,
         this.insideBreakableStatement,
         this.firstStatementInConstructorCall,
         this.returnType);
@@ -202,26 +202,24 @@ public final class StaticState implements StaticStateIF {
     return new StaticState(
         this.currentClass,
         newValue,
-        this.environment,
+        this.localVariableTable,
         this.insideBreakableStatement,
         this.firstStatementInConstructorCall,
         this.returnType);
   }
 
   /**
-   * Copy the current immutable object by replacing the {@link StaticStateIF#getEnvironment() environment} map with the specified map.
-   * Nulls are not permitted as keys or values.
+   * Copy the current immutable object by setting a value for the {@link StaticStateIF#getLocalVariableTable() localVariableTable} attribute.
    * A shallow reference equality check is used to prevent copying of the same value by returning {@code this}.
-   * @param entries The entries to be added to the environment map
-   * @return A modified copy of {@code this} object
+   * @param value A new value for localVariableTable (can be {@code null})
+   * @return A modified copy of the {@code this} object
    */
-  public final StaticState withEnvironment(Map<String, ? extends ResolvedType> entries) {
-    if (this.environment == entries) return this;
-    ImmutableMap<String, ResolvedType> newValue = ImmutableMap.copyOf(entries);
+  public final StaticState withLocalVariableTable(@Nullable LocalVariableInfoTable value) {
+    if (this.localVariableTable == value) return this;
     return new StaticState(
         this.currentClass,
         this.classes,
-        newValue,
+        value,
         this.insideBreakableStatement,
         this.firstStatementInConstructorCall,
         this.returnType);
@@ -238,7 +236,7 @@ public final class StaticState implements StaticStateIF {
     return new StaticState(
         this.currentClass,
         this.classes,
-        this.environment,
+        this.localVariableTable,
         value,
         this.firstStatementInConstructorCall,
         this.returnType);
@@ -255,7 +253,7 @@ public final class StaticState implements StaticStateIF {
     return new StaticState(
         this.currentClass,
         this.classes,
-        this.environment,
+        this.localVariableTable,
         this.insideBreakableStatement,
         value,
         this.returnType);
@@ -272,7 +270,7 @@ public final class StaticState implements StaticStateIF {
     return new StaticState(
         this.currentClass,
         this.classes,
-        this.environment,
+        this.localVariableTable,
         this.insideBreakableStatement,
         this.firstStatementInConstructorCall,
         newValue);
@@ -290,7 +288,7 @@ public final class StaticState implements StaticStateIF {
     return new StaticState(
         this.currentClass,
         this.classes,
-        this.environment,
+        this.localVariableTable,
         this.insideBreakableStatement,
         this.firstStatementInConstructorCall,
         value);
@@ -310,14 +308,14 @@ public final class StaticState implements StaticStateIF {
   private boolean equalTo(StaticState another) {
     return Objects.equals(currentClass, another.currentClass)
         && classes.equals(another.classes)
-        && environment.equals(another.environment)
+        && Objects.equals(localVariableTable, another.localVariableTable)
         && insideBreakableStatement == another.insideBreakableStatement
         && firstStatementInConstructorCall == another.firstStatementInConstructorCall
         && Objects.equals(returnType, another.returnType);
   }
 
   /**
-   * Computes a hash code from attributes: {@code currentClass}, {@code classes}, {@code environment}, {@code insideBreakableStatement}, {@code firstStatementInConstructorCall}, {@code returnType}.
+   * Computes a hash code from attributes: {@code currentClass}, {@code classes}, {@code localVariableTable}, {@code insideBreakableStatement}, {@code firstStatementInConstructorCall}, {@code returnType}.
    * @return hashCode value
    */
   @Override
@@ -325,7 +323,7 @@ public final class StaticState implements StaticStateIF {
     int h = 5381;
     h += (h << 5) + Objects.hashCode(currentClass);
     h += (h << 5) + classes.hashCode();
-    h += (h << 5) + environment.hashCode();
+    h += (h << 5) + Objects.hashCode(localVariableTable);
     h += (h << 5) + Booleans.hashCode(insideBreakableStatement);
     h += (h << 5) + Booleans.hashCode(firstStatementInConstructorCall);
     h += (h << 5) + Objects.hashCode(returnType);
@@ -342,7 +340,7 @@ public final class StaticState implements StaticStateIF {
         .omitNullValues()
         .add("currentClass", currentClass)
         .add("classes", classes)
-        .add("environment", environment)
+        .add("localVariableTable", localVariableTable)
         .add("insideBreakableStatement", insideBreakableStatement)
         .add("firstStatementInConstructorCall", firstStatementInConstructorCall)
         .add("returnType", returnType)
@@ -387,7 +385,7 @@ public final class StaticState implements StaticStateIF {
 
     private String currentClass;
     private ImmutableMap.Builder<String, ClassInfo> classes = ImmutableMap.builder();
-    private ImmutableMap.Builder<String, ResolvedType> environment = ImmutableMap.builder();
+    private LocalVariableInfoTable localVariableTable;
     private boolean insideBreakableStatement;
     private boolean firstStatementInConstructorCall;
     private ResolvedType returnType;
@@ -410,7 +408,10 @@ public final class StaticState implements StaticStateIF {
         setCurrentClass(currentClassValue);
       }
       putAllClasses(instance.getClasses());
-      putAllEnvironment(instance.getEnvironment());
+      @Nullable LocalVariableInfoTable localVariableTableValue = instance.getLocalVariableTable();
+      if (localVariableTableValue != null) {
+        setLocalVariableTable(localVariableTableValue);
+      }
       setInsideBreakableStatement(instance.isInsideBreakableStatement());
       setFirstStatementInConstructorCall(instance.isFirstStatementInConstructorCall());
       Optional<ResolvedType> returnTypeOptional = instance.getReturnType();
@@ -472,43 +473,12 @@ public final class StaticState implements StaticStateIF {
     }
 
     /**
-     * Put one entry to the {@link StaticStateIF#getEnvironment() environment} map.
-     * @param key The key in the environment map
-     * @param value The associated value in the environment map
+     * Initializes the value for the {@link StaticStateIF#getLocalVariableTable() localVariableTable} attribute.
+     * @param localVariableTable The value for localVariableTable (can be {@code null})
      * @return {@code this} builder for use in a chained invocation
      */
-    public final Builder putEnvironment(String key, ResolvedType value) {
-      this.environment.put(key, value);
-      return this;
-    }
-
-    /**
-     * Put one entry to the {@link StaticStateIF#getEnvironment() environment} map. Nulls are not permitted
-     * @param entry The key and value entry
-     * @return {@code this} builder for use in a chained invocation
-     */
-    public final Builder putEnvironment(Map.Entry<String, ? extends ResolvedType> entry) {
-      this.environment.put(entry);
-      return this;
-    }
-
-    /**
-     * Sets or replaces all mappings from the specified map as entries for the {@link StaticStateIF#getEnvironment() environment} map. Nulls are not permitted
-     * @param environment The entries that will be added to the environment map
-     * @return {@code this} builder for use in a chained invocation
-     */
-    public final Builder setEnvironment(Map<String, ? extends ResolvedType> environment) {
-      this.environment = ImmutableMap.builder();
-      return putAllEnvironment(environment);
-    }
-
-    /**
-     * Put all mappings from the specified map as entries to {@link StaticStateIF#getEnvironment() environment} map. Nulls are not permitted
-     * @param environment The entries that will be added to the environment map
-     * @return {@code this} builder for use in a chained invocation
-     */
-    public final Builder putAllEnvironment(Map<String, ? extends ResolvedType> environment) {
-      this.environment.putAll(environment);
+    public final Builder setLocalVariableTable(@Nullable LocalVariableInfoTable localVariableTable) {
+      this.localVariableTable = localVariableTable;
       return this;
     }
 

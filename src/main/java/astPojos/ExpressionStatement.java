@@ -1,12 +1,7 @@
 package astPojos;
 
-import org.apache.bcel.generic.ClassGen;
-import org.apache.bcel.generic.ConstantPoolGen;
-import org.apache.bcel.generic.InstructionHandle;
-import org.apache.bcel.generic.InstructionList;
+import bytecode.ByteCodeState;
 import staticchecks.StaticState;
-
-import java.util.Map;
 
 public class ExpressionStatement extends Statement {
     private final Expression expression;
@@ -20,8 +15,8 @@ public class ExpressionStatement extends Statement {
     }
 
     @Override
-    public InstructionHandle toBytecode(Map<String, ClassGen> javaClassMap, InstructionList il, ConstantPoolGen cp) {
-        return expression.toBytecode(javaClassMap, il, cp);
+    public void toBytecode(ByteCodeState state) {
+        expression.toBytecode(state);
     }
 
     public Expression getExpression() {

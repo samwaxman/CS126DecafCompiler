@@ -1,13 +1,9 @@
 package astPojos;
 
-import org.apache.bcel.generic.ClassGen;
-import org.apache.bcel.generic.ConstantPoolGen;
-import org.apache.bcel.generic.InstructionHandle;
-import org.apache.bcel.generic.InstructionList;
+import bytecode.ByteCodeState;
 import staticchecks.StaticState;
 
 import java.util.List;
-import java.util.Map;
 
 public class BlockStatement extends Statement {
     private final List<Statement> statements;
@@ -18,21 +14,19 @@ public class BlockStatement extends Statement {
 
     @Override
     public void typeCheck(StaticState s) {
+        s.getLocalVariableTable().enterBlock();
         for (Statement statement : statements) {
             statement.typeCheck(s);
         }
+        //TODO : Add state variable for top scope, and verify that last statement is a return statement;
+        s.getLocalVariableTable().exitBlock();
     }
 
     @Override
-    public InstructionHandle toBytecode(Map<String, ClassGen> javaClassMap, InstructionList il, ConstantPoolGen cp) {
-        int oldLength = il.getLength();
+    public void toBytecode(ByteCodeState state) {
         for (Statement s : statements) {
-            s.toBytecode(javaClassMap, il, cp);
+            s.toBytecode(state);
         }
-        if (il.getLength() == oldLength) {
-            return null;
-        }
-        return il.getInstructionHandles()[oldLength];
     }
 
     public List<Statement> getStatements() {

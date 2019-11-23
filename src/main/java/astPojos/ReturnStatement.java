@@ -1,13 +1,14 @@
 package astPojos;
 
-import org.apache.bcel.generic.*;
+import bytecode.ByteCodeState;
+import org.apache.bcel.generic.ARETURN;
+import org.apache.bcel.generic.IRETURN;
+import org.apache.bcel.generic.RETURN;
 import staticchecks.StaticChecksHelper;
 import staticchecks.StaticState;
-import staticchecks.resolvedInfo.ClassType;
 import staticchecks.resolvedInfo.PrimitiveType;
 import staticchecks.resolvedInfo.ResolvedType;
 
-import java.util.Map;
 import java.util.Optional;
 
 public class ReturnStatement extends Statement {
@@ -32,7 +33,7 @@ public class ReturnStatement extends Statement {
         if (!returnExpression.isPresent()) {
             if (expectedReturnType != PrimitiveType.VOID) {
                 throw new RuntimeException("Bad return type: Expected " + expectedReturnType +
-                " but found void.");
+                                                   " but found void.");
             }
             return;
         }
@@ -41,24 +42,18 @@ public class ReturnStatement extends Statement {
             // of course, should be a static string at the top with string format args
             // but yuck, who wants to do that?
             throw new RuntimeException("Bad return type: Expected " + expectedReturnType +
-            " but found " + returnType + ".");
+                                               " but found " + returnType + ".");
         }
     }
 
     @Override
-    public InstructionHandle toBytecode(Map<String, ClassGen> javaClassMap, InstructionList il, ConstantPoolGen cp) {
-        InstructionHandle start;
-        if (returnExpression.isPresent()) {
-            start = returnExpression.get().toBytecode(javaClassMap, il, cp);
-            if (returnExpression.get().getType() instanceof ClassType) {
-                il.append(new ARETURN());
-            } else {
-                il.append(new IRETURN());
-            }
-        } else {
-            start = il.append(new RETURN());
+    public void toBytecode(ByteCodeState state) {
+        if (!returnExpression.isPresent()) {
+            state.append(new RETURN());
+            return;
         }
-        return start;
+        returnExpression.get().toBytecode(state);
+        state.append(returnExpression.get().getType().isRef() ? new ARETURN() : new IRETURN());
     }
 
     public Optional<Expression> getReturnExpression() {

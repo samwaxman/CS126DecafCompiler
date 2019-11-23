@@ -1,6 +1,7 @@
 package astPojos;
 
 import ast.Modifier;
+import bytecode.ByteCodeState;
 import org.apache.bcel.classfile.Method;
 import org.apache.bcel.generic.*;
 import staticchecks.StaticChecksHelper;
@@ -8,7 +9,6 @@ import staticchecks.StaticState;
 import staticchecks.resolvedInfo.*;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -80,38 +80,32 @@ public class MethodCall extends Expression implements MethodResolvable {
     }
 
     @Override
-    public InstructionHandle toBytecode(Map<String, ClassGen> javaClassMap,
-                                        InstructionList il,
-                                        ConstantPoolGen cp) {
-        int oldLength = il.getLength();
+    public void toBytecode(ByteCodeState state) {
         assert fromClass != null : "should have typed checked by code generation time";
         if (!isObjectClassname) {
-            object.toBytecode(javaClassMap, il, cp);
+            object.toBytecode(state);
         }
         Method method = null;
-        for (Method m : javaClassMap.get(fromClass).getMethods()) {
+        for (Method m : state.getClassMap().get(fromClass).getMethods()) {
             if (m.getName().equals(methodName)) {
                 method = m;
             }
         }
         assert method != null : "method should be found in the fromClass";
-        if (!method.isStatic()) {
-            il.append(new ALOAD(0));
-        } else if (!isObjectClassname) {
+        if (method.isStatic() && !isObjectClassname) {
             // It's static but was called with an unneeded object instance.
             // Pop the unneeded instance off the stack.
-            il.append(new POP());
+            state.append(new POP());
         }
         for (Expression expression : arguments) {
-            expression.toBytecode(javaClassMap, il, cp);
+            expression.toBytecode(state);
         }
-        int poolLoc = cp.addMethodref(fromClass, method.getName(), method.getSignature());
+        int poolLoc = state.getConstantPoolGen().addMethodref(fromClass, method.getName(), method.getSignature());
         if (method.isStatic()) {
-            il.append(new INVOKESTATIC(poolLoc));
+            state.append(new INVOKESTATIC(poolLoc));
         } else {
-            il.append(new INVOKEVIRTUAL(poolLoc));
+            state.append(new INVOKEVIRTUAL(poolLoc));
         }
-        return il.getInstructionHandles()[oldLength];
     }
 
     public Expression getObject() {

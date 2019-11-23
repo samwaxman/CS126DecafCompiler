@@ -1,9 +1,11 @@
 package astPojos;
 
+import bytecode.ByteCodeState;
+import org.apache.bcel.generic.ALOAD;
+import org.apache.bcel.generic.ILOAD;
 import staticchecks.StaticChecksHelper;
 import staticchecks.StaticState;
-import staticchecks.resolvedInfo.ResolvedField;
-import staticchecks.resolvedInfo.ResolvedType;
+import staticchecks.resolvedInfo.*;
 
 import java.util.Optional;
 
@@ -18,6 +20,7 @@ import java.util.Optional;
 public class Identifier extends Expression implements FieldResolvable {
     private final String identifier;
     private String fromClass;
+    private Integer index;
 
     public String getFromClass() {
         return fromClass;
@@ -28,11 +31,10 @@ public class Identifier extends Expression implements FieldResolvable {
     }
 
     public Optional<ResolvedType> typeCheckSoft(StaticState s) {
-        ResolvedType t = s.getEnvironment().get(identifier);
-        if (t != null) {
-            // As mentioned in top TODO, we'll likely need to record
-            // which exact local this came from
-            return Optional.of(t);
+        Optional<LocalVariableInfo> info = s.getLocalVariableTable().findVariable(identifier);
+        if (info.isPresent()) {
+            index = info.get().getIndex();
+            return Optional.of(info.get().getType());
         }
         Optional<ResolvedField> field =
                 StaticChecksHelper.optionallyResolveField(this,
@@ -53,6 +55,17 @@ public class Identifier extends Expression implements FieldResolvable {
        return resolvedType.get();
     }
 
+    @Override
+    public void toBytecode(ByteCodeState state) {
+        // I should probably make a THIS class.
+       // if (fromClass != null) {
+         //   new FieldAccess(new Identifier("this"), identifier);
+        //}
+        assert index != null : "Both fromClass and index were null, meaning identifier was not field access or local.";
+        boolean isILoad = !(getType() instanceof ClassType || getType() instanceof ArrayType);
+        state.append(isILoad ? new ILOAD(index) : new ALOAD(index));
+    }
+
     public String getIdentifier() {
         return identifier;
     }
@@ -65,5 +78,9 @@ public class Identifier extends Expression implements FieldResolvable {
     @Override
     public void setFromClass(String fromClass) {
         this.fromClass = fromClass;
+    }
+
+    public Integer getIndex() {
+        return index;
     }
 }

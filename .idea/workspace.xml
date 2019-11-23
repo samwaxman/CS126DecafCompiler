@@ -2,10 +2,41 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8efa6949-0b7f-499e-8fa9-5bae8fa8af96" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/bytecode/ByteCodeStateIF.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/staticchecks/LocalVariableInfoTable.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/staticchecks/resolvedInfo/LocalVariableInfoIF.java" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/astPojos/ArrayAccess.java" afterPath="$PROJECT_DIR$/src/main/java/astPojos/ArrayAccess.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/astPojos/BinaryOp.java" afterPath="$PROJECT_DIR$/src/main/java/astPojos/BinaryOp.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/astPojos/BlockStatement.java" afterPath="$PROJECT_DIR$/src/main/java/astPojos/BlockStatement.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/astPojos/BreakStatement.java" afterPath="$PROJECT_DIR$/src/main/java/astPojos/BreakStatement.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/astPojos/Bytecodeable.java" afterPath="$PROJECT_DIR$/src/main/java/astPojos/Bytecodeable.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/astPojos/CharacterLiteral.java" afterPath="$PROJECT_DIR$/src/main/java/astPojos/CharacterLiteral.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/astPojos/ConstructorCall.java" afterPath="$PROJECT_DIR$/src/main/java/astPojos/ConstructorCall.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/astPojos/ContinueStatement.java" afterPath="$PROJECT_DIR$/src/main/java/astPojos/ContinueStatement.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/astPojos/EmptyStatement.java" afterPath="$PROJECT_DIR$/src/main/java/astPojos/EmptyStatement.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/astPojos/ExpressionStatement.java" afterPath="$PROJECT_DIR$/src/main/java/astPojos/ExpressionStatement.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/astPojos/False.java" afterPath="$PROJECT_DIR$/src/main/java/astPojos/False.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/astPojos/FunctionCall.java" afterPath="$PROJECT_DIR$/src/main/java/astPojos/FunctionCall.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/astPojos/Identifier.java" afterPath="$PROJECT_DIR$/src/main/java/astPojos/Identifier.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/astPojos/IfStatement.java" afterPath="$PROJECT_DIR$/src/main/java/astPojos/IfStatement.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/astPojos/IntegerLiteral.java" afterPath="$PROJECT_DIR$/src/main/java/astPojos/IntegerLiteral.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/astPojos/MethodCall.java" afterPath="$PROJECT_DIR$/src/main/java/astPojos/MethodCall.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/astPojos/NewArrayExpression.java" afterPath="$PROJECT_DIR$/src/main/java/astPojos/NewArrayExpression.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/astPojos/ReturnStatement.java" afterPath="$PROJECT_DIR$/src/main/java/astPojos/ReturnStatement.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/astPojos/StringLiteral.java" afterPath="$PROJECT_DIR$/src/main/java/astPojos/StringLiteral.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/astPojos/True.java" afterPath="$PROJECT_DIR$/src/main/java/astPojos/True.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/astPojos/VariableDeclarationStatement.java" afterPath="$PROJECT_DIR$/src/main/java/astPojos/VariableDeclarationStatement.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/astPojos/VariableDeclaratorList.java" afterPath="$PROJECT_DIR$/src/main/java/astPojos/VariableDeclaratorList.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/astPojos/WhileStatement.java" afterPath="$PROJECT_DIR$/src/main/java/astPojos/WhileStatement.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/bytecode/BytecodeCreator.java" afterPath="$PROJECT_DIR$/src/main/java/bytecode/BytecodeCreator.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/staticchecks/StaticChecksHelper.java" afterPath="$PROJECT_DIR$/src/main/java/staticchecks/StaticChecksHelper.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/staticchecks/StaticStateIF.java" afterPath="$PROJECT_DIR$/src/main/java/staticchecks/StaticStateIF.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/staticchecks/resolvedInfo/ResolvedType.java" afterPath="$PROJECT_DIR$/src/main/java/staticchecks/resolvedInfo/ResolvedType.java" />
+      <change beforePath="$PROJECT_DIR$/target/classes/staticchecks/StaticState$Builder.class" afterPath="$PROJECT_DIR$/target/classes/staticchecks/StaticState$Builder.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/staticchecks/StaticState$InitShim.class" afterPath="$PROJECT_DIR$/target/classes/staticchecks/StaticState$InitShim.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/staticchecks/StaticState.class" afterPath="$PROJECT_DIR$/target/classes/staticchecks/StaticState.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/staticchecks/StaticStateIF.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/staticchecks/StaticState.java" afterPath="$PROJECT_DIR$/target/generated-sources/annotations/staticchecks/StaticState.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -21,130 +52,107 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="BytecodeCreator.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/bytecode/BytecodeCreator.java">
+      <file leaf-file-name="ConstructorCall.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/ConstructorCall.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="350">
-              <caret line="155" column="83" lean-forward="false" selection-start-line="155" selection-start-column="83" selection-end-line="155" selection-end-column="83" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MethodCall.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/MethodCall.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="91" column="0" lean-forward="false" selection-start-line="91" selection-start-column="0" selection-end-line="91" selection-end-column="0" />
-              <folding>
-                <element signature="e#5468#5469#0" expanded="true" />
-                <element signature="e#5497#5498#0" expanded="true" />
-                <element signature="e#5534#5535#0" expanded="true" />
-                <element signature="e#5567#5568#0" expanded="true" />
-                <element signature="e#5613#5614#0" expanded="true" />
-                <element signature="e#5645#5646#0" expanded="true" />
-                <element signature="e#5681#5682#0" expanded="true" />
-                <element signature="e#5713#5714#0" expanded="true" />
-                <element signature="e#5755#5756#0" expanded="true" />
-                <element signature="e#5795#5796#0" expanded="true" />
-                <element signature="e#5859#5860#0" expanded="true" />
-                <element signature="e#5901#5902#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="StringLiteral.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/StringLiteral.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="26" column="53" lean-forward="false" selection-start-line="26" selection-start-column="53" selection-end-line="26" selection-end-column="53" />
+            <state relative-caret-position="100">
+              <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ResolvedType.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/staticchecks/resolvedInfo/ResolvedType.java">
+      <file leaf-file-name="CharacterLiteral.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/CharacterLiteral.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="50">
-              <caret line="2" column="17" lean-forward="false" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
+            <state relative-caret-position="450">
+              <caret line="28" column="26" lean-forward="true" selection-start-line="28" selection-start-column="26" selection-end-line="28" selection-end-column="26" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FunctionCall.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/FunctionCall.java">
+      <file leaf-file-name="Bytecodeable.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/Bytecodeable.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="6" column="16" lean-forward="false" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BreakStatement.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/BreakStatement.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="400">
-              <caret line="44" column="36" lean-forward="false" selection-start-line="44" selection-start-column="36" selection-end-line="44" selection-end-column="36" />
+              <caret line="17" column="8" lean-forward="false" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="8" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Expression.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/Expression.java">
+      <file leaf-file-name="BlockStatement.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/BlockStatement.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="172">
-              <caret line="11" column="36" lean-forward="false" selection-start-line="11" selection-start-column="36" selection-end-line="11" selection-end-column="36" />
+            <state relative-caret-position="93">
+              <caret line="15" column="42" lean-forward="true" selection-start-line="15" selection-start-column="42" selection-end-line="15" selection-end-column="42" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Identifier.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/Identifier.java">
+      <file leaf-file-name="UnaryOp.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/UnaryOp.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="172">
-              <caret line="50" column="0" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
-              <folding>
-                <element signature="e#1986#1987#0" expanded="true" />
-                <element signature="e#2019#2020#0" expanded="true" />
-                <element signature="e#2069#2070#0" expanded="true" />
-                <element signature="e#2102#2103#0" expanded="true" />
-                <element signature="e#2166#2167#0" expanded="true" />
-                <element signature="e#2208#2209#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MethodGen.class" pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/org/apache/bcel/bcel/6.4.0/bcel-6.4.0.jar!/org/apache/bcel/generic/MethodGen.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="64" column="11" lean-forward="false" selection-start-line="64" selection-start-column="11" selection-end-line="64" selection-end-column="11" />
+            <state relative-caret-position="-125">
+              <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ReturnStatement.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/ReturnStatement.java">
+      <file leaf-file-name="BinaryOp.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/BinaryOp.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1525">
+              <caret line="103" column="8" lean-forward="false" selection-start-line="103" selection-start-column="8" selection-end-line="103" selection-end-column="8" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ArrayAccess.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/ArrayAccess.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="425">
-              <caret line="45" column="5" lean-forward="true" selection-start-line="45" selection-start-column="5" selection-end-line="45" selection-end-column="5" />
+              <caret line="27" column="83" lean-forward="false" selection-start-line="27" selection-start-column="83" selection-end-line="27" selection-end-column="83" />
               <folding>
-                <element signature="e#2398#2399#0" expanded="true" />
-                <element signature="e#2437#2438#0" expanded="true" />
+                <element signature="e#2137#2138#0" expanded="true" />
+                <element signature="e#2164#2165#0" expanded="true" />
+                <element signature="e#2200#2201#0" expanded="true" />
+                <element signature="e#2228#2229#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StaticChecksHelper.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/staticchecks/StaticChecksHelper.java">
+      <file leaf-file-name="LDC.class" pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/apache/bcel/bcel/6.4.0/bcel-6.4.0.jar!/org/apache/bcel/generic/LDC.class">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="107">
-              <caret line="155" column="35" lean-forward="false" selection-start-line="155" selection-start-column="35" selection-end-line="155" selection-end-column="35" />
-              <folding>
-                <element signature="e#631#632#0" expanded="true" />
-                <element signature="e#659#660#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="183">
+              <caret line="23" column="11" lean-forward="false" selection-start-line="23" selection-start-column="11" selection-end-line="23" selection-end-column="11" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ConstantPoolGen.class" pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/apache/bcel/bcel/6.4.0/bcel-6.4.0.jar!/org/apache/bcel/generic/ConstantPoolGen.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="183">
+              <caret line="241" column="15" lean-forward="false" selection-start-line="241" selection-start-column="15" selection-end-line="241" selection-end-column="15" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -162,15 +170,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>varDeclarationList</find>
-      <find>expr</find>
-      <find>constructor</find>
-      <find>getObject()</find>
-      <find>getFieldName()</find>
-      <find>getArgs()</find>
-      <find>getFunctionName()</find>
-      <find>functionName</find>
-      <find>getIden</find>
       <find>getIdentifier()</find>
       <find>array</find>
       <find>type</find>
@@ -192,6 +191,15 @@
       <find>MethodGen(</find>
       <find>ioInfo</find>
       <find>access</find>
+      <find>localVariableTable</find>
+      <find>remove</find>
+      <find>size</find>
+      <find>typecheck</find>
+      <find>ILOAD_0</find>
+      <find>ILOAD_3</find>
+      <find>fromClass</find>
+      <find>typeCheck</find>
+      <find>live_to_end</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -205,21 +213,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/astPojos/VariableDeclaratorList.java" />
-        <option value="$PROJECT_DIR$/src/main/java/visitors/StatementVisitor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/astPojos/ArrayAccess.java" />
-        <option value="$PROJECT_DIR$/src/main/java/astPojos/ConstructorCall.java" />
-        <option value="$PROJECT_DIR$/src/main/java/astPojos/FieldAccess.java" />
-        <option value="$PROJECT_DIR$/src/main/java/astPojos/Null.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ast/ConstructorIF.java" />
-        <option value="$PROJECT_DIR$/src/main/java/staticchecks/resolvedInfo/ResolvedMethodIF.java" />
-        <option value="$PROJECT_DIR$/src/main/java/staticchecks/TypeChecker.java" />
-        <option value="$PROJECT_DIR$/src/main/java/visitors/TypeVisitor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/visitors/PrimaryVisitor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/visitors/MethodVisitor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/visitors/FieldVisitor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/visitors/ConstructorVisitor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/visitors/ClassVisitor.java" />
         <option value="$PROJECT_DIR$/src/main/java/staticchecks/resolvedInfo/ResolvedConstructorIF.java" />
         <option value="$PROJECT_DIR$/src/main/java/ast/ProgramIF.java" />
         <option value="$PROJECT_DIR$/src/main/java/ast/ClassASTNodeIF.java" />
@@ -227,9 +220,7 @@
         <option value="$PROJECT_DIR$/src/main/java/ast/FieldIF.java" />
         <option value="$PROJECT_DIR$/src/main/java/ast/MethodIF.java" />
         <option value="$PROJECT_DIR$/src/main/java/staticchecks/resolvedInfo/ClassInfo.java" />
-        <option value="$PROJECT_DIR$/src/main/java/staticchecks/StaticStateIF.java" />
         <option value="$PROJECT_DIR$/src/main/java/staticchecks/StaticState.java" />
-        <option value="$PROJECT_DIR$/src/main/java/astPojos/WhileStatement.java" />
         <option value="$PROJECT_DIR$/src/main/java/Lexer.java" />
         <option value="$PROJECT_DIR$/src/main/java/grammar/DecafLexer.g4" />
         <option value="$PROJECT_DIR$/src/main/java/staticchecks/resolvedInfo/ClassInfoIF.java" />
@@ -240,22 +231,39 @@
         <option value="$USER_HOME$/Documents/BrownCS/testClass.java" />
         <option value="$PROJECT_DIR$/src/main/java/astPojos/Statement.java" />
         <option value="$PROJECT_DIR$/src/main/java/astPojos/LiteralExpression.java" />
-        <option value="$PROJECT_DIR$/src/main/java/astPojos/Bytecodeable.java" />
-        <option value="$PROJECT_DIR$/src/main/java/astPojos/BinaryOp.java" />
-        <option value="$PROJECT_DIR$/src/main/java/astPojos/FunctionCall.java" />
-        <option value="$PROJECT_DIR$/src/main/java/astPojos/CharacterLiteral.java" />
-        <option value="$PROJECT_DIR$/src/main/java/astPojos/False.java" />
-        <option value="$PROJECT_DIR$/src/main/java/astPojos/IfStatement.java" />
-        <option value="$PROJECT_DIR$/src/main/java/astPojos/StringLiteral.java" />
-        <option value="$PROJECT_DIR$/src/main/java/astPojos/True.java" />
-        <option value="$PROJECT_DIR$/src/main/java/astPojos/IntegerLiteral.java" />
-        <option value="$PROJECT_DIR$/src/main/java/astPojos/BlockStatement.java" />
-        <option value="$PROJECT_DIR$/src/main/java/astPojos/ExpressionStatement.java" />
-        <option value="$PROJECT_DIR$/src/main/java/astPojos/ReturnStatement.java" />
-        <option value="$PROJECT_DIR$/src/main/java/astPojos/Identifier.java" />
-        <option value="$PROJECT_DIR$/src/main/java/astPojos/MethodCall.java" />
         <option value="$PROJECT_DIR$/src/main/java/staticchecks/StaticChecksHelper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/bytecode/ByteCodeState.java" />
+        <option value="$PROJECT_DIR$/src/main/java/astPojos/ConstructorCall.java" />
+        <option value="$PROJECT_DIR$/src/main/java/staticchecks/resolvedInfo/LocalVariableInfo.java" />
+        <option value="$PROJECT_DIR$/src/main/java/staticchecks/resolvedInfo/LocalVariableInfoIF.java" />
+        <option value="$PROJECT_DIR$/src/main/java/staticchecks/LocalVariableInfo.java" />
         <option value="$PROJECT_DIR$/src/main/java/bytecode/BytecodeCreator.java" />
+        <option value="$PROJECT_DIR$/src/main/java/staticchecks/StaticStateIF.java" />
+        <option value="$PROJECT_DIR$/src/main/java/staticchecks/LocalVariableInfoTable.java" />
+        <option value="$PROJECT_DIR$/src/main/java/astPojos/Bytecodeable.java" />
+        <option value="$PROJECT_DIR$/src/main/java/astPojos/WhileStatement.java" />
+        <option value="$PROJECT_DIR$/src/main/java/bytecode/ByteCodeStateIF.java" />
+        <option value="$PROJECT_DIR$/src/main/java/astPojos/VariableDeclaratorList.java" />
+        <option value="$PROJECT_DIR$/src/main/java/astPojos/True.java" />
+        <option value="$PROJECT_DIR$/src/main/java/astPojos/StringLiteral.java" />
+        <option value="$PROJECT_DIR$/src/main/java/staticchecks/resolvedInfo/ResolvedType.java" />
+        <option value="$PROJECT_DIR$/src/main/java/astPojos/ReturnStatement.java" />
+        <option value="$PROJECT_DIR$/src/main/java/astPojos/VariableDeclarationStatement.java" />
+        <option value="$PROJECT_DIR$/src/main/java/astPojos/NewArrayExpression.java" />
+        <option value="$PROJECT_DIR$/src/main/java/astPojos/MethodCall.java" />
+        <option value="$PROJECT_DIR$/src/main/java/astPojos/IntegerLiteral.java" />
+        <option value="$PROJECT_DIR$/src/main/java/astPojos/IfStatement.java" />
+        <option value="$PROJECT_DIR$/src/main/java/astPojos/Identifier.java" />
+        <option value="$PROJECT_DIR$/src/main/java/astPojos/FunctionCall.java" />
+        <option value="$PROJECT_DIR$/src/main/java/astPojos/False.java" />
+        <option value="$PROJECT_DIR$/src/main/java/astPojos/ExpressionStatement.java" />
+        <option value="$PROJECT_DIR$/src/main/java/astPojos/EmptyStatement.java" />
+        <option value="$PROJECT_DIR$/src/main/java/astPojos/ContinueStatement.java" />
+        <option value="$PROJECT_DIR$/src/main/java/astPojos/CharacterLiteral.java" />
+        <option value="$PROJECT_DIR$/src/main/java/astPojos/BreakStatement.java" />
+        <option value="$PROJECT_DIR$/src/main/java/astPojos/BinaryOp.java" />
+        <option value="$PROJECT_DIR$/src/main/java/astPojos/ArrayAccess.java" />
+        <option value="$PROJECT_DIR$/src/main/java/astPojos/BlockStatement.java" />
       </list>
     </option>
   </component>
@@ -410,6 +418,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -501,9 +512,6 @@
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="AndroidView" />
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -665,25 +673,25 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.11145833" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30367735" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30367735" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17864583" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32858837" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="ANTLR Preview" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39976275" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39976275" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3291714" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -715,477 +723,174 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/bcel/bcel/6.4.0/bcel-6.4.0.jar!/org/apache/bcel/generic/IADD.class">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_144/src.zip!/java/util/LinkedList.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="8" column="11" lean-forward="false" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/idea64.exe.vmoptions">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="9" column="9" lean-forward="false" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/bcel/bcel/6.4.0/bcel-6.4.0.jar!/org/apache/bcel/generic/IF_ACMPEQ.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="11" column="26" lean-forward="false" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/bcel/bcel/6.4.0/bcel-6.4.0.jar!/org/apache/bcel/generic/BranchHandle.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-350">
-          <caret line="7" column="19" lean-forward="false" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/bcel/bcel/6.4.0/bcel-6.4.0.jar!/org/apache/bcel/generic/InstructionList.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="225" column="0" lean-forward="false" selection-start-line="225" selection-start-column="0" selection-end-line="225" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/bcel/bcel/6.4.0/bcel-6.4.0.jar!/org/apache/bcel/generic/Type.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="21" column="46" lean-forward="false" selection-start-line="21" selection-start-column="46" selection-end-line="21" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/bcel/bcel/6.4.0/bcel-6.4.0.jar!/org/apache/bcel/generic/BasicType.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="11" column="38" lean-forward="false" selection-start-line="11" selection-start-column="38" selection-end-line="11" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/bcel/bcel/6.4.0/bcel-6.4.0.jar!/org/apache/bcel/generic/GOTO.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="14" column="11" lean-forward="false" selection-start-line="14" selection-start-column="11" selection-end-line="14" selection-end-column="11" />
+        <state relative-caret-position="242">
+          <caret line="984" column="23" lean-forward="false" selection-start-line="984" selection-start-column="23" selection-end-line="984" selection-end-column="23" />
           <folding>
-            <marker date="1573431511096" expanded="false" signature="0:104" ph="/.../" />
-            <marker date="1573431511096" expanded="false" signature="147:200" ph="..." />
-            <marker date="1573431511096" expanded="true" signature="294:301" ph="{}" />
-            <marker date="1573431511096" expanded="false" signature="344:355" ph=" { " />
-            <marker date="1573431511096" expanded="false" signature="381:387" ph=" }" />
-            <marker date="1573431511096" expanded="true" signature="451:767" ph="{...}" />
-            <marker date="1573431511096" expanded="true" signature="830:1211" ph="{...}" />
-            <marker date="1573431511096" expanded="true" signature="1247:1449" ph="{...}" />
+            <element signature="e#29442#29443#0" expanded="false" />
+            <element signature="e#29489#29490#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/bcel/bcel/6.4.0/bcel-6.4.0.jar!/org/apache/bcel/generic/InstructionHandle.class">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/bcel/bcel/6.4.0/bcel-6.4.0.jar!/org/apache/bcel/generic/LocalVariableInstruction.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1175">
-          <caret line="61" column="14" lean-forward="false" selection-start-line="61" selection-start-column="14" selection-end-line="61" selection-end-column="14" />
-          <folding>
-            <marker date="1573431511096" expanded="false" signature="0:104" ph="/.../" />
-            <marker date="1573431511096" expanded="false" signature="147:306" ph="..." />
-            <marker date="1573431511096" expanded="true" signature="454:472" ph="/**...*/" />
-            <marker date="1573431511096" expanded="true" signature="621:639" ph="/**...*/" />
-            <marker date="1573431511096" expanded="true" signature="687:694" ph="{}" />
-            <marker date="1573431511096" expanded="false" signature="740:751" ph=" { " />
-            <marker date="1573431511096" expanded="false" signature="768:774" ph=" }" />
-            <marker date="1573431511096" expanded="false" signature="820:831" ph=" { " />
-            <marker date="1573431511096" expanded="false" signature="848:854" ph=" }" />
-            <marker date="1573431511096" expanded="false" signature="901:912" ph=" { " />
-            <marker date="1573431511096" expanded="false" signature="936:942" ph=" }" />
-            <marker date="1573431511096" expanded="true" signature="990:1448" ph="{...}" />
-            <marker date="1573431511096" expanded="true" signature="1504:1627" ph="{...}" />
-            <marker date="1573431511096" expanded="false" signature="1675:1686" ph=" { " />
-            <marker date="1573431511096" expanded="false" signature="1709:1715" ph=" }" />
-            <marker date="1573431511096" expanded="false" signature="1781:1792" ph=" { " />
-            <marker date="1573431511096" expanded="false" signature="1824:1830" ph=" }" />
-            <marker date="1573431511096" expanded="true" signature="1893:1953" ph="{...}" />
-            <marker date="1573431511096" expanded="false" signature="1983:1994" ph=" { " />
-            <marker date="1573431511096" expanded="false" signature="2017:2023" ph=" }" />
-            <marker date="1573431511096" expanded="false" signature="2054:2065" ph=" { " />
-            <marker date="1573431511096" expanded="false" signature="2087:2093" ph=" }" />
-            <marker date="1573431511096" expanded="true" signature="2114:2325" ph="{...}" />
-            <marker date="1573431511096" expanded="true" signature="2364:2456" ph="{...}" />
-            <marker date="1573431511096" expanded="true" signature="2512:2606" ph="{...}" />
-            <marker date="1573431511096" expanded="true" signature="2659:2790" ph="{...}" />
-            <marker date="1573431511096" expanded="false" signature="2825:2836" ph=" { " />
-            <marker date="1573431511096" expanded="false" signature="2895:2901" ph=" }" />
-            <marker date="1573431511096" expanded="true" signature="2951:3215" ph="{...}" />
-            <marker date="1573431511096" expanded="true" signature="3261:3375" ph="{...}" />
-            <marker date="1573431511096" expanded="false" signature="3405:3416" ph=" { " />
-            <marker date="1573431511096" expanded="false" signature="3443:3449" ph=" }" />
-            <marker date="1573431511096" expanded="true" signature="3505:3648" ph="{...}" />
-            <marker date="1573431511096" expanded="true" signature="3694:3792" ph="{...}" />
-            <marker date="1573431511096" expanded="false" signature="3836:3847" ph=" { " />
-            <marker date="1573431511096" expanded="false" signature="3912:3918" ph=" }" />
-            <marker date="1573431511096" expanded="true" signature="3966:4110" ph="{...}" />
-            <marker date="1573431511096" expanded="false" signature="4145:4156" ph=" { " />
-            <marker date="1573431511096" expanded="false" signature="4183:4189" ph=" }" />
-            <marker date="1573431511096" expanded="true" signature="4251:4305" ph="{...}" />
-            <marker date="1573431511096" expanded="true" signature="4367:4421" ph="{...}" />
-          </folding>
+        <state relative-caret-position="209">
+          <caret line="30" column="14" lean-forward="false" selection-start-line="30" selection-start-column="14" selection-end-line="30" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/bcel/bcel/6.4.0/bcel-6.4.0.jar!/org/apache/bcel/generic/LoadInstruction.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="13" column="11" lean-forward="false" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/bcel/bcel/6.4.0/bcel-6.4.0.jar!/org/apache/bcel/generic/ILOAD.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="13" column="10" lean-forward="true" selection-start-line="13" selection-start-column="10" selection-end-line="13" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/bcel/bcel/6.4.0/bcel-6.4.0.jar!/org/apache/bcel/generic/InstructionConst.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="141" column="24" lean-forward="true" selection-start-line="141" selection-start-column="24" selection-end-line="141" selection-end-column="24" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/apache/bcel/bcel/6.4.0/bcel-6.4.0.jar!/org/apache/bcel/Const.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="11825">
-          <caret line="505" column="548" lean-forward="false" selection-start-line="505" selection-start-column="548" selection-end-line="505" selection-end-column="548" />
-          <folding>
-            <marker date="1573431511096" expanded="false" signature="0:104" ph="/.../" />
-            <marker date="1573431511096" expanded="false" signature="139:186" ph="..." />
-            <marker date="1573431511096" expanded="true" signature="1096:1114" ph="/**...*/" />
-            <marker date="1573431511096" expanded="true" signature="1181:1199" ph="/**...*/" />
-            <marker date="1573431511096" expanded="true" signature="3018:3036" ph="/**...*/" />
-            <marker date="1573431511096" expanded="false" signature="19972:19983" ph=" { " />
-            <marker date="1573431511096" expanded="false" signature="20010:20016" ph=" }" />
-            <marker date="1573431511096" expanded="false" signature="20069:20080" ph=" { " />
-            <marker date="1573431511096" expanded="false" signature="20109:20115" ph=" }" />
-            <marker date="1573431511096" expanded="true" signature="20187:20288" ph="{...}" />
-            <marker date="1573431511096" expanded="false" signature="20337:20348" ph=" { " />
-            <marker date="1573431511096" expanded="false" signature="20373:20379" ph=" }" />
-            <marker date="1573431511096" expanded="false" signature="20433:20444" ph=" { " />
-            <marker date="1573431511096" expanded="false" signature="20475:20481" ph=" }" />
-            <marker date="1573431511096" expanded="false" signature="20535:20546" ph=" { " />
-            <marker date="1573431511096" expanded="false" signature="20577:20583" ph=" }" />
-            <marker date="1573431511096" expanded="false" signature="20635:20646" ph=" { " />
-            <marker date="1573431511096" expanded="false" signature="20675:20681" ph=" }" />
-            <marker date="1573431511096" expanded="false" signature="20744:20755" ph=" { " />
-            <marker date="1573431511096" expanded="false" signature="20794:20800" ph=" }" />
-            <marker date="1573431511096" expanded="false" signature="20856:20867" ph=" { " />
-            <marker date="1573431511096" expanded="false" signature="20912:20918" ph=" }" />
-            <marker date="1573431511096" expanded="false" signature="20969:20980" ph=" { " />
-            <marker date="1573431511096" expanded="false" signature="21007:21013" ph=" }" />
-            <marker date="1573431511096" expanded="false" signature="21063:21074" ph=" { " />
-            <marker date="1573431511096" expanded="false" signature="21102:21108" ph=" }" />
-            <marker date="1573431511096" expanded="false" signature="21158:21169" ph=" { " />
-            <marker date="1573431511096" expanded="false" signature="21197:21203" ph=" }" />
-            <marker date="1573431511096" expanded="false" signature="21257:21268" ph=" { " />
-            <marker date="1573431511096" expanded="false" signature="21298:21304" ph=" }" />
-            <marker date="1573431511096" expanded="false" signature="21353:21364" ph=" { " />
-            <marker date="1573431511096" expanded="false" signature="21389:21395" ph=" }" />
-            <marker date="1573431511096" expanded="false" signature="21452:21463" ph=" { " />
-            <marker date="1573431511096" expanded="false" signature="21496:21502" ph=" }" />
-            <marker date="1573431511096" expanded="true" signature="21524:21531" ph="{}" />
-            <marker date="1573431511096" expanded="true" signature="21544:32758" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/bcel/bcel/6.4.0/bcel-6.4.0.jar!/org/apache/bcel/generic/Instruction.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="25" column="11" lean-forward="false" selection-start-line="25" selection-start-column="11" selection-end-line="25" selection-end-column="11" />
-          <folding>
-            <marker date="1573431511096" expanded="false" signature="0:104" ph="/.../" />
-            <marker date="1573431511096" expanded="false" signature="147:319" ph="..." />
-            <marker date="1573431511096" expanded="true" signature="382:400" ph="/**...*/" />
-            <marker date="1573431511096" expanded="true" signature="453:471" ph="/**...*/" />
-            <marker date="1573431511096" expanded="true" signature="586:593" ph="{}" />
-            <marker date="1573431511096" expanded="true" signature="646:713" ph="{...}" />
-            <marker date="1573431511096" expanded="true" signature="777:820" ph="{...}" />
-            <marker date="1573431511096" expanded="false" signature="849:860" ph=" { " />
-            <marker date="1573431511096" expanded="false" signature="900:906" ph=" }" />
-            <marker date="1573431511096" expanded="true" signature="952:1064" ph="{...}" />
-            <marker date="1573431511096" expanded="false" signature="1094:1105" ph=" { " />
-            <marker date="1573431511096" expanded="false" signature="1132:1138" ph=" }" />
-            <marker date="1573431511096" expanded="false" signature="1183:1194" ph=" { " />
-            <marker date="1573431511096" expanded="false" signature="1222:1228" ph=" }" />
-            <marker date="1573431511096" expanded="true" signature="1260:1615" ph="{...}" />
-            <marker date="1573431511096" expanded="true" signature="1702:1709" ph="{}" />
-            <marker date="1573431511096" expanded="true" signature="1796:13746" ph="{...}" />
-            <marker date="1573431511096" expanded="false" signature="13796:13807" ph=" { " />
-            <marker date="1573431511096" expanded="false" signature="13849:13855" ph=" }" />
-            <marker date="1573431511096" expanded="false" signature="13905:13916" ph=" { " />
-            <marker date="1573431511096" expanded="false" signature="13958:13964" ph=" }" />
-            <marker date="1573431511096" expanded="false" signature="13994:14005" ph=" { " />
-            <marker date="1573431511096" expanded="false" signature="14024:14030" ph=" }" />
-            <marker date="1573431511096" expanded="false" signature="14058:14069" ph=" { " />
-            <marker date="1573431511096" expanded="false" signature="14088:14094" ph=" }" />
-            <marker date="1573431511096" expanded="false" signature="14134:14145" ph=" { " />
-            <marker date="1573431511096" expanded="false" signature="14166:14172" ph=" }" />
-            <marker date="1573431511096" expanded="false" signature="14210:14221" ph=" { " />
-            <marker date="1573431511096" expanded="false" signature="14249:14255" ph=" }" />
-            <marker date="1573431511096" expanded="true" signature="14276:14283" ph="{}" />
-            <marker date="1573431511096" expanded="true" signature="14337:14355" ph="/**...*/" />
-            <marker date="1573431511096" expanded="false" signature="14427:14438" ph=" { " />
-            <marker date="1573431511096" expanded="false" signature="14449:14455" ph=" }" />
-            <marker date="1573431511096" expanded="true" signature="14461:14479" ph="/**...*/" />
-            <marker date="1573431511096" expanded="false" signature="14557:14568" ph=" { " />
-            <marker date="1573431511096" expanded="false" signature="14576:14582" ph=" }" />
-            <marker date="1573431511096" expanded="true" signature="14623:14720" ph="{...}" />
-            <marker date="1573431511096" expanded="false" signature="14747:14758" ph=" { " />
-            <marker date="1573431511096" expanded="false" signature="14777:14783" ph=" }" />
-            <marker date="1573431511096" expanded="false" signature="14833:14844" ph=" { " />
-            <marker date="1573431511096" expanded="false" signature="14881:14887" ph=" }" />
-            <marker date="1573431511096" expanded="false" signature="14938:14949" ph=" { " />
-            <marker date="1573431511096" expanded="false" signature="14990:14996" ph=" }" />
-            <marker date="1573431511096" expanded="true" signature="15009:15061" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/bcel/bcel/6.4.0/bcel-6.4.0.jar!/org/apache/bcel/generic/BranchInstruction.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="26" column="10" lean-forward="false" selection-start-line="26" selection-start-column="10" selection-end-line="26" selection-end-column="10" />
-          <folding>
-            <marker date="1573431511096" expanded="false" signature="0:104" ph="/.../" />
-            <marker date="1573431511096" expanded="false" signature="147:242" ph="..." />
-            <marker date="1573431511096" expanded="true" signature="341:359" ph="/**...*/" />
-            <marker date="1573431511096" expanded="true" signature="405:423" ph="/**...*/" />
-            <marker date="1573431511096" expanded="true" signature="484:502" ph="/**...*/" />
-            <marker date="1573431511096" expanded="true" signature="572:579" ph="{}" />
-            <marker date="1573431511096" expanded="true" signature="653:725" ph="{...}" />
-            <marker date="1573431511096" expanded="true" signature="789:1091" ph="{...}" />
-            <marker date="1573431511096" expanded="true" signature="1154:1610" ph="{...}" />
-            <marker date="1573431511096" expanded="false" signature="1647:1658" ph=" { " />
-            <marker date="1573431511096" expanded="false" signature="1699:1705" ph=" }" />
-            <marker date="1573431511096" expanded="true" signature="1768:1826" ph="{...}" />
-            <marker date="1573431511096" expanded="true" signature="1872:2517" ph="{...}" />
-            <marker date="1573431511096" expanded="true" signature="2604:2679" ph="{...}" />
-            <marker date="1573431511096" expanded="false" signature="2712:2723" ph=" { " />
-            <marker date="1573431511096" expanded="false" signature="2741:2747" ph=" }" />
-            <marker date="1573431511096" expanded="false" signature="2789:2800" ph=" { " />
-            <marker date="1573431511096" expanded="false" signature="2819:2825" ph=" }" />
-            <marker date="1573431511096" expanded="true" signature="2879:2965" ph="{...}" />
-            <marker date="1573431511096" expanded="true" signature="3071:3233" ph="{...}" />
-            <marker date="1573431511096" expanded="true" signature="3316:3516" ph="{...}" />
-            <marker date="1573431511096" expanded="false" signature="3573:3584" ph=" { " />
-            <marker date="1573431511096" expanded="false" signature="3609:3615" ph=" }" />
-            <marker date="1573431511096" expanded="true" signature="3636:3745" ph="{...}" />
-            <marker date="1573431511096" expanded="false" signature="3778:3789" ph=" { " />
-            <marker date="1573431511096" expanded="false" signature="3810:3816" ph=" }" />
-            <marker date="1573431511096" expanded="false" signature="3862:3873" ph=" { " />
-            <marker date="1573431511096" expanded="false" signature="3898:3904" ph=" }" />
-            <marker date="1573431511096" expanded="false" signature="3944:3955" ph=" { " />
-            <marker date="1573431511096" expanded="false" signature="3974:3980" ph=" }" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/bcel/bcel/6.4.0/bcel-6.4.0.jar!/org/apache/bcel/generic/IF_ICMPEQ.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding>
-            <marker date="1573431511096" expanded="false" signature="0:104" ph="/.../" />
-            <marker date="1573431511096" expanded="true" signature="203:210" ph="{}" />
-            <marker date="1573431511096" expanded="false" signature="258:269" ph=" { " />
-            <marker date="1573431511096" expanded="false" signature="295:301" ph=" }" />
-            <marker date="1573431511096" expanded="false" signature="336:347" ph=" { " />
-            <marker date="1573431511096" expanded="false" signature="387:393" ph=" }" />
-            <marker date="1573431511096" expanded="true" signature="429:580" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/bcel/bcel/6.4.0/bcel-6.4.0.jar!/org/apache/bcel/generic/IfInstruction.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="15" column="34" lean-forward="false" selection-start-line="15" selection-start-column="34" selection-end-line="15" selection-end-column="34" />
-          <folding>
-            <marker date="1573431511096" expanded="false" signature="0:104" ph="/.../" />
-            <marker date="1573431511096" expanded="true" signature="249:256" ph="{}" />
-            <marker date="1573431511096" expanded="false" signature="325:336" ph=" { " />
-            <marker date="1573431511096" expanded="false" signature="358:364" ph=" }" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/visitors/ExpressionVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="474">
-          <caret line="32" column="71" lean-forward="true" selection-start-line="32" selection-start-column="71" selection-end-line="32" selection-end-column="71" />
+        <state relative-caret-position="369">
+          <caret line="509" column="1" lean-forward="true" selection-start-line="509" selection-start-column="1" selection-end-line="509" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Documents/BrownCS/testClass.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/Lexer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="13" column="3" lean-forward="true" selection-start-line="13" selection-start-column="3" selection-end-line="13" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/bcel/bcel/6.4.0/bcel-6.4.0.jar!/org/apache/bcel/generic/IFEQ.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="8" column="4" lean-forward="false" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/MethodResolvable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="2" column="17" lean-forward="false" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/bcel/bcel/6.4.0/bcel-6.4.0.jar!/org/apache/bcel/generic/INVOKESTATIC.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="13" column="4" lean-forward="false" selection-start-line="13" selection-start-column="4" selection-end-line="13" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/bcel/bcel/6.4.0/bcel-6.4.0.jar!/org/apache/bcel/generic/INVOKEVIRTUAL.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="16" column="11" lean-forward="false" selection-start-line="16" selection-start-column="11" selection-end-line="16" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/bcel/bcel/6.4.0/bcel-6.4.0.jar!/org/apache/bcel/classfile/JavaClass.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
-          <caret line="316" column="18" lean-forward="false" selection-start-line="316" selection-start-column="18" selection-end-line="316" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/bcel/bcel/6.4.0/bcel-6.4.0.jar!/org/apache/bcel/generic/ALOAD.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="12" column="11" lean-forward="false" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/LiteralExpression.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="6" column="52" lean-forward="false" selection-start-line="6" selection-start-column="52" selection-end-line="6" selection-end-column="52" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#417#418#0" expanded="false" />
-            <element signature="e#460#461#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/bcel/bcel/6.4.0/bcel-6.4.0.jar!/org/apache/bcel/generic/ConstantPoolGen.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
-          <caret line="388" column="15" lean-forward="false" selection-start-line="388" selection-start-column="15" selection-end-line="388" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/bcel/bcel/6.4.0/bcel-6.4.0.jar!/org/apache/bcel/generic/ClassGen.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="244">
-          <caret line="376" column="16" lean-forward="false" selection-start-line="376" selection-start-column="16" selection-end-line="376" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/target/generated-sources/annotations/staticchecks/resolvedInfo/ResolvedMethod.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
-          <caret line="67" column="24" lean-forward="false" selection-start-line="67" selection-start-column="24" selection-end-line="67" selection-end-column="24" />
-          <folding>
-            <element signature="e#1789#1790#0" expanded="false" />
-            <element signature="e#1810#1811#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/BinaryOp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="258">
-          <caret line="105" column="39" lean-forward="false" selection-start-line="105" selection-start-column="39" selection-end-line="105" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/EmptyStatement.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/CharacterLiteral.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="27" column="41" lean-forward="false" selection-start-line="27" selection-start-column="41" selection-end-line="27" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/False.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="17" column="60" lean-forward="false" selection-start-line="17" selection-start-column="60" selection-end-line="17" selection-end-column="60" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/IfStatement.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="74">
-          <caret line="36" column="28" lean-forward="false" selection-start-line="36" selection-start-column="28" selection-end-line="36" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/Null.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/True.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="17" column="59" lean-forward="false" selection-start-line="17" selection-start-column="59" selection-end-line="17" selection-end-column="59" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/staticchecks/StaticStateIF.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="13" column="17" lean-forward="false" selection-start-line="13" selection-start-column="17" selection-end-line="13" selection-end-column="17" />
+        <state relative-caret-position="406">
+          <caret line="31" column="27" lean-forward="false" selection-start-line="31" selection-start-column="27" selection-end-line="31" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/target/generated-sources/annotations/staticchecks/StaticState.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
-          <caret line="23" column="48" lean-forward="false" selection-start-line="23" selection-start-column="48" selection-end-line="23" selection-end-column="48" />
+        <state relative-caret-position="558">
+          <caret line="534" column="0" lean-forward="false" selection-start-line="534" selection-start-column="0" selection-end-line="534" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/IntegerLiteral.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/bytecode/BytecodeCreator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="9" column="8" lean-forward="true" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
+        <state relative-caret-position="183">
+          <caret line="69" column="0" lean-forward="false" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Lexer.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/staticchecks/StaticChecksHelper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="27" column="19" lean-forward="true" selection-start-line="27" selection-start-column="19" selection-end-line="27" selection-end-column="19" />
+        <state relative-caret-position="157">
+          <caret line="133" column="74" lean-forward="false" selection-start-line="133" selection-start-column="65" selection-end-line="133" selection-end-column="74" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/staticchecks/StaticStateIF.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="370">
+          <caret line="25" column="54" lean-forward="true" selection-start-line="25" selection-start-column="54" selection-end-line="25" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/staticchecks/LocalVariableInfoTable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="65" column="0" lean-forward="true" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#670#671#0" expanded="false" />
+            <element signature="e#718#719#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/bcel/bcel/6.4.0/bcel-6.4.0.jar!/org/apache/bcel/generic/BranchInstruction.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="233">
+          <caret line="103" column="31" lean-forward="false" selection-start-line="103" selection-start-column="31" selection-end-line="103" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/bcel/bcel/6.4.0/bcel-6.4.0.jar!/org/apache/bcel/classfile/LocalVariable.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="40" column="11" lean-forward="false" selection-start-line="40" selection-start-column="11" selection-end-line="40" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/bcel/bcel/6.4.0/bcel-6.4.0.jar!/org/apache/bcel/generic/LocalVariableGen.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25">
+          <caret line="18" column="11" lean-forward="false" selection-start-line="18" selection-start-column="11" selection-end-line="18" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_144/src.zip!/java/lang/Deprecated.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="43" column="18" lean-forward="false" selection-start-line="43" selection-start-column="18" selection-end-line="43" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/bcel/bcel/6.4.0/bcel-6.4.0.jar!/org/apache/bcel/generic/InstructionList.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="333">
+          <caret line="805" column="29" lean-forward="false" selection-start-line="805" selection-start-column="29" selection-end-line="805" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/bcel/bcel/6.4.0/bcel-6.4.0.jar!/org/apache/bcel/generic/InstructionHandle.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="29" column="35" lean-forward="false" selection-start-line="29" selection-start-column="35" selection-end-line="29" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/bytecode/ByteCodeStateIF.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="19" column="29" lean-forward="false" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="29" />
+          <folding>
+            <element signature="e#523#524#0" expanded="false" />
+            <element signature="e#576#577#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/True.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="16" column="50" lean-forward="false" selection-start-line="16" selection-start-column="50" selection-end-line="16" selection-end-column="50" />
           <folding />
         </state>
       </provider>
@@ -1193,145 +898,290 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/Statement.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="100">
-          <caret line="4" column="46" lean-forward="true" selection-start-line="4" selection-start-column="46" selection-end-line="4" selection-end-column="46" />
+          <caret line="4" column="22" lean-forward="false" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/Bytecodeable.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/staticchecks/resolvedInfo/ResolvedType.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="246">
-          <caret line="15" column="5" lean-forward="true" selection-start-line="11" selection-start-column="12" selection-end-line="15" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/BlockStatement.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="32" column="20" lean-forward="true" selection-start-line="32" selection-start-column="20" selection-end-line="32" selection-end-column="20" />
+        <state relative-caret-position="125">
+          <caret line="5" column="70" lean-forward="false" selection-start-line="5" selection-start-column="70" selection-end-line="5" selection-end-column="70" />
           <folding>
-            <element signature="e#1094#1095#0" expanded="false" />
-            <element signature="e#1127#1128#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/ExpressionStatement.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#97#98#0" expanded="false" />
+            <element signature="e#174#175#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/ReturnStatement.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="45" column="5" lean-forward="true" selection-start-line="45" selection-start-column="5" selection-end-line="45" selection-end-column="5" />
+        <state relative-caret-position="275">
+          <caret line="53" column="9" lean-forward="false" selection-start-line="53" selection-start-column="9" selection-end-line="53" selection-end-column="9" />
           <folding>
-            <element signature="e#2398#2399#0" expanded="true" />
-            <element signature="e#2437#2438#0" expanded="true" />
+            <element signature="e#2271#2272#0" expanded="true" />
+            <element signature="e#2310#2311#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/bcel/bcel/6.4.0/bcel-6.4.0.jar!/org/apache/bcel/generic/MethodGen.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="64" column="11" lean-forward="false" selection-start-line="64" selection-start-column="11" selection-end-line="64" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/Expression.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="11" column="36" lean-forward="false" selection-start-line="11" selection-start-column="36" selection-end-line="11" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/FunctionCall.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/WhileStatement.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="400">
-          <caret line="44" column="36" lean-forward="false" selection-start-line="44" selection-start-column="36" selection-end-line="44" selection-end-column="36" />
+          <caret line="53" column="36" lean-forward="false" selection-start-line="53" selection-start-column="36" selection-end-line="53" selection-end-column="36" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/Identifier.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/VariableDeclaratorList.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="50" column="0" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
-          <folding>
-            <element signature="e#1986#1987#0" expanded="true" />
-            <element signature="e#2019#2020#0" expanded="true" />
-            <element signature="e#2069#2070#0" expanded="true" />
-            <element signature="e#2102#2103#0" expanded="true" />
-            <element signature="e#2166#2167#0" expanded="true" />
-            <element signature="e#2208#2209#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/staticchecks/resolvedInfo/ResolvedType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="2" column="17" lean-forward="false" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
+        <state relative-caret-position="293">
+          <caret line="23" column="25" lean-forward="false" selection-start-line="23" selection-start-column="25" selection-end-line="23" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/staticchecks/StaticChecksHelper.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/VariableDeclarationStatement.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="107">
-          <caret line="155" column="35" lean-forward="false" selection-start-line="155" selection-start-column="35" selection-end-line="155" selection-end-column="35" />
+        <state relative-caret-position="350">
+          <caret line="46" column="45" lean-forward="false" selection-start-line="46" selection-start-column="45" selection-end-line="46" selection-end-column="45" />
           <folding>
-            <element signature="e#631#632#0" expanded="true" />
-            <element signature="e#659#660#0" expanded="true" />
+            <element signature="e#1839#1840#0" expanded="true" />
+            <element signature="e#1873#1874#0" expanded="true" />
+            <element signature="e#1912#1913#0" expanded="true" />
+            <element signature="e#1947#1948#0" expanded="true" />
+            <element signature="e#2000#2001#0" expanded="true" />
+            <element signature="e#2035#2036#0" expanded="true" />
+            <element signature="e#2064#2065#0" expanded="true" />
+            <element signature="e#2091#2092#0" expanded="true" />
+            <element signature="e#2136#2137#0" expanded="true" />
+            <element signature="e#2171#2172#0" expanded="true" />
+            <element signature="e#2233#2234#0" expanded="true" />
+            <element signature="e#2281#2282#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/StringLiteral.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="26" column="53" lean-forward="false" selection-start-line="26" selection-start-column="53" selection-end-line="26" selection-end-column="53" />
+        <state relative-caret-position="400">
+          <caret line="26" column="8" lean-forward="false" selection-start-line="26" selection-start-column="8" selection-end-line="26" selection-end-column="8" />
+          <folding>
+            <element signature="e#647#648#0" expanded="true" />
+            <element signature="e#730#731#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/NewArrayExpression.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="52" column="98" lean-forward="false" selection-start-line="52" selection-start-column="98" selection-end-line="52" selection-end-column="98" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/bcel/bcel/6.4.0/bcel-6.4.0.jar!/org/apache/bcel/generic/ClassGen.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="360" column="20" lean-forward="false" selection-start-line="360" selection-start-column="20" selection-end-line="360" selection-end-column="20" />
+          <folding>
+            <element signature="e#11902#11903#0" expanded="true" />
+            <element signature="e#11994#11995#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/target/generated-sources/annotations/bytecode/ByteCodeState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="55" column="40" lean-forward="false" selection-start-line="55" selection-start-column="40" selection-end-line="55" selection-end-column="40" />
+          <folding>
+            <element signature="e#1698#1699#0" expanded="true" />
+            <element signature="e#1723#1724#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/MethodCall.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="91" column="0" lean-forward="false" selection-start-line="91" selection-start-column="0" selection-end-line="91" selection-end-column="0" />
+        <state relative-caret-position="625">
+          <caret line="107" column="9" lean-forward="false" selection-start-line="107" selection-start-column="9" selection-end-line="107" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/IntegerLiteral.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="26" column="8" lean-forward="false" selection-start-line="26" selection-start-column="8" selection-end-line="26" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/IfStatement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="48" column="42" lean-forward="false" selection-start-line="48" selection-start-column="42" selection-end-line="48" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/Identifier.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="274">
+          <caret line="65" column="8" lean-forward="false" selection-start-line="65" selection-start-column="8" selection-end-line="65" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/FunctionCall.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-607">
+          <caret line="28" column="83" lean-forward="false" selection-start-line="28" selection-start-column="83" selection-end-line="28" selection-end-column="83" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/False.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="268">
+          <caret line="17" column="8" lean-forward="false" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="8" />
           <folding>
-            <element signature="e#5468#5469#0" expanded="true" />
-            <element signature="e#5497#5498#0" expanded="true" />
-            <element signature="e#5534#5535#0" expanded="true" />
-            <element signature="e#5567#5568#0" expanded="true" />
-            <element signature="e#5613#5614#0" expanded="true" />
-            <element signature="e#5645#5646#0" expanded="true" />
-            <element signature="e#5681#5682#0" expanded="true" />
-            <element signature="e#5713#5714#0" expanded="true" />
-            <element signature="e#5755#5756#0" expanded="true" />
-            <element signature="e#5795#5796#0" expanded="true" />
-            <element signature="e#5859#5860#0" expanded="true" />
-            <element signature="e#5901#5902#0" expanded="true" />
+            <element signature="e#440#441#0" expanded="true" />
+            <element signature="e#483#484#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/bytecode/BytecodeCreator.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/FieldAccess.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="11" column="11" lean-forward="false" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/ExpressionStatement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="18" column="8" lean-forward="false" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="8" />
+          <folding>
+            <element signature="e#438#439#0" expanded="true" />
+            <element signature="e#482#483#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/Expression.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="23" column="26" lean-forward="false" selection-start-line="23" selection-start-column="26" selection-end-line="23" selection-end-column="26" />
+          <folding>
+            <element signature="e#678#679#0" expanded="true" />
+            <element signature="e#705#706#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/EmptyStatement.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="350">
-          <caret line="155" column="83" lean-forward="false" selection-start-line="155" selection-start-column="83" selection-end-line="155" selection-end-column="83" />
+          <caret line="15" column="88" lean-forward="false" selection-start-line="15" selection-start-column="88" selection-end-line="15" selection-end-column="88" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/ContinueStatement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="17" column="8" lean-forward="false" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/ConstructorCall.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/bcel/bcel/6.4.0/bcel-6.4.0.jar!/org/apache/bcel/generic/ConstantPoolGen.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="241" column="15" lean-forward="false" selection-start-line="241" selection-start-column="15" selection-end-line="241" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/bcel/bcel/6.4.0/bcel-6.4.0.jar!/org/apache/bcel/generic/LDC.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="23" column="11" lean-forward="false" selection-start-line="23" selection-start-column="11" selection-end-line="23" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/CharacterLiteral.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="28" column="26" lean-forward="true" selection-start-line="28" selection-start-column="26" selection-end-line="28" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/Bytecodeable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="6" column="16" lean-forward="false" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/BreakStatement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="17" column="8" lean-forward="false" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/BinaryOp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1525">
+          <caret line="103" column="8" lean-forward="false" selection-start-line="103" selection-start-column="8" selection-end-line="103" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/ArrayAccess.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="27" column="83" lean-forward="false" selection-start-line="27" selection-start-column="83" selection-end-line="27" selection-end-column="83" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#2137#2138#0" expanded="true" />
+            <element signature="e#2164#2165#0" expanded="true" />
+            <element signature="e#2200#2201#0" expanded="true" />
+            <element signature="e#2228#2229#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/BlockStatement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="93">
+          <caret line="15" column="42" lean-forward="true" selection-start-line="15" selection-start-column="42" selection-end-line="15" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/UnaryOp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-125">
+          <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
