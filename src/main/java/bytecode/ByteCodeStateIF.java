@@ -17,6 +17,15 @@ public interface ByteCodeStateIF {
     Optional<GOTO> getWhileLoopEnd();
     Optional<GOTO> getWhileLoopStart();
 
+
+    default ClassGen fetchClassGen(String className) {
+        if (className.equals("Object")) {
+            return getClassMap().get("java.lang.Object");
+        } if (className.equals("String")) {
+            return getClassMap().get("java.lang.String");
+        }
+        return getClassMap().get(className);
+    }
     default InstructionHandle append(Instruction i) {
         return getInstructionList().append(i);
     }

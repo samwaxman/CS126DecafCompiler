@@ -2,6 +2,7 @@ package staticchecks.resolvedInfo;
 
 import ast.Modifier;
 import astPojos.BlockStatement;
+import astPojos.ReturnStatement;
 import astPojos.SuperConstructorCall;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
@@ -21,7 +22,9 @@ public interface ResolvedConstructorIF {
 
     ResolvedConstructor defaultConstructor =
             ResolvedConstructor.builder()
-                               .setBody(new BlockStatement(Lists.newArrayList(new SuperConstructorCall(new ArrayList<>()))))
+                               .setBody(new BlockStatement(
+                                       Lists.newArrayList(new SuperConstructorCall(new ArrayList<>()),
+                                       new ReturnStatement())))
                                .setModifiers(ImmutableSet.of(Modifier.PUBLIC))
                                .build();
 

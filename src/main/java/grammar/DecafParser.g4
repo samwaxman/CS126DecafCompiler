@@ -79,7 +79,7 @@ primary: newArrayExpr | nonNewArrayExpr | IDENTIFIER;
 newArrayExpr: NEW IDENTIFIER dimension+
 | NEW primitiveType dimension+;
 
-dimension: LEFT_BRACE expression RIGHT_BRACE;
+dimension: LEFT_BRACKET expression RIGHT_BRACKET;
 
 nonNewArrayExpr: literal |
 THIS |

@@ -8,18 +8,18 @@ import staticchecks.resolvedInfo.ClassType;
 import staticchecks.resolvedInfo.PrimitiveType;
 import staticchecks.resolvedInfo.ResolvedType;
 
-public class ArrayAccess extends Expression {
-    private final Expression expr;
+public class ArrayAccess extends Expression implements LValue{
+    private final Expression array;
     private final Expression index;
 
     public ArrayAccess(Expression expr, Expression index) {
-        this.expr = expr;
+        this.array = expr;
         this.index = index;
     }
 
     @Override
     protected ResolvedType typeCheckCore(StaticState s) {
-        ResolvedType arrayType = expr.typeCheck(s);
+        ResolvedType arrayType = array.typeCheck(s);
         ResolvedType indexType = index.typeCheck(s);
         if (indexType != PrimitiveType.INT) {
             throw new RuntimeException("Array index not a number.");
@@ -38,9 +38,9 @@ public class ArrayAccess extends Expression {
 
     @Override
     public void toBytecode(ByteCodeState state) {
-        expr.toBytecode(state);
+        array.toBytecode(state);
         index.toBytecode(state);
-        ResolvedType t = expr.getType();
+        ResolvedType t = array.getType();
         assert t instanceof ArrayType;
         ArrayType arrayType = (ArrayType) t;
         if (arrayType.getDimension() > 1 || arrayType.getType() instanceof ClassType) {
@@ -60,8 +60,28 @@ public class ArrayAccess extends Expression {
         }
     }
 
-    public Expression getExpr() {
-        return expr;
+    @Override
+    public void bind(ByteCodeState state, Expression expr) {
+        array.toBytecode(state);
+        index.toBytecode(state);
+        expr.toBytecode(state);
+        assert array.getType() instanceof ArrayType;
+        ArrayType arrayType = (ArrayType) array.getType();
+        if (arrayType.getType().isRef() || arrayType.getDimension() > 1) {
+            state.append(new AASTORE());
+        } else if (arrayType.getType() == PrimitiveType.BOOLEAN) {
+            state.append(new BASTORE());
+        } else if (arrayType.getType() == PrimitiveType.CHAR) {
+            state.append(new CASTORE());
+        } else if (arrayType.getType() == PrimitiveType.INT) {
+            state.append(new IASTORE());
+        } else {
+            assert false : "Types exhausted.";
+        }
+    }
+
+    public Expression getArray() {
+        return array;
     }
 
     public Expression getIndex() {

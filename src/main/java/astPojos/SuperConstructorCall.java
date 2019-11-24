@@ -1,5 +1,12 @@
 package astPojos;
 
+import bytecode.ByteCodeState;
+import bytecode.BytecodeCreator;
+import org.apache.bcel.classfile.Method;
+import org.apache.bcel.generic.ALOAD;
+import org.apache.bcel.generic.ClassGen;
+import org.apache.bcel.generic.INVOKESPECIAL;
+import org.apache.bcel.generic.Type;
 import staticchecks.StaticChecksHelper;
 import staticchecks.StaticState;
 import staticchecks.resolvedInfo.ClassInfo;
@@ -37,6 +44,25 @@ public class SuperConstructorCall extends Statement {
 
         StaticChecksHelper.checkIfValidArguments(argumentTypes, expectedTypes, s);
 
+    }
+
+    @Override
+    public void toBytecode(ByteCodeState state) {
+        ClassGen classGen = state.getClassMap().get(superClassName);
+        String methodSignature = null;
+        //Unlike in real java, there's only one init
+        for (Method m : classGen.getMethods()) {
+            if (m.getName().equals("<init>")) {
+                methodSignature = Type.getMethodSignature(m.getReturnType(), m.getArgumentTypes());
+                break;
+            }
+        }
+        assert methodSignature != null;
+        Integer initIndex = state.getConstantPoolGen().addMethodref(BytecodeCreator.classNameToBcelName(superClassName),
+                                                                       "<init>",
+                                                                       methodSignature);
+        state.append(new ALOAD(0));
+        state.append(new INVOKESPECIAL(initIndex));
     }
 
     public List<Expression> getArguments() {

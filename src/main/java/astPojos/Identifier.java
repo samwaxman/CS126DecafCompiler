@@ -1,11 +1,13 @@
 package astPojos;
 
 import bytecode.ByteCodeState;
-import org.apache.bcel.generic.ALOAD;
-import org.apache.bcel.generic.ILOAD;
+import bytecode.BytecodeCreator;
+import org.apache.bcel.generic.*;
 import staticchecks.StaticChecksHelper;
 import staticchecks.StaticState;
-import staticchecks.resolvedInfo.*;
+import staticchecks.resolvedInfo.LocalVariableInfo;
+import staticchecks.resolvedInfo.ResolvedField;
+import staticchecks.resolvedInfo.ResolvedType;
 
 import java.util.Optional;
 
@@ -17,7 +19,7 @@ import java.util.Optional;
 // That is, in nested scopes, it must be aware of which local it is.
 // I'm not sure to what extent DECAF allows shadowing though, as regular Java
 // is pretty strict on when it's possible to shadow already
-public class Identifier extends Expression implements FieldResolvable {
+public class Identifier extends Expression implements FieldResolvable, LValue {
     private final String identifier;
     private String fromClass;
     private Integer index;
@@ -57,13 +59,33 @@ public class Identifier extends Expression implements FieldResolvable {
 
     @Override
     public void toBytecode(ByteCodeState state) {
-        // I should probably make a THIS class.
-       // if (fromClass != null) {
-         //   new FieldAccess(new Identifier("this"), identifier);
-        //}
+        //TODO: Make it play nicely with super
+         if (fromClass != null) {
+             String signature = BytecodeCreator.resolvedTypeToBcelType(getType()).getSignature();
+             int fieldIndex = state.getConstantPoolGen().lookupFieldref(fromClass, getFieldName(), signature);
+             new This().toBytecode(state);
+             state.append(new GETFIELD(fieldIndex));
+        }
         assert index != null : "Both fromClass and index were null, meaning identifier was not field access or local.";
-        boolean isILoad = !(getType() instanceof ClassType || getType() instanceof ArrayType);
-        state.append(isILoad ? new ILOAD(index) : new ALOAD(index));
+        state.append(getType().isRef() ? new ALOAD(index) : new ILOAD(index));
+    }
+
+    @Override
+    public void bind(ByteCodeState state, Expression expr) {
+        assert getIndex() != null || getFromClass() != null;
+        expr.toBytecode(state);
+        //TODO: Only necessary if this is being used as an expression
+        state.append(new DUP());
+        if (getIndex() != null) {
+            state.append(new ISTORE(getIndex()));
+            return;
+        }
+        //TODO: Same logic as the other FieldResolvable. Merge.
+        String fieldTypeSig = BytecodeCreator.resolvedTypeToBcelType(getType()).getSignature();
+        int fieldIndex = state.getConstantPoolGen().lookupFieldref(getFromClass(),
+                                                                   getFieldName(),
+                                                                   fieldTypeSig);
+        state.append(new PUTFIELD(fieldIndex));
     }
 
     public String getIdentifier() {

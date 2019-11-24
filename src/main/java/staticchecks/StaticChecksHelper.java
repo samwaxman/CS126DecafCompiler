@@ -2,7 +2,6 @@ package staticchecks;
 
 import ast.*;
 import astPojos.BlockStatement;
-import astPojos.Expression;
 import astPojos.FieldResolvable;
 import astPojos.MethodResolvable;
 import com.google.common.collect.Lists;
@@ -16,13 +15,14 @@ public class StaticChecksHelper {
     public static boolean isSubclass(ResolvedType sub, ResolvedType parent, StaticState s) {
         if (sub.equals(parent)) {
             return true;
-        } else {
+        }
+        if (sub == PrimitiveType.CHAR && parent == PrimitiveType.INT) {
+            return true;
+        }
+
+        else {
             throw new RuntimeException("not yet implemented");
         }
-    }
-
-    public static boolean isLValue(Expression e) {
-        return false;
     }
 
     public static void checkIfValidArguments(List<ResolvedType> argumentTypes,
@@ -157,10 +157,26 @@ public class StaticChecksHelper {
                                                  .setBody(new BlockStatement(Collections.emptyList()))
                                                  .setModifiers(new HashSet<>(Arrays.asList(Modifier.STATIC, Modifier.PUBLIC)))
                                                  .build();
+        ResolvedMethod putChar = putString.withArguments(putString.getArguments().get(0)
+                                                                  .withType(PrimitiveType.CHAR));
+
+        ResolvedMethod putInt = putString.withArguments(putString.getArguments().get(0)
+                                                                 .withType(PrimitiveType.INT));
+        ResolvedMethod getChar = putInt.withArguments(Collections.emptyList())
+                                       .withReturnType(PrimitiveType.INT);
+        ResolvedMethod getInt = getChar;
+        ResolvedMethod peek = getChar;
+        ResolvedMethod getLine = getChar.withReturnType(ClassType.builder().setClassName("String").build());
 
         ClassInfo ioInfo = ClassInfo.builder()
                                     .setSuperClassName("Object")
                                     .putMethods("putString", putString)
+                                    .putMethods("putChar", putChar)
+                                    .putMethods("putInt", putInt)
+                                    .putMethods("getInt", getInt)
+                                    .putMethods("peek", peek)
+                                    .putMethods("getLine", getLine)
+                                    .putMethods("getChar", getChar)
                                     .setConstructor(ResolvedConstructor.defaultConstructor
                                                             .withModifiers(new HashSet<>(Collections.singleton(Modifier.PRIVATE))))
                 .build();

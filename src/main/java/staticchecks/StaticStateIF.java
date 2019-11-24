@@ -28,5 +28,11 @@ public interface StaticStateIF {
     default boolean isFirstStatementInConstructorCall() {
         return false;
     };
+
+    // To know if THIS and SUPER are allowed
+    @Value.Default
+    default boolean isMethodStatic() {
+        return false;
+    };
     Optional<ResolvedType> getReturnType();
 }

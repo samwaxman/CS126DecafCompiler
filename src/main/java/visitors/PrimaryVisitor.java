@@ -73,8 +73,7 @@ public class PrimaryVisitor extends DecafParserBaseVisitor<Expression> {
             }
         }
         if (ctx.THIS() != null) {
-            // I don't see a reason to not just treat this as a variable as of yet
-            return new Identifier(ctx.THIS().getText());
+            return new This();
         }
 
         ExpressionVisitor expressionVisitor = new ExpressionVisitor();
@@ -106,9 +105,9 @@ public class PrimaryVisitor extends DecafParserBaseVisitor<Expression> {
 
             Expression object = null;
             String methodName = ctx.IDENTIFIER(0).getText();
-            ;
+
             if (ctx.SUPER() != null) {
-                object = new Identifier("super");
+                object = new Super();
             }
             if (ctx.nonNewArrayExpr() != null) {
                 object = visitNonNewArrayExpr(ctx.nonNewArrayExpr());
@@ -135,7 +134,7 @@ public class PrimaryVisitor extends DecafParserBaseVisitor<Expression> {
         Expression object;
         String fieldName = ctx.IDENTIFIER(0).getText();
         if (ctx.SUPER() != null) {
-            object = new Identifier("super");
+            object = new Super();
         } else if (ctx.nonNewArrayExpr() != null) {
             object = visitNonNewArrayExpr(ctx.nonNewArrayExpr());
         } else if (ctx.newArrayExpr() != null) {

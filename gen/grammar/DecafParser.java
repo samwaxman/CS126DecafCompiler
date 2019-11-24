@@ -2401,11 +2401,11 @@ public class DecafParser extends Parser {
 	}
 
 	public static class DimensionContext extends ParserRuleContext {
-		public TerminalNode LEFT_BRACE() { return getToken(DecafParser.LEFT_BRACE, 0); }
+		public TerminalNode LEFT_BRACKET() { return getToken(DecafParser.LEFT_BRACKET, 0); }
 		public ExpressionContext expression() {
 			return getRuleContext(ExpressionContext.class,0);
 		}
-		public TerminalNode RIGHT_BRACE() { return getToken(DecafParser.RIGHT_BRACE, 0); }
+		public TerminalNode RIGHT_BRACKET() { return getToken(DecafParser.RIGHT_BRACKET, 0); }
 		public DimensionContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -2432,11 +2432,11 @@ public class DecafParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(338);
-			match(LEFT_BRACE);
+			match(LEFT_BRACKET);
 			setState(339);
 			expression(0);
 			setState(340);
-			match(RIGHT_BRACE);
+			match(RIGHT_BRACKET);
 			}
 		}
 		catch (RecognitionException re) {
@@ -3105,8 +3105,8 @@ public class DecafParser extends Parser {
 		"\3\2\2\2\u0149\u014a\3\2\2\2\u014a\u0153\3\2\2\2\u014b\u014c\7\n\2\2\u014c"+
 		"\u014e\5\32\16\2\u014d\u014f\5:\36\2\u014e\u014d\3\2\2\2\u014f\u0150\3"+
 		"\2\2\2\u0150\u014e\3\2\2\2\u0150\u0151\3\2\2\2\u0151\u0153\3\2\2\2\u0152"+
-		"\u0144\3\2\2\2\u0152\u014b\3\2\2\2\u01539\3\2\2\2\u0154\u0155\7F\2\2\u0155"+
-		"\u0156\5&\24\2\u0156\u0157\7G\2\2\u0157;\3\2\2\2\u0158\u0159\b\37\1\2"+
+		"\u0144\3\2\2\2\u0152\u014b\3\2\2\2\u01539\3\2\2\2\u0154\u0155\7H\2\2\u0155"+
+		"\u0156\5&\24\2\u0156\u0157\7I\2\2\u0157;\3\2\2\2\u0158\u0159\b\37\1\2"+
 		"\u0159\u017c\5> \2\u015a\u017c\7\21\2\2\u015b\u015c\7D\2\2\u015c\u015d"+
 		"\5&\24\2\u015d\u015e\7E\2\2\u015e\u017c\3\2\2\2\u015f\u0160\7\n\2\2\u0160"+
 		"\u0161\7?\2\2\u0161\u017c\5@!\2\u0162\u0163\7?\2\2\u0163\u017c\5@!\2\u0164"+

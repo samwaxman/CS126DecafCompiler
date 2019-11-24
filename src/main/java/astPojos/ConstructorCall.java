@@ -1,5 +1,9 @@
 package astPojos;
 
+import bytecode.ByteCodeState;
+import bytecode.BytecodeCreator;
+import org.apache.bcel.classfile.Method;
+import org.apache.bcel.generic.*;
 import staticchecks.StaticChecksHelper;
 import staticchecks.StaticState;
 import staticchecks.resolvedInfo.ClassInfo;
@@ -35,10 +39,26 @@ public class ConstructorCall extends Expression {
         return ClassType.builder().setClassName(className).build();
     }
 
-   // @Override
-    //public InstructionHandle toBytecode(ByteCodeState state) {
-      //  return null;
-    //}
+    @Override
+    public void toBytecode(ByteCodeState state) {
+        ClassGen classGen = state.getClassMap().get(className);
+        String methodSignature = null;
+        //Unlike in real java, there's only one init
+        for (Method m : classGen.getMethods()) {
+            if (m.getName().equals("<init>")) {
+                methodSignature = Type.getMethodSignature(m.getReturnType(), m.getArgumentTypes());
+                break;
+            }
+        }
+        assert methodSignature != null;
+        Integer initIndex = state.getConstantPoolGen().addMethodref(BytecodeCreator.classNameToBcelName(className),
+                                                                    "<init>",
+                                                                    methodSignature);
+        assert initIndex != -1 : "Class must have constructor";
+        state.append(new NEW(classGen.getClassNameIndex()));
+        state.append(new DUP());
+        state.append(new INVOKESPECIAL(initIndex));
+    }
 
     public String getClassName() {
         return className;

@@ -15,7 +15,7 @@ public class FieldVisitor extends DecafParserBaseVisitor<List<Field>> {
         DecafParser.VarDeclarationListContext varListContext = ctx.varDeclarationList();
         List<Field> fields = new ArrayList<>();
         List<Modifier> modifiers = ctx.modifier().stream()
-                                      .map(m -> Modifier.valueOf(m.getText()))
+                                      .map(m -> Modifier.valueOf(m.getText().toUpperCase()))
                                       .collect(Collectors.toList());
         while (varListContext != null) {
             if (varListContext.varDeclarator().BIND() != null) {

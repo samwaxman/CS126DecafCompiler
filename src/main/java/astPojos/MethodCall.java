@@ -60,7 +60,7 @@ public class MethodCall extends Expression implements MethodResolvable {
                 }
             }
         }
-        ResolvedType objectType = object.typeCheckCore(s);
+        ResolvedType objectType = object.typeCheck(s);
         if (!(objectType instanceof ClassType)) {
             throw new RuntimeException("Attempted to call a method on non-object type " + objectType);
         }

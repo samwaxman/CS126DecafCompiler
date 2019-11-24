@@ -36,7 +36,8 @@ public class BinaryOp extends Expression {
                                      PrimitiveType.INT,
                                      PrimitiveType.INT,
                                      leftType,
-                                     rightType);
+                                     rightType,
+                                     s);
             case ">":
             case "<":
             case ">=":
@@ -46,7 +47,8 @@ public class BinaryOp extends Expression {
                                      PrimitiveType.INT,
                                      PrimitiveType.INT,
                                      leftType,
-                                     rightType);
+                                     rightType,
+                                     s);
             case "&&":
             case "||":
                 return binaryOpCheck(operator,
@@ -54,9 +56,10 @@ public class BinaryOp extends Expression {
                                      PrimitiveType.BOOLEAN,
                                      PrimitiveType.BOOLEAN,
                                      leftType,
-                                     rightType);
+                                     rightType,
+                                     s);
             case "=":
-                if (!StaticChecksHelper.isLValue(left)) {
+                if (!(left instanceof LValue)) {
                     throw new RuntimeException("Attempted to assign to an expression which was not an l-value.");
                 }
                 if (!(StaticChecksHelper.isSubclass(rightType, leftType, s))) {
@@ -77,14 +80,15 @@ public class BinaryOp extends Expression {
         return null;
     }
 
-    static ResolvedType binaryOpCheck(String operator,
+    private static ResolvedType binaryOpCheck(String operator,
                                       ResolvedType toReturn,
                                       ResolvedType expectedLeftType,
                                       ResolvedType expectedRightType,
                                       ResolvedType leftType,
-                                      ResolvedType rightType) {
-        if (leftType == expectedLeftType) {
-            if (rightType == expectedRightType) {
+                                      ResolvedType rightType,
+                                      StaticState s) {
+        if (StaticChecksHelper.isSubclass(leftType, expectedLeftType, s)) {
+            if (StaticChecksHelper.isSubclass(rightType, expectedRightType, s)) {
                 return toReturn;
             }
             throwTypeException(operator, expectedRightType, rightType);
@@ -99,8 +103,40 @@ public class BinaryOp extends Expression {
         throw new RuntimeException("Expected " + expectedType + " for operator " + operator + " but received " + receivedType + ".");
     }
 
+    private void handleBooleanOperators(ByteCodeState state) {
+        left.toBytecode(state);
+        boolean isAnd = operator.equals("&&");
+        assert isAnd || operator.equals("||") : "Only meant to deal with && and ||";
+        IfInstruction firstBranch = new IFEQ(null);
+        state.append(firstBranch);
+        right.toBytecode(state);
+        IfInstruction secondBranch = new IFEQ(null);
+        if (!isAnd) {
+            firstBranch = firstBranch.negate();
+            secondBranch = secondBranch.negate();
+        }
+        state.append(secondBranch);
+        state.append(new ICONST(isAnd ? 1 : 0));
+        GOTO after = new GOTO(null);
+        state.append(after);
+        InstructionHandle falseCase = state.append(new ICONST(isAnd ? 0 : 1));
+        firstBranch.setTarget(falseCase);
+        secondBranch.setTarget(falseCase);
+        after.setTarget(state.append(new NOP()));
+    }
+
+
     @Override
     public void toBytecode(ByteCodeState state) {
+        if (operator.equals("=")) {
+            assert left instanceof LValue;
+            ((LValue) left).bind(state, right);
+            return;
+        }
+        if (operator.equals("&&") || operator.equals("||")) {
+            handleBooleanOperators(state);
+            return;
+        }
         left.toBytecode(state);
         right.toBytecode(state);
         Instruction op = null;
@@ -120,16 +156,6 @@ public class BinaryOp extends Expression {
             case "%":
                 op = new IREM();
                 break;
-            case "&&":
-                //TODO: This isn't okay :( needs to short circuit
-                op = new IAND();
-                break;
-            case "||":
-                op = new IOR();
-                break;
-
-            // default:
-            //   throw new RuntimeException("Not yet implemented");
         }
         if (op != null) {
             state.append(op);

@@ -1,10 +1,15 @@
 package astPojos;
 
+import bytecode.ByteCodeState;
+import bytecode.BytecodeCreator;
+import org.apache.bcel.generic.DUP;
+import org.apache.bcel.generic.GETFIELD;
+import org.apache.bcel.generic.PUTFIELD;
 import staticchecks.StaticChecksHelper;
 import staticchecks.StaticState;
 import staticchecks.resolvedInfo.*;
 
-public class FieldAccess extends Expression implements FieldResolvable {
+public class FieldAccess extends Expression implements FieldResolvable, LValue {
     private final Expression object;
     private final String fieldName;
     private String fromClass;
@@ -47,5 +52,24 @@ public class FieldAccess extends Expression implements FieldResolvable {
             return PrimitiveType.INT;
         }
         throw new RuntimeException("Attempted to access field on primitive type.");
+    }
+
+    @Override
+    public void toBytecode(ByteCodeState state) {
+        accessField(state, false);
+    }
+
+    @Override
+    public void bind(ByteCodeState state, Expression expr) {
+        expr.toBytecode(state);
+        state.append(new DUP());;
+        accessField(state, true);
+    }
+
+    private void accessField(ByteCodeState state, boolean set) {
+        String signature = BytecodeCreator.resolvedTypeToBcelType(getType()).getSignature();
+        int fieldIndex = state.getConstantPoolGen().lookupFieldref(fromClass, fieldName, signature);
+        object.toBytecode(state);
+        state.append(set ? new PUTFIELD(fieldIndex) : new GETFIELD(fieldIndex));
     }
 }
