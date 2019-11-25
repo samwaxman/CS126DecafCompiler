@@ -65,6 +65,7 @@ public class ArrayAccess extends Expression implements LValue{
         array.toBytecode(state);
         index.toBytecode(state);
         expr.toBytecode(state);
+        state.append(new DUP_X2());
         assert array.getType() instanceof ArrayType;
         ArrayType arrayType = (ArrayType) array.getType();
         if (arrayType.getType().isRef() || arrayType.getDimension() > 1) {

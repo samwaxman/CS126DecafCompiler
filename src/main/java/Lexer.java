@@ -22,7 +22,7 @@ public class Lexer {
 
     public static void main(String[] args) throws IOException {
 
-        CharStream in = CharStreams.fromFileName("C:/Users/Sam/Downloads/decaf/calc.decaf");
+        CharStream in = CharStreams.fromFileName("C:/Users/Sam/Downloads/decaf/fib.decaf");
         DecafLexer lexer = new DecafLexer(in);
         //List<? extends Token> tokens = lexer.getAllTokens();
         //System.out.println(tokens);

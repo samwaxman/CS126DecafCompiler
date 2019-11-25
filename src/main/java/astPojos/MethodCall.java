@@ -100,6 +100,8 @@ public class MethodCall extends Expression implements MethodResolvable {
         for (Expression expression : arguments) {
             expression.toBytecode(state);
         }
+        //TODO : Is this okay? FromClass might be above the actual class virtual wise
+        //will INVOKEVIRTUAL know that and do it properly?
         int poolLoc = state.getConstantPoolGen().addMethodref(fromClass, method.getName(), method.getSignature());
         if (method.isStatic()) {
             state.append(new INVOKESTATIC(poolLoc));

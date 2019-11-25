@@ -51,6 +51,7 @@ public class IfStatement extends Statement {
         } else {
             ifIns.setTarget(state.append(new NOP()));
         }
+        return;
     }
 
     public Expression getCondition() {

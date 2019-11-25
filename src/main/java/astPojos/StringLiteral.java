@@ -6,7 +6,7 @@ import staticchecks.StaticState;
 import staticchecks.resolvedInfo.ClassType;
 import staticchecks.resolvedInfo.ResolvedType;
 
-public class StringLiteral extends LiteralExpression {
+public class StringLiteral extends Expression {
     private final String string;
 
     public StringLiteral(String string) {

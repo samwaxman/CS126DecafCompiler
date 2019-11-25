@@ -62,9 +62,10 @@ public class Identifier extends Expression implements FieldResolvable, LValue {
         //TODO: Make it play nicely with super
          if (fromClass != null) {
              String signature = BytecodeCreator.resolvedTypeToBcelType(getType()).getSignature();
-             int fieldIndex = state.getConstantPoolGen().lookupFieldref(fromClass, getFieldName(), signature);
+             int fieldIndex = state.getConstantPoolGen().addFieldref(fromClass, getFieldName(), signature);
              new This().toBytecode(state);
              state.append(new GETFIELD(fieldIndex));
+             return;
         }
         assert index != null : "Both fromClass and index were null, meaning identifier was not field access or local.";
         state.append(getType().isRef() ? new ALOAD(index) : new ILOAD(index));
@@ -73,16 +74,20 @@ public class Identifier extends Expression implements FieldResolvable, LValue {
     @Override
     public void bind(ByteCodeState state, Expression expr) {
         assert getIndex() != null || getFromClass() != null;
+        if (fromClass != null) {
+            new This().toBytecode(state);
+        }
         expr.toBytecode(state);
-        //TODO: Only necessary if this is being used as an expression
-        state.append(new DUP());
         if (getIndex() != null) {
+            //TODO: Only necessary if this is being used as an expression
+            state.append(new DUP());
             state.append(new ISTORE(getIndex()));
             return;
         }
         //TODO: Same logic as the other FieldResolvable. Merge.
+        state.append(new DUP_X1());
         String fieldTypeSig = BytecodeCreator.resolvedTypeToBcelType(getType()).getSignature();
-        int fieldIndex = state.getConstantPoolGen().lookupFieldref(getFromClass(),
+        int fieldIndex = state.getConstantPoolGen().addFieldref(getFromClass(),
                                                                    getFieldName(),
                                                                    fieldTypeSig);
         state.append(new PUTFIELD(fieldIndex));

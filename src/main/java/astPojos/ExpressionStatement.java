@@ -1,7 +1,9 @@
 package astPojos;
 
 import bytecode.ByteCodeState;
+import org.apache.bcel.generic.POP;
 import staticchecks.StaticState;
+import staticchecks.resolvedInfo.PrimitiveType;
 
 public class ExpressionStatement extends Statement {
     private final Expression expression;
@@ -17,6 +19,9 @@ public class ExpressionStatement extends Statement {
     @Override
     public void toBytecode(ByteCodeState state) {
         expression.toBytecode(state);
+        if (expression.getType() != PrimitiveType.VOID) {
+            state.append(new POP());
+        }
     }
 
     public Expression getExpression() {

@@ -27,6 +27,7 @@ public final class StaticState implements StaticStateIF {
   private final @Nullable LocalVariableInfoTable localVariableTable;
   private final boolean insideBreakableStatement;
   private final boolean firstStatementInConstructorCall;
+  private final boolean topLevelBlock;
   private final boolean methodStatic;
   private final ResolvedType returnType;
 
@@ -41,11 +42,15 @@ public final class StaticState implements StaticStateIF {
     if (builder.firstStatementInConstructorCallIsSet()) {
       initShim.setFirstStatementInConstructorCall(builder.firstStatementInConstructorCall);
     }
+    if (builder.topLevelBlockIsSet()) {
+      initShim.setTopLevelBlock(builder.topLevelBlock);
+    }
     if (builder.methodStaticIsSet()) {
       initShim.setMethodStatic(builder.methodStatic);
     }
     this.insideBreakableStatement = initShim.isInsideBreakableStatement();
     this.firstStatementInConstructorCall = initShim.isFirstStatementInConstructorCall();
+    this.topLevelBlock = initShim.isTopLevelBlock();
     this.methodStatic = initShim.isMethodStatic();
     this.initShim = null;
   }
@@ -56,6 +61,7 @@ public final class StaticState implements StaticStateIF {
       @Nullable LocalVariableInfoTable localVariableTable,
       boolean insideBreakableStatement,
       boolean firstStatementInConstructorCall,
+      boolean topLevelBlock,
       boolean methodStatic,
       ResolvedType returnType) {
     this.currentClass = currentClass;
@@ -63,6 +69,7 @@ public final class StaticState implements StaticStateIF {
     this.localVariableTable = localVariableTable;
     this.insideBreakableStatement = insideBreakableStatement;
     this.firstStatementInConstructorCall = firstStatementInConstructorCall;
+    this.topLevelBlock = topLevelBlock;
     this.methodStatic = methodStatic;
     this.returnType = returnType;
     this.initShim = null;
@@ -108,6 +115,23 @@ public final class StaticState implements StaticStateIF {
       this.firstStatementInConstructorCall = firstStatementInConstructorCall;
       firstStatementInConstructorCallBuildStage = STAGE_INITIALIZED;
     }
+    private boolean topLevelBlock;
+    private int topLevelBlockBuildStage;
+
+    boolean isTopLevelBlock() {
+      if (topLevelBlockBuildStage == STAGE_INITIALIZING) throw new IllegalStateException(formatInitCycleMessage());
+      if (topLevelBlockBuildStage == STAGE_UNINITIALIZED) {
+        topLevelBlockBuildStage = STAGE_INITIALIZING;
+        this.topLevelBlock = isTopLevelBlockInitialize();
+        topLevelBlockBuildStage = STAGE_INITIALIZED;
+      }
+      return this.topLevelBlock;
+    }
+
+    void setTopLevelBlock(boolean topLevelBlock) {
+      this.topLevelBlock = topLevelBlock;
+      topLevelBlockBuildStage = STAGE_INITIALIZED;
+    }
     private boolean methodStatic;
     private int methodStaticBuildStage;
 
@@ -130,6 +154,7 @@ public final class StaticState implements StaticStateIF {
       ArrayList<String> attributes = Lists.newArrayList();
       if (insideBreakableStatementBuildStage == STAGE_INITIALIZING) attributes.add("insideBreakableStatement");
       if (firstStatementInConstructorCallBuildStage == STAGE_INITIALIZING) attributes.add("firstStatementInConstructorCall");
+      if (topLevelBlockBuildStage == STAGE_INITIALIZING) attributes.add("topLevelBlock");
       if (methodStaticBuildStage == STAGE_INITIALIZING) attributes.add("methodStatic");
       return "Cannot build StaticState, attribute initializers form cycle" + attributes;
     }
@@ -141,6 +166,10 @@ public final class StaticState implements StaticStateIF {
 
   private boolean isFirstStatementInConstructorCallInitialize() {
     return StaticStateIF.super.isFirstStatementInConstructorCall();
+  }
+
+  private boolean isTopLevelBlockInitialize() {
+    return StaticStateIF.super.isTopLevelBlock();
   }
 
   private boolean isMethodStaticInitialize() {
@@ -194,6 +223,17 @@ public final class StaticState implements StaticStateIF {
   }
 
   /**
+   * @return The value of the {@code topLevelBlock} attribute
+   */
+  @Override
+  public boolean isTopLevelBlock() {
+    InitShim shim = this.initShim;
+    return shim != null
+        ? shim.isTopLevelBlock()
+        : this.topLevelBlock;
+  }
+
+  /**
    * @return The value of the {@code methodStatic} attribute
    */
   @Override
@@ -226,6 +266,7 @@ public final class StaticState implements StaticStateIF {
         this.localVariableTable,
         this.insideBreakableStatement,
         this.firstStatementInConstructorCall,
+        this.topLevelBlock,
         this.methodStatic,
         this.returnType);
   }
@@ -246,6 +287,7 @@ public final class StaticState implements StaticStateIF {
         this.localVariableTable,
         this.insideBreakableStatement,
         this.firstStatementInConstructorCall,
+        this.topLevelBlock,
         this.methodStatic,
         this.returnType);
   }
@@ -264,6 +306,7 @@ public final class StaticState implements StaticStateIF {
         value,
         this.insideBreakableStatement,
         this.firstStatementInConstructorCall,
+        this.topLevelBlock,
         this.methodStatic,
         this.returnType);
   }
@@ -282,6 +325,7 @@ public final class StaticState implements StaticStateIF {
         this.localVariableTable,
         value,
         this.firstStatementInConstructorCall,
+        this.topLevelBlock,
         this.methodStatic,
         this.returnType);
   }
@@ -299,6 +343,26 @@ public final class StaticState implements StaticStateIF {
         this.classes,
         this.localVariableTable,
         this.insideBreakableStatement,
+        value,
+        this.topLevelBlock,
+        this.methodStatic,
+        this.returnType);
+  }
+
+  /**
+   * Copy the current immutable object by setting a value for the {@link StaticStateIF#isTopLevelBlock() topLevelBlock} attribute.
+   * A value equality check is used to prevent copying of the same value by returning {@code this}.
+   * @param value A new value for topLevelBlock
+   * @return A modified copy of the {@code this} object
+   */
+  public final StaticState withTopLevelBlock(boolean value) {
+    if (this.topLevelBlock == value) return this;
+    return new StaticState(
+        this.currentClass,
+        this.classes,
+        this.localVariableTable,
+        this.insideBreakableStatement,
+        this.firstStatementInConstructorCall,
         value,
         this.methodStatic,
         this.returnType);
@@ -318,6 +382,7 @@ public final class StaticState implements StaticStateIF {
         this.localVariableTable,
         this.insideBreakableStatement,
         this.firstStatementInConstructorCall,
+        this.topLevelBlock,
         value,
         this.returnType);
   }
@@ -336,6 +401,7 @@ public final class StaticState implements StaticStateIF {
         this.localVariableTable,
         this.insideBreakableStatement,
         this.firstStatementInConstructorCall,
+        this.topLevelBlock,
         this.methodStatic,
         newValue);
   }
@@ -355,6 +421,7 @@ public final class StaticState implements StaticStateIF {
         this.localVariableTable,
         this.insideBreakableStatement,
         this.firstStatementInConstructorCall,
+        this.topLevelBlock,
         this.methodStatic,
         value);
   }
@@ -376,12 +443,13 @@ public final class StaticState implements StaticStateIF {
         && Objects.equals(localVariableTable, another.localVariableTable)
         && insideBreakableStatement == another.insideBreakableStatement
         && firstStatementInConstructorCall == another.firstStatementInConstructorCall
+        && topLevelBlock == another.topLevelBlock
         && methodStatic == another.methodStatic
         && Objects.equals(returnType, another.returnType);
   }
 
   /**
-   * Computes a hash code from attributes: {@code currentClass}, {@code classes}, {@code localVariableTable}, {@code insideBreakableStatement}, {@code firstStatementInConstructorCall}, {@code methodStatic}, {@code returnType}.
+   * Computes a hash code from attributes: {@code currentClass}, {@code classes}, {@code localVariableTable}, {@code insideBreakableStatement}, {@code firstStatementInConstructorCall}, {@code topLevelBlock}, {@code methodStatic}, {@code returnType}.
    * @return hashCode value
    */
   @Override
@@ -392,6 +460,7 @@ public final class StaticState implements StaticStateIF {
     h += (h << 5) + Objects.hashCode(localVariableTable);
     h += (h << 5) + Booleans.hashCode(insideBreakableStatement);
     h += (h << 5) + Booleans.hashCode(firstStatementInConstructorCall);
+    h += (h << 5) + Booleans.hashCode(topLevelBlock);
     h += (h << 5) + Booleans.hashCode(methodStatic);
     h += (h << 5) + Objects.hashCode(returnType);
     return h;
@@ -410,6 +479,7 @@ public final class StaticState implements StaticStateIF {
         .add("localVariableTable", localVariableTable)
         .add("insideBreakableStatement", insideBreakableStatement)
         .add("firstStatementInConstructorCall", firstStatementInConstructorCall)
+        .add("topLevelBlock", topLevelBlock)
         .add("methodStatic", methodStatic)
         .add("returnType", returnType)
         .toString();
@@ -449,7 +519,8 @@ public final class StaticState implements StaticStateIF {
   public static final class Builder {
     private static final long OPT_BIT_INSIDE_BREAKABLE_STATEMENT = 0x1L;
     private static final long OPT_BIT_FIRST_STATEMENT_IN_CONSTRUCTOR_CALL = 0x2L;
-    private static final long OPT_BIT_METHOD_STATIC = 0x4L;
+    private static final long OPT_BIT_TOP_LEVEL_BLOCK = 0x4L;
+    private static final long OPT_BIT_METHOD_STATIC = 0x8L;
     private long optBits;
 
     private String currentClass;
@@ -457,6 +528,7 @@ public final class StaticState implements StaticStateIF {
     private LocalVariableInfoTable localVariableTable;
     private boolean insideBreakableStatement;
     private boolean firstStatementInConstructorCall;
+    private boolean topLevelBlock;
     private boolean methodStatic;
     private ResolvedType returnType;
 
@@ -484,6 +556,7 @@ public final class StaticState implements StaticStateIF {
       }
       setInsideBreakableStatement(instance.isInsideBreakableStatement());
       setFirstStatementInConstructorCall(instance.isFirstStatementInConstructorCall());
+      setTopLevelBlock(instance.isTopLevelBlock());
       setMethodStatic(instance.isMethodStatic());
       Optional<ResolvedType> returnTypeOptional = instance.getReturnType();
       if (returnTypeOptional.isPresent()) {
@@ -578,6 +651,18 @@ public final class StaticState implements StaticStateIF {
     }
 
     /**
+     * Initializes the value for the {@link StaticStateIF#isTopLevelBlock() topLevelBlock} attribute.
+     * <p><em>If not set, this attribute will have a default value as returned by the initializer of {@link StaticStateIF#isTopLevelBlock() topLevelBlock}.</em>
+     * @param topLevelBlock The value for topLevelBlock 
+     * @return {@code this} builder for use in a chained invocation
+     */
+    public final Builder setTopLevelBlock(boolean topLevelBlock) {
+      this.topLevelBlock = topLevelBlock;
+      optBits |= OPT_BIT_TOP_LEVEL_BLOCK;
+      return this;
+    }
+
+    /**
      * Initializes the value for the {@link StaticStateIF#isMethodStatic() methodStatic} attribute.
      * <p><em>If not set, this attribute will have a default value as returned by the initializer of {@link StaticStateIF#isMethodStatic() methodStatic}.</em>
      * @param methodStatic The value for methodStatic 
@@ -624,6 +709,10 @@ public final class StaticState implements StaticStateIF {
 
     private boolean firstStatementInConstructorCallIsSet() {
       return (optBits & OPT_BIT_FIRST_STATEMENT_IN_CONSTRUCTOR_CALL) != 0;
+    }
+
+    private boolean topLevelBlockIsSet() {
+      return (optBits & OPT_BIT_TOP_LEVEL_BLOCK) != 0;
     }
 
     private boolean methodStaticIsSet() {

@@ -6,7 +6,7 @@ import staticchecks.StaticState;
 import staticchecks.resolvedInfo.PrimitiveType;
 import staticchecks.resolvedInfo.ResolvedType;
 
-public class True extends LiteralExpression {
+public class True extends Expression {
 
     @Override
     protected ResolvedType typeCheckCore(StaticState s) {
@@ -14,6 +14,5 @@ public class True extends LiteralExpression {
     }
 
     @Override
-    public void toBytecode(ByteCodeState state) { state.append(new ICONST(1));
-    }
+    public void toBytecode(ByteCodeState state) { state.append(new ICONST(1)); }
 }

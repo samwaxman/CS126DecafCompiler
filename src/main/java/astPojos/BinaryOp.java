@@ -108,11 +108,13 @@ public class BinaryOp extends Expression {
         boolean isAnd = operator.equals("&&");
         assert isAnd || operator.equals("||") : "Only meant to deal with && and ||";
         IfInstruction firstBranch = new IFEQ(null);
+        if (!isAnd) {
+            firstBranch = firstBranch.negate();
+        }
         state.append(firstBranch);
         right.toBytecode(state);
         IfInstruction secondBranch = new IFEQ(null);
         if (!isAnd) {
-            firstBranch = firstBranch.negate();
             secondBranch = secondBranch.negate();
         }
         state.append(secondBranch);
@@ -123,6 +125,7 @@ public class BinaryOp extends Expression {
         firstBranch.setTarget(falseCase);
         secondBranch.setTarget(falseCase);
         after.setTarget(state.append(new NOP()));
+        return;
     }
 
 
@@ -173,12 +176,12 @@ public class BinaryOp extends Expression {
                     branch = new IF_ICMPEQ(null);
                 }
                 break;
-            case "<":
+            case "<=":
                 negate = true;
             case ">":
                 branch = new IF_ICMPGT(null);
                 break;
-            case "<=":
+            case "<":
                 negate = true;
             case ">=":
                 branch = new IF_ICMPGE(null);

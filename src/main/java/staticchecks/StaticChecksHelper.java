@@ -16,13 +16,39 @@ public class StaticChecksHelper {
         if (sub.equals(parent)) {
             return true;
         }
-        if (sub == PrimitiveType.CHAR && parent == PrimitiveType.INT) {
+        if ((sub == PrimitiveType.CHAR && parent == PrimitiveType.INT) ||
+                //TODO: This is mad sketch
+                (sub == PrimitiveType.INT && parent == PrimitiveType.CHAR)) {
             return true;
         }
-
-        else {
-            throw new RuntimeException("not yet implemented");
+        if (!sub.isRef()) {
+            return false;
         }
+        if (sub instanceof ArrayType) {
+            if (parent instanceof ArrayType) {
+                ArrayType subType = (ArrayType) sub;
+                ArrayType parType = (ArrayType) parent;
+                return subType.getDimension() == parType.getDimension() &&
+                        isSubclass(subType.getType(), parType.getType(), s);
+            }
+            return false;
+        }
+
+        assert sub instanceof ClassType;
+        if (!(parent instanceof ClassType)) {
+            return false;
+        }
+        ClassType subType = (ClassType) sub;
+        ClassType parType = (ClassType) parent;
+        String superName = subType.getClassName();
+        //An ugly side effect of marking that as non-null. Maybe go revise
+        while (!superName.equals("")) {
+            superName = s.getClasses().get(superName).getSuperClassName();
+            if (superName.equals(parType.getClassName())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public static void checkIfValidArguments(List<ResolvedType> argumentTypes,
@@ -129,6 +155,51 @@ public class StaticChecksHelper {
         return optionallyResolveField(fieldResolvable, classInfo.getSuperClassName(), s);
     }
 
+    private static void checkOverrideValid(ClassInfo sub, Map<String, ClassInfo> classInfoMap) {
+        for (Map.Entry<String, ResolvedMethod> methodEntry : sub.getMethods().entrySet()) {
+            String methodName = methodEntry.getKey();
+            ResolvedMethod method = methodEntry.getValue();
+            ClassInfo parent = classInfoMap.get(sub.getSuperClassName());
+            String currentClassname = sub.getSuperClassName();
+            while (parent != null) {
+                ResolvedMethod overriding = parent.getMethods().get(methodName);
+                parent = classInfoMap.get(parent.getSuperClassName());
+                if (overriding == null) {
+                    currentClassname = parent.getSuperClassName();
+                    continue;
+                }
+
+                if (overriding.getArguments().size() != method.getArguments().size()) {
+                    throw new RuntimeException("Method " + methodName + " has different number " +
+                                                       " of arguments as its overridden method in class " + currentClassname);
+                }
+
+                for (int i = 0; i < overriding.getArguments().size(); i++) {
+                    if (overriding.getArguments().get(i) != method.getArguments().get(i)) {
+                        throw new RuntimeException("Argument " + i + " in method " + methodName +
+                                                           " differs in type from its overridden method in class " + currentClassname);
+                    }
+                }
+
+                if (overriding.getReturnType() != method.getReturnType()) {
+                    throw new RuntimeException("Return type of method " + methodName + " differs from " +
+                                                       " the return type of its overriding method in class " + currentClassname);
+                }
+
+                boolean isMethodStatic = method.getModifiers().contains(Modifier.STATIC);
+                boolean isOverriddenStatic = overriding.getModifiers().contains(Modifier.STATIC);
+                if (isMethodStatic != isOverriddenStatic) {
+                    throw new RuntimeException("Method " + methodName + "is " +
+                                                       (isMethodStatic ? "" : "not ") +
+                                                       "static but its overridden method in class " +
+                                                       currentClassname + " is " +
+                                                       (isOverriddenStatic ? "." : "not."));
+                }
+                currentClassname = parent.getSuperClassName();
+            }
+        }
+    }
+
     //An ugly method. You can do better. Either pull things out and make them more reusable
     //or do an overhaul whereby you don't need separate classes for the resolution. Possibly
     //an interface on the types and then make them mutable. Make typecheck mutate them to be resolved.
@@ -136,12 +207,12 @@ public class StaticChecksHelper {
         List<ClassASTNode> classes = p.getClasses();
         Map<String, ClassInfo> classInfoMap = new HashMap<>();
         ClassInfo objectInfo = ClassInfo.builder().setSuperClassName("")
-                                        .setConstructor(ResolvedConstructor.defaultConstructor)
+                                        .setConstructor(ResolvedConstructorIF.defaultConstructor())
                                         .build();
         classInfoMap.put("Object", objectInfo);
         ClassInfo stringInfo = ClassInfo.builder()
                                         .setSuperClassName("Object")
-                                        .setConstructor(ResolvedConstructor.defaultConstructor)
+                                        .setConstructor(ResolvedConstructorIF.defaultConstructor())
                                         .build();
         classInfoMap.put("String", stringInfo);
         //TODO: Private constructor
@@ -177,12 +248,16 @@ public class StaticChecksHelper {
                                     .putMethods("peek", peek)
                                     .putMethods("getLine", getLine)
                                     .putMethods("getChar", getChar)
-                                    .setConstructor(ResolvedConstructor.defaultConstructor
+                                    .setConstructor(ResolvedConstructorIF.defaultConstructor()
                                                             .withModifiers(new HashSet<>(Collections.singleton(Modifier.PRIVATE))))
-                .build();
+                                    .build();
         classInfoMap.put("IO", ioInfo);
         for (ClassASTNode classNode : classes) {
             String superName = classNode.getSuper().isPresent() ? classNode.getSuper().get() : "Object";
+            if (classInfoMap.get(superName) == null) {
+                throw new RuntimeException("Class " + superName + " has not been declared. Note, to extend " +
+                                                   "a class, the class must have already been declared above and cannot come later.");
+            }
             classInfoMap.put(classNode.getClassName(), ClassInfo.builder().setSuperClassName(superName).build());
         }
         StaticState state = StaticState.builder().setClasses(classInfoMap).build();
@@ -296,7 +371,7 @@ public class StaticChecksHelper {
                                                          .setModifiers(modifierSet)
                                                          .build();
             } else {
-                resolvedConstructor = ResolvedConstructor.defaultConstructor;
+                resolvedConstructor = ResolvedConstructorIF.defaultConstructor();
             }
             String superName = classInfoMap.get(classNode.getClassName()).getSuperClassName();
             ClassInfo info = ClassInfo.builder()

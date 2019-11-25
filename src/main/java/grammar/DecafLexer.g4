@@ -83,15 +83,14 @@ fragment MultiLineCommentStart: '/*';
 fragment MultilineCommentEnd: '*/';
 fragment MultiLineComment: MultiLineCommentStart .*? MultilineCommentEnd; // WILL MATCH /* .. */ ... */ ( I think)/
 
-COMMENT: MultiLineComment | ('//' .*? '\n') ;
+COMMENT: (MultiLineComment | ('//' .*? '\n')) -> skip;
 
 INTEGER_LITERAL: '0' | (('1'..'9') ('0'..'9')*) ;
 
-fragment NEWLINE: '\'\\n\'' ;
-fragment TAB: '\'\\t\'' ;
-fragment ESCAPED_CHAR: '\'\\' . '\\' ;
+
+fragment ESCAPED_CHAR: '\'\\' . '\'' ;
 fragment REGULAR_CHAR: '\'' ~('\'') '\'' ; //RESEARCH ! Is the ASCII newline different from \n? If so, this needs to exclude it
-CHARACTER_LITERAL: NEWLINE | TAB | ESCAPED_CHAR | REGULAR_CHAR;
+CHARACTER_LITERAL: ESCAPED_CHAR | REGULAR_CHAR;
 
 fragment EscapedDoubleQuote: ('\\\\')* '\\"' ;
 STRING: '"' (~('\n' | '"') | EscapedDoubleQuote)* '"';

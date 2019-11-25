@@ -29,6 +29,12 @@ public interface StaticStateIF {
         return false;
     };
 
+    // To know if we should throw a return in a block end
+    @Value.Default
+    default boolean isTopLevelBlock() {
+        return true;
+    };
+
     // To know if THIS and SUPER are allowed
     @Value.Default
     default boolean isMethodStatic() {

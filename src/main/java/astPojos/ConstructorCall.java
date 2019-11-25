@@ -55,8 +55,11 @@ public class ConstructorCall extends Expression {
                                                                     "<init>",
                                                                     methodSignature);
         assert initIndex != -1 : "Class must have constructor";
-        state.append(new NEW(classGen.getClassNameIndex()));
+        state.append(new NEW(state.getConstantPoolGen().lookupClass(BytecodeCreator.classNameToBcelName(className))));
         state.append(new DUP());
+        for (Expression a : arguments) {
+            a.toBytecode(state);
+        }
         state.append(new INVOKESPECIAL(initIndex));
     }
 

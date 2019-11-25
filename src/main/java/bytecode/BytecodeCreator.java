@@ -104,15 +104,7 @@ public class BytecodeCreator {
         //Step 2: Build info for bytecode pass
         Map<String, ClassGen> javaClassMap = new HashMap<>();
         for (Map.Entry<String, ClassInfo> classEntry : classInfoMap.entrySet()) {
-            // We'll use Java's Object
-            //TODO: let object through
-            if (classEntry.getKey().equals("String")) {
-                continue;
-            }
-            String superName = classEntry.getValue().getSuperClassName();
-            if (superName.equals("Object")) {
-                superName = "java.lang.Object";
-            }
+            String superName = classNameToBcelName(classEntry.getValue().getSuperClassName());
             ClassGen classGen = new ClassGen(classEntry.getKey(), superName, null, Constants.ACC_PUBLIC, null);
 
             for (Map.Entry<String, ResolvedField> field : classEntry.getValue().getFields().entrySet()) {
@@ -169,10 +161,10 @@ public class BytecodeCreator {
         }
         List<JavaClass> classes = new ArrayList<>();
         for (Map.Entry<String, ClassGen> entry : javaClassMap.entrySet()) {
-            if (entry.getKey().equals("IO")) {
+            String className = entry.getKey();
+            if (className.equals("IO") || className.equals("Object") || className.equals("String")) {
                 continue;
             }
-            String className = entry.getKey();
             ClassGen classGen = entry.getValue();
             List<Method> methods = new ArrayList<>();
             ConstantPoolGen constantPool = classGen.getConstantPool();

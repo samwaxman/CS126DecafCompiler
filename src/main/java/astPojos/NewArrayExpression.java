@@ -50,17 +50,18 @@ public class NewArrayExpression extends Expression {
 
     @Override
     public void toBytecode(ByteCodeState state) {
-        org.apache.bcel.generic.Type bcelType = BytecodeCreator.resolvedTypeToBcelType(getType());
+        ArrayType t = (ArrayType)getType();
+        org.apache.bcel.generic.ArrayType arrayType =
+                (org.apache.bcel.generic.ArrayType) BytecodeCreator.resolvedTypeToBcelType(t);
         if (dimensions.size() == 1) {
             dimensions.get(0).toBytecode(state);
-            state.append(new NEWARRAY(bcelType.getType()));
+            state.append(new NEWARRAY(arrayType.getBasicType().getType()));
         } else {
             for (Expression e : dimensions) {
                 e.toBytecode(state);
             }
-            //TODO: It's expecting a place into the constant pool. I don't think this will work?
-            //Maybe you put the type byte into the CP and get it out?
-            state.append(new MULTIANEWARRAY(bcelType.getType(), (short)dimensions.size()));
+            int index = state.getConstantPoolGen().addArrayClass(arrayType);
+            state.append(new MULTIANEWARRAY(index, (short)dimensions.size()));
         }
     }
 

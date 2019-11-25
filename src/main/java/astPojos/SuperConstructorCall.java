@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 
 public class SuperConstructorCall extends Statement {
     private final List<Expression> arguments;
-    private String superClassName;
+    private String superClassName = null;
 
     public SuperConstructorCall(List<Expression> arguments) {
         this.arguments = arguments;
@@ -26,6 +26,7 @@ public class SuperConstructorCall extends Statement {
 
     @Override
     public void typeCheck(StaticState s) {
+        assert superClassName == null;
         if (!s.isFirstStatementInConstructorCall()) {
             throw new RuntimeException("Super constructor calls are only allowed " +
                                                "as the first statement in a constructor.");
@@ -62,6 +63,9 @@ public class SuperConstructorCall extends Statement {
                                                                        "<init>",
                                                                        methodSignature);
         state.append(new ALOAD(0));
+        for (Expression a : arguments) {
+            a.toBytecode(state);
+        }
         state.append(new INVOKESPECIAL(initIndex));
     }
 

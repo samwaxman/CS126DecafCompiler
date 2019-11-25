@@ -6,7 +6,7 @@ import staticchecks.StaticState;
 import staticchecks.resolvedInfo.PrimitiveType;
 import staticchecks.resolvedInfo.ResolvedType;
 
-public class CharacterLiteral extends LiteralExpression {
+public class CharacterLiteral extends Expression {
 
     private final char character;
 

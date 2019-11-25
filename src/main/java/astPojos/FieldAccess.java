@@ -2,7 +2,8 @@ package astPojos;
 
 import bytecode.ByteCodeState;
 import bytecode.BytecodeCreator;
-import org.apache.bcel.generic.DUP;
+import org.apache.bcel.generic.ARRAYLENGTH;
+import org.apache.bcel.generic.DUP_X1;
 import org.apache.bcel.generic.GETFIELD;
 import org.apache.bcel.generic.PUTFIELD;
 import staticchecks.StaticChecksHelper;
@@ -56,20 +57,29 @@ public class FieldAccess extends Expression implements FieldResolvable, LValue {
 
     @Override
     public void toBytecode(ByteCodeState state) {
+        if (object.getType() instanceof ArrayType) {
+            if (fieldName.equals("length")) {
+                object.toBytecode(state);
+                state.append(new ARRAYLENGTH());
+                return;
+            }
+            assert false : "Type checking should assure we don't get here";
+        }
+        object.toBytecode(state);
         accessField(state, false);
     }
 
     @Override
     public void bind(ByteCodeState state, Expression expr) {
+        object.toBytecode(state);
         expr.toBytecode(state);
-        state.append(new DUP());;
+        state.append(new DUP_X1());
         accessField(state, true);
     }
 
     private void accessField(ByteCodeState state, boolean set) {
         String signature = BytecodeCreator.resolvedTypeToBcelType(getType()).getSignature();
-        int fieldIndex = state.getConstantPoolGen().lookupFieldref(fromClass, fieldName, signature);
-        object.toBytecode(state);
+        int fieldIndex = state.getConstantPoolGen().addFieldref(fromClass, fieldName, signature);
         state.append(set ? new PUTFIELD(fieldIndex) : new GETFIELD(fieldIndex));
     }
 }

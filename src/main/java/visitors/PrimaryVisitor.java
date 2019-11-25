@@ -50,8 +50,7 @@ public class PrimaryVisitor extends DecafParserBaseVisitor<Expression> {
         if (ctx.literal() != null) {
             DecafParser.LiteralContext literalContext = ctx.literal();
             if (literalContext.CHARACTER_LITERAL() != null) {
-                //TODO: Extract character from text
-                return new CharacterLiteral('a');
+                return new CharacterLiteral(toChar(literalContext.CHARACTER_LITERAL().getText()));
             }
             if (literalContext.NULL() != null) {
                 return new Null();
@@ -68,8 +67,7 @@ public class PrimaryVisitor extends DecafParserBaseVisitor<Expression> {
                 return new IntegerLiteral(Integer.parseInt(literalContext.INTEGER_LITERAL().getText(), 10));
             }
             if (literalContext.STRING() != null) {
-                //TODO: Will need to normalize
-                return new StringLiteral(literalContext.STRING().getText());
+                return new StringLiteral(normalizeString(literalContext.STRING().getText()));
             }
         }
         if (ctx.THIS() != null) {
@@ -144,5 +142,64 @@ public class PrimaryVisitor extends DecafParserBaseVisitor<Expression> {
             fieldName = ctx.IDENTIFIER(1).getText();
         }
         return new FieldAccess(object, fieldName);
+    }
+
+    private static String normalizeString(String str) {
+        StringBuilder builder = new StringBuilder();
+        boolean escaped = false;
+        // Trim off the double quotes.
+        assert str.length() >= 2;
+        String trimmed = str.substring(1, str.length() - 1);
+        for (Character character : trimmed.toCharArray()) {
+            if (escaped && character == 't') {
+                escaped = false;
+                builder.append('\t');
+                continue;
+            }
+            if (escaped && character == 'n') {
+                escaped = false;
+                builder.append('\n');
+                continue;
+            }
+            if (escaped && character == 'r') {
+                escaped = false;
+                builder.append('\r');
+                continue;
+            }
+            if (escaped) {
+                escaped = false;
+                builder.append(character);
+                continue;
+            }
+            if (character == '\\') {
+                escaped = true;
+                continue;
+            }
+
+            builder.append(character);
+        }
+        return builder.toString();
+    }
+
+    private static char toChar(String c) {
+        assert c.length() >= 3;
+        // trim off single quotes
+        c = c.substring(1, c.length() - 1);
+        if (c.length() == 1) {
+            return c.charAt(0);
+        }
+        // Either a single char or an escaped char
+        assert c.length() == 2 && c.charAt(0) == '\\';
+        if (c.charAt(1) == 't') {
+            return '\t';
+        }
+        if (c.charAt(1) == 'n') {
+            return '\n';
+        }
+        //TODO: Not in the decaf spec, so maybe remove later
+        if (c.charAt(1) == 'r') {
+            return '\r';
+        }
+        return c.charAt(1);
     }
 }

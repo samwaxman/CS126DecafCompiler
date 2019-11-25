@@ -50,7 +50,7 @@ public class FunctionCall extends Expression implements MethodResolvable {
         }
         assert method != null : "method should be found in the fromClass";
         if (!method.isStatic()) {
-            state.append(new ALOAD(0));
+            new This().toBytecode(state);
         }
         for (Expression expression : arguments) {
             expression.toBytecode(state);

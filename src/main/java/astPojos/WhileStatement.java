@@ -42,8 +42,8 @@ public class WhileStatement extends Statement {
         InstructionHandle start = state.getInstructionList().getEnd();
         testExpression.toBytecode(state);
         GOTO whileLoopEnd = new GOTO(null);
-        assert start.getNext() != null : "Test expression should have added instructions.";
-        GOTO whileLoopStart = new GOTO(start.getNext());
+        assert start == null || start.getNext() != null : "Test expression should have added instructions.";
+        GOTO whileLoopStart = new GOTO(start == null ? state.getInstructionList().getStart() : start.getNext());
         IFEQ ifIns = new IFEQ(null);
         state.append(ifIns);
         body.toBytecode(state.withWhileLoopEnd(whileLoopEnd)

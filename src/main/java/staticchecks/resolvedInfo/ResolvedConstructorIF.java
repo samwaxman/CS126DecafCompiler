@@ -20,12 +20,13 @@ public interface ResolvedConstructorIF {
     BlockStatement getBody();
     Set<Modifier> getModifiers();
 
-    ResolvedConstructor defaultConstructor =
-            ResolvedConstructor.builder()
-                               .setBody(new BlockStatement(
-                                       Lists.newArrayList(new SuperConstructorCall(new ArrayList<>()),
-                                       new ReturnStatement())))
-                               .setModifiers(ImmutableSet.of(Modifier.PUBLIC))
-                               .build();
+    static ResolvedConstructor defaultConstructor() {
+        return ResolvedConstructor.builder()
+                           .setBody(new BlockStatement(
+                                   Lists.newArrayList(new SuperConstructorCall(new ArrayList<>()),
+                                                      new ReturnStatement())))
+                           .setModifiers(ImmutableSet.of(Modifier.PUBLIC))
+                           .build();
+    }
 
 }

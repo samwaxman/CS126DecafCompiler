@@ -44,6 +44,7 @@ public class UnaryOp extends Expression {
 
     @Override
     public void toBytecode(ByteCodeState state) {
+        expression.toBytecode(state);
         switch (operator) {
             case "!":
                 BranchInstruction negateBranch = new IFEQ(null);
