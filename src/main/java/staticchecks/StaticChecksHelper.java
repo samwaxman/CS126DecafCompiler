@@ -1,6 +1,7 @@
 package staticchecks;
 
 import ast.*;
+import astPojos.ASTNode;
 import astPojos.BlockStatement;
 import astPojos.FieldResolvable;
 import astPojos.MethodResolvable;
@@ -23,6 +24,9 @@ public class StaticChecksHelper {
         }
         if (!sub.isRef()) {
             return false;
+        }
+        if (sub instanceof NullType || parent instanceof NullType) {
+            return true;
         }
         if (sub instanceof ArrayType) {
             if (parent instanceof ArrayType) {
@@ -225,8 +229,7 @@ public class StaticChecksHelper {
                                                                                         .setClassName("String")
                                                                                         .build())
                                                                       .build()))
-                                                 .setBody(new BlockStatement(Collections.emptyList()))
-                                                 .setModifiers(new HashSet<>(Arrays.asList(Modifier.STATIC, Modifier.PUBLIC)))
+                                                 .setBody(new BlockStatement(Collections.emptyList(), null, null))                            .setModifiers(new HashSet<>(Arrays.asList(Modifier.STATIC, Modifier.PUBLIC)))
                                                  .build();
         ResolvedMethod putChar = putString.withArguments(putString.getArguments().get(0)
                                                                   .withType(PrimitiveType.CHAR));
@@ -388,4 +391,24 @@ public class StaticChecksHelper {
         return toReturn;
     }
 
+    public static void checkPrivacy(Set<Modifier> modifiers,
+                                    String subName,
+                                    String parentName,
+                                    String fieldOrMethodName,
+                                    String toCheck,
+                                    StaticState s,
+                                    ASTNode node) {
+
+        if (modifiers.contains(Modifier.PRIVATE) && !s.getCurrentClass().equals(parentName)) {
+            node.throwCompilerError("Cannot access private " + toCheck + fieldOrMethodName + " of class " + parentName
+                                            + " from class " + subName);
+        }
+        ResolvedType currentType = ClassType.builder().setClassName(subName).build();
+        ResolvedType parentType = ClassType.builder().setClassName(parentName).build();
+        if (modifiers.contains(Modifier.PROTECTED) &&
+                !StaticChecksHelper.isSubclass(currentType, parentType, s)) {
+            node.throwCompilerError("Cannot access protected " + toCheck + fieldOrMethodName + " of class " + parentName +
+                                            ". Class " + subName + " does not extend " + parentName + ".");
+        }
+    }
 }

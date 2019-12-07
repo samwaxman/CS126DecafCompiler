@@ -8,6 +8,11 @@ import staticchecks.resolvedInfo.ClassType;
 import staticchecks.resolvedInfo.ResolvedType;
 
 public class Super extends Expression {
+
+    public Super(Integer line, Integer column) {
+        super(line, column);
+    }
+
     @Override
     public void toBytecode(ByteCodeState state) {
         state.append(new ALOAD(0));
@@ -16,7 +21,7 @@ public class Super extends Expression {
     @Override
     protected ResolvedType typeCheckCore(StaticState s) {
         if (s.isMethodStatic()) {
-            throw new RuntimeException("Cannot use 'super' in a static context.");
+            this.throwCompilerError("Cannot use 'super' in a static context.");
         }
         String superName = s.getClasses().get(s.getCurrentClass()).getSuperClassName();
         return ClassType.builder().setClassName(superName).build();

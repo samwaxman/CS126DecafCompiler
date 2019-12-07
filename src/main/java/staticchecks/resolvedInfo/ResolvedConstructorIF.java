@@ -23,8 +23,9 @@ public interface ResolvedConstructorIF {
     static ResolvedConstructor defaultConstructor() {
         return ResolvedConstructor.builder()
                            .setBody(new BlockStatement(
-                                   Lists.newArrayList(new SuperConstructorCall(new ArrayList<>()),
-                                                      new ReturnStatement())))
+                                   Lists.newArrayList(new SuperConstructorCall(new ArrayList<>(), null, null),
+                                                      new ReturnStatement(null, null)),
+                                   null, null))
                            .setModifiers(ImmutableSet.of(Modifier.PUBLIC))
                            .build();
     }

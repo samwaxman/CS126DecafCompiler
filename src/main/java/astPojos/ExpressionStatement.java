@@ -8,7 +8,8 @@ import staticchecks.resolvedInfo.PrimitiveType;
 public class ExpressionStatement extends Statement {
     private final Expression expression;
 
-    public ExpressionStatement(Expression expression) {
+    public ExpressionStatement(Expression expression, int line, int column) {
+        super(line, column);
         this.expression = expression;
     }
     @Override

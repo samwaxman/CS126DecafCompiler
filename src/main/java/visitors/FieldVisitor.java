@@ -1,6 +1,7 @@
 package visitors;
 
 import ast.*;
+import astPojos.CompileError;
 import grammar.DecafParser;
 import grammar.DecafParserBaseVisitor;
 
@@ -19,8 +20,10 @@ public class FieldVisitor extends DecafParserBaseVisitor<List<Field>> {
                                       .collect(Collectors.toList());
         while (varListContext != null) {
             if (varListContext.varDeclarator().BIND() != null) {
-                throw new RuntimeException("Attempt to give a field an initial value. " +
-                                                   "Fields must be initialized via constructor.");
+                throw new CompileError("Attempt to give a field an initial value. " +
+                                                   "Fields must be initialized via constructor.",
+                                       ctx.getStart().getLine(),
+                                       ctx.getStart().getCharPositionInLine());
             }
             Param param = ParamIF.createParam(type, varListContext.varDeclarator().varDeclaratorId());
             fields.add(Field.builder()

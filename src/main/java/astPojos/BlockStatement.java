@@ -10,7 +10,8 @@ import java.util.List;
 public class BlockStatement extends Statement {
     private final List<Statement> statements;
 
-    public BlockStatement(List<Statement> statements) {
+    public BlockStatement(List<Statement> statements, Integer line, Integer column) {
+        super(line, column);
         this.statements = statements;
     }
 
@@ -34,16 +35,16 @@ public class BlockStatement extends Statement {
             }
         }
         if (missingSuper) {
-            SuperConstructorCall superCall =  new SuperConstructorCall(Collections.emptyList());
+            SuperConstructorCall superCall =  new SuperConstructorCall(Collections.emptyList(), getLine(), getColumn());
             superCall.typeCheck(s);
             statements.add(0, superCall);
         }
         if (missingReturn) {
             assert s.getReturnType().isPresent();
             if (s.getReturnType().get() != PrimitiveType.VOID) {
-                throw new RuntimeException("Expected return statement at end of method.");
+                this.throwCompilerError("Expected return statement at end of method.");
             }
-            ReturnStatement returnStatement = new ReturnStatement();
+            ReturnStatement returnStatement = new ReturnStatement(getLine(), getColumn());
             //Does nothing, but better to be safe in case new stuff gets added.
             returnStatement.typeCheck(newState);
             statements.add(returnStatement);

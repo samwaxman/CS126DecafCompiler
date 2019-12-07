@@ -14,7 +14,8 @@ public class WhileStatement extends Statement {
     private final Expression testExpression;
     private final Statement body;
 
-    public WhileStatement(Expression testExpression, Statement body) {
+    public WhileStatement(Expression testExpression, Statement body, Integer line, Integer column) {
+        super(line, column);
         this.testExpression = testExpression;
         this.body = body;
     }
@@ -24,7 +25,7 @@ public class WhileStatement extends Statement {
         ResolvedType testType = testExpression.typeCheck(s);
         body.typeCheck(s.withInsideBreakableStatement(true));
         if (testType != PrimitiveType.BOOLEAN) {
-            throw new RuntimeException("Expected boolean for test expression of while loop. Found "
+            this.throwCompilerError("Expected boolean for test expression of while loop. Found "
                                                + testType + ".");
         }
     }
@@ -51,6 +52,13 @@ public class WhileStatement extends Statement {
         state.append(whileLoopStart);
         InstructionHandle end = state.append(new NOP());
         ifIns.setTarget(end);
-        whileLoopEnd.setTarget(end);
+
+        // BCEL will mess them up if they're actually identical objects,
+        // so we need to make copies.
+        for (InstructionHandle ih : state.getInstructionList().getInstructionHandles()) {
+            if (ih.getInstruction() == whileLoopEnd) {
+                ih.setInstruction(new GOTO(end));
+            }
+        }
     }
 }

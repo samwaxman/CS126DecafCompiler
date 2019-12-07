@@ -6,6 +6,10 @@ import staticchecks.StaticState;
 
 public class EmptyStatement extends Statement {
 
+    public EmptyStatement(int line, int column) {
+        super(line, column);
+    }
+
     @Override
     public void typeCheck(StaticState s) {
         // Intentionally blank

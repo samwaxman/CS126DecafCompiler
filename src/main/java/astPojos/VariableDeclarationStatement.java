@@ -19,7 +19,10 @@ public class VariableDeclarationStatement extends Statement {
 
     public VariableDeclarationStatement(String variableName,
                                         Optional<Expression> initialValue,
-                                        Type type) {
+                                        Type type,
+                                        Integer line,
+                                        Integer column) {
+        super(line, column);
         this.variableName = variableName;
         this.initialValue = initialValue;
         this.type = type;
@@ -32,7 +35,7 @@ public class VariableDeclarationStatement extends Statement {
         if (initialValue.isPresent()) {
             ResolvedType initialValueType = initialValue.get().typeCheck(s);
             if (!StaticChecksHelper.isSubclass(initialValueType, variableType, s)) {
-                throw new RuntimeException("Invalid assignment. Attempted to assign a " +
+                this.throwCompilerError("Invalid assignment. Attempted to assign a " +
                                                    initialValueType + " to a " +
                                                    variableType + ".");
             }

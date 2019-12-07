@@ -67,7 +67,7 @@ public class BytecodeCreator {
         return new ArrayType(resolvedTypeToBcelType(arrayType.getType()), arrayType.getDimension());
     }
 
-    public static void toBytecode(Program p) throws IOException {
+    public static void toBytecode(Program p, String filepath) throws IOException {
         Map<String, ClassInfo> classInfoMap = StaticChecksHelper.buildClassInfo(p);
 
         //Step 1: Type check
@@ -220,16 +220,18 @@ public class BytecodeCreator {
             classGen.setMethods(methods.toArray(new Method[methods.size()]));
             classes.add(classGen.getJavaClass());
         }
-        // OutputStream o = new BufferedOutputStream(new FileOutputStream(f));
+        String[] fileParts = filepath.split("\\\\");
+        String basePath = filepath.substring(0, filepath.length() - fileParts[fileParts.length - 1].length());
         for (JavaClass jClass : classes) {
-            File f = new File("C:/Users/Sam/Documents/BrownCS/decafCompiler/" +
+            File f = new File(basePath +
                                       URLEncoder.encode(jClass.getClassName(), UTF_8) +
                                       ".class");
+            System.out.println(f.getPath());
+            System.out.println(basePath);
+            System.out.println(filepath);
 
             jClass.dump(f);
-            System.out.println(jClass);
         }
-
     }
 
     public static String classNameToBcelName(String className) {

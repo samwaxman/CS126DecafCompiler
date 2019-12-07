@@ -18,7 +18,8 @@ public class ConstructorCall extends Expression {
     private final String className;
     private final List<Expression> arguments;
 
-    public ConstructorCall(String className, List<Expression> arguments) {
+    public ConstructorCall(String className, List<Expression> arguments, int line, int column) {
+        super(line, column);
         this.className = className;
         this.arguments = arguments;
     }
@@ -27,7 +28,7 @@ public class ConstructorCall extends Expression {
     protected ResolvedType typeCheckCore(StaticState s) {
         ClassInfo clazz = s.getClasses().get(className);
         if (clazz == null) {
-            throw new RuntimeException("Cannot call constructor for " + className + ". Unknown class.");
+            this.throwCompilerError("Cannot call constructor for " + className + ". Unknown class.");
         }
         List<ResolvedType> argumentTypes = arguments.stream()
                                                          .map(e -> e.typeCheck(s))
@@ -36,6 +37,13 @@ public class ConstructorCall extends Expression {
                                                         .map(ResolvedParam::getType)
                                                         .collect(Collectors.toList());
         StaticChecksHelper.checkIfValidArguments(argumentTypes, expectedArgumentTypes, s);
+        StaticChecksHelper.checkPrivacy(clazz.getConstructor().getModifiers(),
+                                        s.getCurrentClass(),
+                                        className,
+                                        className,
+                                        "constructor",
+                                        s,
+                                        this);
         return ClassType.builder().setClassName(className).build();
     }
 

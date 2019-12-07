@@ -14,7 +14,8 @@ public class BinaryOp extends Expression {
     private final Expression right;
     private final String operator;
 
-    public BinaryOp(Expression left, Expression right, String operator) {
+    public BinaryOp(Expression left, Expression right, String operator, int line, int column) {
+        super(line, column);
         this.left = left;
         this.right = right;
         this.operator = operator;
@@ -60,10 +61,10 @@ public class BinaryOp extends Expression {
                                      s);
             case "=":
                 if (!(left instanceof LValue)) {
-                    throw new RuntimeException("Attempted to assign to an expression which was not an l-value.");
+                   this.throwCompilerError("Attempted to assign to an expression which was not an l-value.");
                 }
                 if (!(StaticChecksHelper.isSubclass(rightType, leftType, s))) {
-                    throw new RuntimeException("Invalid types for assignment. The left hand side was a " + leftType +
+                    this.throwCompilerError("Invalid types for assignment. The left hand side was a " + leftType +
                                                        " but the right was a " + rightType + ".");
                 }
                 return rightType;
@@ -71,7 +72,7 @@ public class BinaryOp extends Expression {
             case "!=":
                 if (!(StaticChecksHelper.isSubclass(leftType, rightType, s) ||
                         StaticChecksHelper.isSubclass(rightType, leftType, s))) {
-                    throw new RuntimeException("Invalid types for operator " + operator + ". Both operands must " +
+                    this.throwCompilerError("Invalid types for operator " + operator + ". Both operands must " +
                                                        "be of equal type or one must be a subclass of the other.");
                 }
                 return PrimitiveType.BOOLEAN;
@@ -80,7 +81,7 @@ public class BinaryOp extends Expression {
         return null;
     }
 
-    private static ResolvedType binaryOpCheck(String operator,
+    private ResolvedType binaryOpCheck(String operator,
                                       ResolvedType toReturn,
                                       ResolvedType expectedLeftType,
                                       ResolvedType expectedRightType,
@@ -91,16 +92,16 @@ public class BinaryOp extends Expression {
             if (StaticChecksHelper.isSubclass(rightType, expectedRightType, s)) {
                 return toReturn;
             }
-            throwTypeException(operator, expectedRightType, rightType);
+            this.throwTypeException(operator, expectedRightType, rightType);
         }
-        throwTypeException(operator, expectedLeftType, leftType);
+        this.throwTypeException(operator, expectedLeftType, leftType);
         assert false : "Should have thrown an exception.";
         return null;
     }
 
     // Bad form -- should make this an abstract immutable and make this private
-    static void throwTypeException(String operator, ResolvedType expectedType, ResolvedType receivedType) throws RuntimeException {
-        throw new RuntimeException("Expected " + expectedType + " for operator " + operator + " but received " + receivedType + ".");
+    void throwTypeException(String operator, ResolvedType expectedType, ResolvedType receivedType) throws RuntimeException {
+        this.throwCompilerError("Expected " + expectedType + " for operator " + operator + " but received " + receivedType + ".");
     }
 
     private void handleBooleanOperators(ByteCodeState state) {
@@ -187,7 +188,7 @@ public class BinaryOp extends Expression {
                 branch = new IF_ICMPGE(null);
                 break;
             default:
-                throw new RuntimeException("Unsupported operator");
+                this.throwCompilerError("Unsupported operator: " + operator);
         }
         if (negate) {
             branch = branch.negate();

@@ -26,31 +26,42 @@ public class StatementVisitor extends DecafParserBaseVisitor<Statement> {
                 expressions.add(expressionVisitor.visitExpression(exprList.expression()));
                 exprList = exprList.exprList();
             }
-            return new SuperConstructorCall(expressions);
+            return new SuperConstructorCall(expressions,
+                                            ctx.getStart().getLine(),
+                                            ctx.getStart().getCharPositionInLine());
         }
 
         if (ctx.BREAK() != null) {
-            return new BreakStatement();
+            return new BreakStatement(ctx.getStart().getLine(),
+                                      ctx.getStart().getCharPositionInLine());
         }
 
         if (ctx.RETURN() != null) {
             if (ctx.expression() != null) {
-                return new ReturnStatement(expressionVisitor.visitExpression(ctx.expression()));
+                return new ReturnStatement(expressionVisitor.visitExpression(ctx.expression()),
+                                           ctx.getStart().getLine(),
+                                           ctx.getStart().getCharPositionInLine());
             }
-            return new ReturnStatement();
+            return new ReturnStatement(ctx.getStart().getLine(),
+                                       ctx.getStart().getCharPositionInLine());
         }
 
         if (ctx.CONTINUE() != null) {
-            return new ContinueStatement();
+            return new ContinueStatement(ctx.getStart().getLine(),
+                                         ctx.getStart().getCharPositionInLine());
         }
 
         if (ctx.WHILE() != null) {
             return new WhileStatement(expressionVisitor.visitExpression(ctx.expression()),
-                                      visitStatement(ctx.statement(0)));
+                                      visitStatement(ctx.statement(0)),
+                                      ctx.getStart().getLine(),
+                                      ctx.getStart().getCharPositionInLine());
         }
 
         if (ctx.getChildCount() == 2 && ctx.expression() != null) {
-            return new ExpressionStatement(expressionVisitor.visitExpression(ctx.expression()));
+            return new ExpressionStatement(expressionVisitor.visitExpression(ctx.expression()),
+                                           ctx.getStart().getLine(),
+                                           ctx.getStart().getCharPositionInLine());
         }
 
         if (ctx.IF() != null) {
@@ -60,7 +71,9 @@ public class StatementVisitor extends DecafParserBaseVisitor<Statement> {
             if (ctx.ELSE() != null) {
                 alternate = Optional.of(visitStatement(ctx.statement(1)));
             }
-            return new IfStatement(condition, consequence, alternate);
+            return new IfStatement(condition, consequence, alternate,
+                                   ctx.getStart().getLine(),
+                                   ctx.getStart().getCharPositionInLine());
         }
 
         if (ctx.type() != null) {
@@ -68,21 +81,26 @@ public class StatementVisitor extends DecafParserBaseVisitor<Statement> {
             DecafParser.VarDeclarationListContext varListContext = ctx.varDeclarationList();
             List<VariableDeclarationStatement> declarations = new ArrayList<>();
             while (varListContext != null) {
-               DecafParser.VarDeclaratorContext varDeclarator = varListContext.varDeclarator();
-               Optional<Expression> initialValue = Optional.empty();
+                DecafParser.VarDeclaratorContext varDeclarator = varListContext.varDeclarator();
+                Optional<Expression> initialValue = Optional.empty();
                 if (varListContext.varDeclarator().BIND() != null) {
                     initialValue = Optional.of(expressionVisitor.visitExpression(varDeclarator.expression()));
                 }
                 declarations.add(new VariableDeclarationStatement(varDeclarator.varDeclaratorId().getText(),
                                                                   initialValue,
-                                                                  type));
+                                                                  type,
+                                                                  ctx.getStart().getLine(),
+                                                                  ctx.getStart().getCharPositionInLine()));
                 varListContext = varListContext.varDeclarationList();
             }
-            return new VariableDeclaratorList(declarations);
+            return new VariableDeclaratorList(declarations,
+                                              ctx.getStart().getLine(),
+                                              ctx.getStart().getCharPositionInLine());
         }
 
         assert (ctx.getChildCount() == 1 && ctx.SEMICOLON() != null);
-        return new EmptyStatement();
+        return new EmptyStatement(ctx.getStart().getLine(),
+                                  ctx.getStart().getCharPositionInLine());
     }
 
     @Override
@@ -90,6 +108,8 @@ public class StatementVisitor extends DecafParserBaseVisitor<Statement> {
         List<Statement> statements = ctx.statement().stream()
                                         .map(this::visitStatement)
                                         .collect(Collectors.toList());
-        return new BlockStatement(statements);
+        return new BlockStatement(statements,
+                                  ctx.getStart().getLine(),
+                                  ctx.getStart().getCharPositionInLine());
     }
 }

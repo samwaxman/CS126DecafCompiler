@@ -12,7 +12,8 @@ public class ArrayAccess extends Expression implements LValue{
     private final Expression array;
     private final Expression index;
 
-    public ArrayAccess(Expression expr, Expression index) {
+    public ArrayAccess(Expression expr, Expression index, int line, int column) {
+        super(line, column);
         this.array = expr;
         this.index = index;
     }
@@ -22,10 +23,10 @@ public class ArrayAccess extends Expression implements LValue{
         ResolvedType arrayType = array.typeCheck(s);
         ResolvedType indexType = index.typeCheck(s);
         if (indexType != PrimitiveType.INT) {
-            throw new RuntimeException("Array index not a number.");
+            this.throwCompilerError("Array index not a number.");
         }
         if (!(arrayType instanceof ArrayType)) {
-            throw new RuntimeException("Attempted to perform an array access on a non-array.");
+            this.throwCompilerError("Attempted to perform an array access on a non-array.");
         }
         ResolvedType type;
         ArrayType arrT = (ArrayType) arrayType;

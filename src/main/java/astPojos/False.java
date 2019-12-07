@@ -8,6 +8,10 @@ import staticchecks.resolvedInfo.ResolvedType;
 
 public class False extends Expression {
 
+    public False(int line, int column) {
+        super(line, column);
+    }
+
     @Override
     protected ResolvedType typeCheckCore(StaticState s) {
         return PrimitiveType.BOOLEAN;

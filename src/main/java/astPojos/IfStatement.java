@@ -14,7 +14,12 @@ public class IfStatement extends Statement {
     private final Statement consequence;
     private final Optional<Statement> alternate;
 
-    public IfStatement(Expression condition, Statement consequence, Optional<Statement> alternate) {
+    public IfStatement(Expression condition,
+                       Statement consequence,
+                       Optional<Statement> alternate,
+                       int line,
+                       int column) {
+        super(line, column);
         this.condition = condition;
         this.consequence = consequence;
         this.alternate = alternate;
@@ -27,7 +32,7 @@ public class IfStatement extends Statement {
         alternate.ifPresent(a -> a.typeCheck(s));
 
         if (conditionType != PrimitiveType.BOOLEAN) {
-            throw new RuntimeException("Conditional statement expected an expression " +
+            this.throwCompilerError("Conditional statement expected an expression " +
                                                "of type boolean for its condition. Received " +
                                                conditionType);
         }

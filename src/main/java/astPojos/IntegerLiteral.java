@@ -9,7 +9,8 @@ import staticchecks.resolvedInfo.ResolvedType;
 public class IntegerLiteral extends Expression {
     private final int integer;
 
-    public IntegerLiteral(int integer) {
+    public IntegerLiteral(int integer, int line, int column) {
+        super(line, column);
         this.integer = integer;
     }
 

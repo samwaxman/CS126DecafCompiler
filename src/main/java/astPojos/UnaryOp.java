@@ -10,7 +10,8 @@ public class UnaryOp extends Expression {
     private final Expression expression;
     private final String operator;
 
-    public UnaryOp(Expression expression, String operator) {
+    public UnaryOp(Expression expression, String operator, int line, int column) {
+        super(line, column);
         this.expression = expression;
         this.operator = operator;
     }
@@ -39,7 +40,7 @@ public class UnaryOp extends Expression {
 
     // Could also not pass in the got type and just use expression.getType(), but ehh
     private void throwTypeError(ResolvedType expected, ResolvedType got) {
-        throw new RuntimeException(operator + " expected a " + expected + ". Received " + got + ".");
+        this.throwCompilerError(operator + " expected a " + expected + ". Received " + got + ".");
     }
 
     @Override
@@ -48,6 +49,7 @@ public class UnaryOp extends Expression {
         switch (operator) {
             case "!":
                 BranchInstruction negateBranch = new IFEQ(null);
+                state.append(negateBranch);
                 state.append(new ICONST(0));
                 GOTO leaveIf = new GOTO(null);
                 state.append(leaveIf);

@@ -14,7 +14,9 @@ public class PrimaryVisitor extends DecafParserBaseVisitor<Expression> {
     @Override
     public Expression visitPrimary(DecafParser.PrimaryContext ctx) {
         if (ctx.IDENTIFIER() != null) {
-            return new Identifier(ctx.IDENTIFIER().getText());
+            return new Identifier(ctx.IDENTIFIER().getText(),
+                                  ctx.getStart().getLine(),
+                                  ctx.getStart().getCharPositionInLine());
         }
         if (ctx.newArrayExpr() != null) {
             return visitNewArrayExpr(ctx.newArrayExpr());
@@ -42,7 +44,9 @@ public class PrimaryVisitor extends DecafParserBaseVisitor<Expression> {
         List<Expression> dimensionExpressions = dimensions.stream()
                                                           .map(d -> expressionVisitor.visitExpression(d.expression()))
                                                           .collect(Collectors.toList());
-        return new NewArrayExpression(baseType, dimensionExpressions);
+        return new NewArrayExpression(baseType, dimensionExpressions,
+                                      ctx.getStart().getLine(),
+                                      ctx.getStart().getCharPositionInLine());
     }
 
     @Override
@@ -50,28 +54,38 @@ public class PrimaryVisitor extends DecafParserBaseVisitor<Expression> {
         if (ctx.literal() != null) {
             DecafParser.LiteralContext literalContext = ctx.literal();
             if (literalContext.CHARACTER_LITERAL() != null) {
-                return new CharacterLiteral(toChar(literalContext.CHARACTER_LITERAL().getText()));
+                return new CharacterLiteral(toChar(literalContext.CHARACTER_LITERAL().getText()),
+                                            ctx.getStart().getLine(),
+                                            ctx.getStart().getCharPositionInLine());
             }
             if (literalContext.NULL() != null) {
-                return new Null();
+                return new Null(ctx.getStart().getLine(),
+                                ctx.getStart().getCharPositionInLine());
             }
             if (literalContext.TRUE() != null) {
-                return new True();
+                return new True(ctx.getStart().getLine(),
+                                ctx.getStart().getCharPositionInLine());
             }
             if (literalContext.FALSE() != null) {
-                return new False();
+                return new False(ctx.getStart().getLine(),
+                                 ctx.getStart().getCharPositionInLine());
             }
             if (literalContext.INTEGER_LITERAL() != null) {
                 // If Decaf has a different integer precision than Java (doubtful) we'll want to store as
                 // a string or some other data type.
-                return new IntegerLiteral(Integer.parseInt(literalContext.INTEGER_LITERAL().getText(), 10));
+                return new IntegerLiteral(Integer.parseInt(literalContext.INTEGER_LITERAL().getText(), 10),
+                                          ctx.getStart().getLine(),
+                                          ctx.getStart().getCharPositionInLine());
             }
             if (literalContext.STRING() != null) {
-                return new StringLiteral(normalizeString(literalContext.STRING().getText()));
+                return new StringLiteral(normalizeString(literalContext.STRING().getText()),
+                                         ctx.getStart().getLine(),
+                                         ctx.getStart().getCharPositionInLine());
             }
         }
         if (ctx.THIS() != null) {
-            return new This();
+            return new This(ctx.getStart().getLine(),
+                    ctx.getStart().getCharPositionInLine());
         }
 
         ExpressionVisitor expressionVisitor = new ExpressionVisitor();
@@ -89,7 +103,9 @@ public class PrimaryVisitor extends DecafParserBaseVisitor<Expression> {
             }
 
             if (ctx.NEW() != null) {
-                return new ConstructorCall(ctx.IDENTIFIER(0).getText(), expressions);
+                return new ConstructorCall(ctx.IDENTIFIER(0).getText(), expressions,
+                                           ctx.getStart().getLine(),
+                                           ctx.getStart().getCharPositionInLine());
             }
 
             // Simple function call
@@ -98,50 +114,66 @@ public class PrimaryVisitor extends DecafParserBaseVisitor<Expression> {
             // we don't know if it's a static call or not,
             // thus we can't just prepend this to it
             if (ctx.getChildCount() == 2) {
-                return new FunctionCall(expressions, ctx.IDENTIFIER(0).getText());
+                return new FunctionCall(expressions, ctx.IDENTIFIER(0).getText(),
+                                        ctx.getStart().getLine(),
+                                        ctx.getStart().getCharPositionInLine());
             }
 
             Expression object = null;
             String methodName = ctx.IDENTIFIER(0).getText();
 
             if (ctx.SUPER() != null) {
-                object = new Super();
+                object = new Super(ctx.getStart().getLine(),
+                        ctx.getStart().getCharPositionInLine());
             }
             if (ctx.nonNewArrayExpr() != null) {
                 object = visitNonNewArrayExpr(ctx.nonNewArrayExpr());
             } else if (ctx.newArrayExpr() != null) {
                 object = visitNewArrayExpr(ctx.newArrayExpr());
             } else if (ctx.IDENTIFIER(1) != null) {
-                object = new Identifier(ctx.IDENTIFIER(0).getText());
+                object = new Identifier(ctx.IDENTIFIER(0).getText(),
+                                        ctx.getStart().getLine(),
+                                        ctx.getStart().getCharPositionInLine());
                 methodName = ctx.IDENTIFIER(1).getText();
             }
             assert (object != null);
-            return new MethodCall(object, methodName, expressions);
+            return new MethodCall(object, methodName, expressions,
+                                  ctx.getStart().getLine(),
+                                  ctx.getStart().getCharPositionInLine());
         }
 
         if (ctx.dimension() != null) {
             Expression array;
             if (ctx.IDENTIFIER(0) != null) {
-                array = new Identifier(ctx.IDENTIFIER(0).getText());
+                array = new Identifier(ctx.IDENTIFIER(0).getText(),
+                                       ctx.getStart().getLine(),
+                                       ctx.getStart().getCharPositionInLine());
             } else {
                 array = visitNonNewArrayExpr(ctx.nonNewArrayExpr());
             }
-            return new ArrayAccess(array, expressionVisitor.visitExpression(ctx.dimension().expression()));
+            return new ArrayAccess(array, expressionVisitor.visitExpression(ctx.dimension().expression()),
+                                   ctx.getStart().getLine(),
+                                   ctx.getStart().getCharPositionInLine());
         }
 
         Expression object;
         String fieldName = ctx.IDENTIFIER(0).getText();
         if (ctx.SUPER() != null) {
-            object = new Super();
+            object = new Super(ctx.getStart().getLine(),
+                    ctx.getStart().getCharPositionInLine());
         } else if (ctx.nonNewArrayExpr() != null) {
             object = visitNonNewArrayExpr(ctx.nonNewArrayExpr());
         } else if (ctx.newArrayExpr() != null) {
             object = visitNewArrayExpr(ctx.newArrayExpr());
         } else {
-            object = new Identifier(ctx.IDENTIFIER(0).getText());
+            object = new Identifier(ctx.IDENTIFIER(0).getText(),
+                                    ctx.getStart().getLine(),
+                                    ctx.getStart().getCharPositionInLine());
             fieldName = ctx.IDENTIFIER(1).getText();
         }
-        return new FieldAccess(object, fieldName);
+        return new FieldAccess(object, fieldName,
+                               ctx.getStart().getLine(),
+                               ctx.getStart().getCharPositionInLine());
     }
 
     private static String normalizeString(String str) {

@@ -20,7 +20,8 @@ public class SuperConstructorCall extends Statement {
     private final List<Expression> arguments;
     private String superClassName = null;
 
-    public SuperConstructorCall(List<Expression> arguments) {
+    public SuperConstructorCall(List<Expression> arguments, Integer line, Integer column) {
+        super(line, column);
         this.arguments = arguments;
     }
 
@@ -28,7 +29,7 @@ public class SuperConstructorCall extends Statement {
     public void typeCheck(StaticState s) {
         assert superClassName == null;
         if (!s.isFirstStatementInConstructorCall()) {
-            throw new RuntimeException("Super constructor calls are only allowed " +
+            this.throwCompilerError("Super constructor calls are only allowed " +
                                                "as the first statement in a constructor.");
         }
         List<ResolvedType> argumentTypes = arguments.stream()

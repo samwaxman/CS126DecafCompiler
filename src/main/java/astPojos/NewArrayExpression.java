@@ -18,7 +18,8 @@ public class NewArrayExpression extends Expression {
     private final Type baseType;
     private final List<Expression> dimensions;
 
-    public NewArrayExpression(Type baseType, List<Expression> dimensions) {
+    public NewArrayExpression(Type baseType, List<Expression> dimensions, int line, int column) {
+        super(line, column);
         this.baseType = baseType;
         // TODO: I thought I saw some weird constructor syntax in the docs where
         // you didn't write new String[1][4], you wrote new String[][](1,4)
@@ -29,17 +30,17 @@ public class NewArrayExpression extends Expression {
     protected ResolvedType typeCheckCore(StaticState s) {
         ResolvedType type = StaticChecksHelper.resolveType(baseType, s);
         if (!(type == PrimitiveType.BOOLEAN || type == PrimitiveType.INT || type == PrimitiveType.CHAR)) {
-            throw new RuntimeException("Decaf only supports creation of primitive non-void arrays. " +
+            this.throwCompilerError("Decaf only supports creation of primitive non-void arrays. " +
                                                "Got array base type of " + type);
         }
         for (Expression index : dimensions) {
             if (index.typeCheck(s) != PrimitiveType.INT) {
-                throw new RuntimeException("Expected integer for indexing into array but received" +
+                this.throwCompilerError("Expected integer for indexing into array but received" +
                 index.getType());
             }
         }
         if (dimensions.size() > 32767) {
-            throw new RuntimeException("Dimension count for arrays must be within short range.");
+            this.throwCompilerError("Dimension count for arrays must be within short range.");
         }
 
        return ArrayType.builder()

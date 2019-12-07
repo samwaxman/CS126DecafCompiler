@@ -10,7 +10,7 @@ import javax.annotation.Generated;
  * Immutable implementation of {@link LocalVariableInfoIF}.
  * <p>
  * Use the builder to create immutable instances:
- * {@code LocalVariableInfoTable.builder()}.
+ * {@code LocalVariableInfo.builder()}.
  */
 @SuppressWarnings({"all"})
 @Generated({"Immutables.generator", "LocalVariableInfoIF"})
@@ -63,7 +63,7 @@ public final class LocalVariableInfo implements LocalVariableInfoIF {
   }
 
   /**
-   * This instance is equal to all instances of {@code LocalVariableInfoTable} that have equal attribute values.
+   * This instance is equal to all instances of {@code LocalVariableInfo} that have equal attribute values.
    * @return {@code true} if {@code this} is equal to {@code another} instance
    */
   @Override
@@ -91,12 +91,12 @@ public final class LocalVariableInfo implements LocalVariableInfoIF {
   }
 
   /**
-   * Prints the immutable value {@code LocalVariableInfoTable} with attribute values.
+   * Prints the immutable value {@code LocalVariableInfo} with attribute values.
    * @return A string representation of the value
    */
   @Override
   public String toString() {
-    return MoreObjects.toStringHelper("LocalVariableInfoTable")
+    return MoreObjects.toStringHelper("LocalVariableInfo")
         .omitNullValues()
         .add("type", type)
         .add("index", index)
@@ -108,7 +108,7 @@ public final class LocalVariableInfo implements LocalVariableInfoIF {
    * Uses accessors to get values to initialize the new immutable instance.
    * If an instance is already immutable, it is returned as is.
    * @param instance The instance to copy
-   * @return A copied immutable LocalVariableInfoTable instance
+   * @return A copied immutable LocalVariableInfo instance
    */
   public static LocalVariableInfo copyOf(LocalVariableInfoIF instance) {
     if (instance instanceof LocalVariableInfo) {
@@ -120,15 +120,15 @@ public final class LocalVariableInfo implements LocalVariableInfoIF {
   }
 
   /**
-   * Creates a builder for {@link LocalVariableInfo LocalVariableInfoTable}.
-   * @return A new LocalVariableInfoTable builder
+   * Creates a builder for {@link LocalVariableInfo LocalVariableInfo}.
+   * @return A new LocalVariableInfo builder
    */
   public static LocalVariableInfo.Builder builder() {
     return new LocalVariableInfo.Builder();
   }
 
   /**
-   * Builds instances of type {@link LocalVariableInfo LocalVariableInfoTable}.
+   * Builds instances of type {@link LocalVariableInfo LocalVariableInfo}.
    * Initialize attributes and then invoke the {@link #build()} method to create an
    * immutable instance.
    * <p><em>{@code Builder} is not thread-safe and generally should not be stored in a field or collection,
@@ -182,8 +182,8 @@ public final class LocalVariableInfo implements LocalVariableInfoIF {
     }
 
     /**
-     * Builds a new {@link LocalVariableInfo LocalVariableInfoTable}.
-     * @return An immutable instance of LocalVariableInfoTable
+     * Builds a new {@link LocalVariableInfo LocalVariableInfo}.
+     * @return An immutable instance of LocalVariableInfo
      * @throws java.lang.IllegalStateException if any required attributes are missing
      */
     public LocalVariableInfo build() {
@@ -197,7 +197,7 @@ public final class LocalVariableInfo implements LocalVariableInfoIF {
       List<String> attributes = Lists.newArrayList();
       if ((initBits & INIT_BIT_TYPE) != 0) attributes.add("type");
       if ((initBits & INIT_BIT_INDEX) != 0) attributes.add("index");
-      return "Cannot build LocalVariableInfoTable, some of required attributes are not set " + attributes;
+      return "Cannot build LocalVariableInfo, some of required attributes are not set " + attributes;
     }
   }
 }

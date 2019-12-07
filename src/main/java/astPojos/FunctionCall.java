@@ -19,7 +19,8 @@ public class FunctionCall extends Expression implements MethodResolvable {
     private String fromClass;
 
 
-    public FunctionCall(List<Expression> arguments, String methodName) {
+    public FunctionCall(List<Expression> arguments, String methodName, Integer line, Integer column) {
+        super(line, column);
         this.arguments = arguments;
         this.methodName = methodName;
     }
@@ -50,7 +51,7 @@ public class FunctionCall extends Expression implements MethodResolvable {
         }
         assert method != null : "method should be found in the fromClass";
         if (!method.isStatic()) {
-            new This().toBytecode(state);
+            new This(this.getLine(), this.getColumn()).toBytecode(state);
         }
         for (Expression expression : arguments) {
             expression.toBytecode(state);

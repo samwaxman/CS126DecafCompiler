@@ -3,7 +3,9 @@ package astPojos;
 import ast.Modifier;
 import bytecode.ByteCodeState;
 import org.apache.bcel.classfile.Method;
-import org.apache.bcel.generic.*;
+import org.apache.bcel.generic.INVOKESTATIC;
+import org.apache.bcel.generic.INVOKEVIRTUAL;
+import org.apache.bcel.generic.POP;
 import staticchecks.StaticChecksHelper;
 import staticchecks.StaticState;
 import staticchecks.resolvedInfo.*;
@@ -20,7 +22,12 @@ public class MethodCall extends Expression implements MethodResolvable {
     private boolean isObjectClassname = false;
     private String fromClass;
 
-    public MethodCall(Expression object, String methodName, List<Expression> arguments) {
+    public MethodCall(Expression object,
+                      String methodName,
+                      List<Expression> arguments,
+                      int line,
+                      int column) {
+        super(line, column);
         this.object = object;
         this.methodName = methodName;
         this.arguments = arguments;
@@ -51,18 +58,18 @@ public class MethodCall extends Expression implements MethodResolvable {
                             StaticChecksHelper.checkIfValidArguments(argumentTypes, expectedTypes, s);
                             return method.getReturnType();
                         }
-                        throw new RuntimeException("Cannot call non-static method " +
+                        this.throwCompilerError("Cannot call non-static method " +
                                                            methodName +
                                                            "without an class instance.");
                     }
-                    throw new RuntimeException("Could not find method " + methodName +
+                    this.throwCompilerError("Could not find method " + methodName +
                                                        " in class " + objectIdentifier.getIdentifier());
                 }
             }
         }
         ResolvedType objectType = object.typeCheck(s);
         if (!(objectType instanceof ClassType)) {
-            throw new RuntimeException("Attempted to call a method on non-object type " + objectType);
+            this.throwCompilerError("Attempted to call a method on non-object type " + objectType);
         }
         ClassType classType = (ClassType) objectType;
         //TODO WARNING: Recall that when making the bytecode, you don't use this class name.

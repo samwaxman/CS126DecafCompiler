@@ -29,7 +29,7 @@ public interface ByteCodeStateIF {
     default InstructionHandle append(Instruction i) {
         return getInstructionList().append(i);
     }
-    default InstructionHandle append(BranchInstruction i) {
+    default BranchHandle append(BranchInstruction i) {
         return getInstructionList().append(i);
     }
 }

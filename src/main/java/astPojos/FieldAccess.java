@@ -15,7 +15,8 @@ public class FieldAccess extends Expression implements FieldResolvable, LValue {
     private final String fieldName;
     private String fromClass;
 
-    public FieldAccess(Expression object, String fieldName) {
+    public FieldAccess(Expression object, String fieldName, int line, int column) {
+        super(line, column);
         this.object = object;
         this.fieldName = fieldName;
     }
@@ -44,15 +45,23 @@ public class FieldAccess extends Expression implements FieldResolvable, LValue {
             ClassInfo classInfo = s.getClasses().get(className);
             assert classInfo != null : "Type check for the object should ensure the class type is valid.";
             ResolvedField resolvedField = StaticChecksHelper.resolveField(this, className, s);
+            StaticChecksHelper.checkPrivacy(resolvedField.getModifiers(),
+                                            s.getCurrentClass(),
+                                            fromClass,
+                                            fieldName,
+                                            "field",
+                                            s,
+                                            this);
             return resolvedField.getType();
         }
         if (objectType instanceof ArrayType) {
             if (!fieldName.equals("length")) {
-                throw new RuntimeException("The only accessible field on an array is .length.");
+                this.throwCompilerError("The only accessible field on an array is .length.");
             }
             return PrimitiveType.INT;
         }
-        throw new RuntimeException("Attempted to access field on primitive type.");
+        this.throwCompilerError("Attempted to access field on primitive type.");
+        return null;
     }
 
     @Override

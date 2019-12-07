@@ -13,7 +13,9 @@ public class ExpressionVisitor extends DecafParserBaseVisitor<Expression> {
         if (ctx.expression() != null) {
             Expression left = visitExpression(ctx.expression());
             Expression right = visitPrecedence6Op(ctx.precedence6Op());
-            return new BinaryOp(left, right, ctx.BIND().getText());
+            return new BinaryOp(left, right, ctx.BIND().getText(),
+                                ctx.getStart().getLine(),
+                                ctx.getStart().getCharPositionInLine());
         }
         return visitPrecedence6Op(ctx.precedence6Op());
     }
@@ -22,7 +24,9 @@ public class ExpressionVisitor extends DecafParserBaseVisitor<Expression> {
         if (ctx.precedence6Op() != null) {
             Expression left = visitPrecedence6Op(ctx.precedence6Op());
             Expression right = visitPrecedence5Op(ctx.precedence5Op());
-            return new BinaryOp(left, right, ctx.OR().getText());
+            return new BinaryOp(left, right, ctx.OR().getText(),
+                                ctx.getStart().getLine(),
+                                ctx.getStart().getCharPositionInLine());
         }
         return visitPrecedence5Op(ctx.precedence5Op());
     }
@@ -31,7 +35,9 @@ public class ExpressionVisitor extends DecafParserBaseVisitor<Expression> {
         if (ctx.precedence5Op() != null) {
             Expression left = visitPrecedence5Op(ctx.precedence5Op());
             Expression right = visitPrecedence4Op(ctx.precedence4Op());
-            return new BinaryOp(left, right, ctx.AND().getText());
+            return new BinaryOp(left, right, ctx.AND().getText(),
+                                ctx.getStart().getLine(),
+                                ctx.getStart().getCharPositionInLine());
         }
         return visitPrecedence4Op(ctx.precedence4Op());
     }
@@ -48,7 +54,9 @@ public class ExpressionVisitor extends DecafParserBaseVisitor<Expression> {
                 operator = ctx.NOT_EQUAL().getText();
             }
             assert operator != null : "Must be equal or not equal operator";
-            return new BinaryOp(left, right, operator);
+            return new BinaryOp(left, right, operator,
+                                ctx.getStart().getLine(),
+                                ctx.getStart().getCharPositionInLine());
         }
         return visitPrecedence3Op(ctx.precedence3Op());
     }
@@ -69,7 +77,9 @@ public class ExpressionVisitor extends DecafParserBaseVisitor<Expression> {
                 operator = ctx.LESS_THAN_OR_EQUAL_TO().getText();
             }
             assert operator != null : "Operator should not be null";
-            return new BinaryOp(left, right, operator);
+            return new BinaryOp(left, right, operator,
+                                ctx.getStart().getLine(),
+                                ctx.getStart().getCharPositionInLine());
         }
         return visitPrecedence2Op(ctx.precedence2Op());
     }
@@ -80,7 +90,9 @@ public class ExpressionVisitor extends DecafParserBaseVisitor<Expression> {
             Expression right = visitPrecedence1Op(ctx.precedence1Op());
             return new BinaryOp(left,
                                 right,
-                                ctx.MINUS() != null ? ctx.MINUS().getText() : ctx.PLUS().getText());
+                                ctx.MINUS() != null ? ctx.MINUS().getText() : ctx.PLUS().getText(),
+                                ctx.getStart().getLine(),
+                                ctx.getStart().getCharPositionInLine());
         }
         return visitPrecedence1Op(ctx.precedence1Op());
     }
@@ -99,7 +111,9 @@ public class ExpressionVisitor extends DecafParserBaseVisitor<Expression> {
                 operator = ctx.MOD().getText();
             }
             assert operator != null : "Operator should not be null";
-            return new BinaryOp(left, right, operator);
+            return new BinaryOp(left, right, operator,
+                                ctx.getStart().getLine(),
+                                ctx.getStart().getCharPositionInLine());
         }
         return visitUnaryOp(ctx.unaryOp());
     }
@@ -117,7 +131,9 @@ public class ExpressionVisitor extends DecafParserBaseVisitor<Expression> {
                 operator = ctx.MINUS().getText();
             }
             assert operator != null : "Operator should not be null";
-            return new UnaryOp(arg, operator);
+            return new UnaryOp(arg, operator,
+                               ctx.getStart().getLine(),
+                               ctx.getStart().getCharPositionInLine());
         }
 
         return new PrimaryVisitor().visitPrimary(ctx.primary());

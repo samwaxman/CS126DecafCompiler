@@ -10,7 +10,8 @@ public class CharacterLiteral extends Expression {
 
     private final char character;
 
-    public CharacterLiteral(char character) {
+    public CharacterLiteral(char character, int line, int column) {
+        super(line, column);
         this.character = character;
     }
 

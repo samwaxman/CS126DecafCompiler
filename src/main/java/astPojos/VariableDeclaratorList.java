@@ -8,7 +8,10 @@ import java.util.List;
 public class VariableDeclaratorList extends Statement {
     private final List<VariableDeclarationStatement> declarations;
 
-    public VariableDeclaratorList(List<VariableDeclarationStatement> declarations) {
+    public VariableDeclaratorList(List<VariableDeclarationStatement> declarations,
+                                  Integer line,
+                                  Integer column) {
+        super(line, column);
         this.declarations = declarations;
     }
 

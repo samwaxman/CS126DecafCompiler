@@ -5,10 +5,14 @@ import staticchecks.StaticState;
 
 public class BreakStatement extends Statement {
 
+    public BreakStatement(int line, int column) {
+        super(line, column);
+    }
+
     @Override
     public void typeCheck(StaticState s) {
         if (!s.isInsideBreakableStatement()) {
-            throw new RuntimeException("Break used outside of while loop.");
+            this.throwCompilerError("Break used outside of while loop.");
         }
     }
 

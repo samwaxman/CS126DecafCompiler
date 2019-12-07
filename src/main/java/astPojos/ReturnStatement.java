@@ -14,11 +14,13 @@ import java.util.Optional;
 public class ReturnStatement extends Statement {
     private final Optional<Expression> returnExpression;
 
-    public ReturnStatement(Expression returnExpression) {
+    public ReturnStatement(Expression returnExpression, Integer line, Integer column) {
+        super(line, column);
         this.returnExpression = Optional.of(returnExpression);
     }
 
-    public ReturnStatement() {
+    public ReturnStatement(Integer line, Integer column) {
+        super(line, column);
         returnExpression = Optional.empty();
     }
 
@@ -27,12 +29,12 @@ public class ReturnStatement extends Statement {
         // I'm not sure there's a case where this wouldn't be a parse error
         // in DECAF seeing as fields don't have initial values
         if (!s.getReturnType().isPresent()) {
-            throw new RuntimeException("Return statement found outside of method body.");
+            this.throwCompilerError("Return statement found outside of method body.");
         }
         ResolvedType expectedReturnType = s.getReturnType().get();
         if (!returnExpression.isPresent()) {
             if (expectedReturnType != PrimitiveType.VOID) {
-                throw new RuntimeException("Bad return type: Expected " + expectedReturnType +
+                this.throwCompilerError("Bad return type: Expected " + expectedReturnType +
                                                    " but found void.");
             }
             return;
@@ -41,7 +43,7 @@ public class ReturnStatement extends Statement {
         if (!StaticChecksHelper.isSubclass(returnType, expectedReturnType, s)) {
             // of course, should be a static string at the top with string format args
             // but yuck, who wants to do that?
-            throw new RuntimeException("Bad return type: Expected " + expectedReturnType +
+            this.throwCompilerError("Bad return type: Expected " + expectedReturnType +
                                                " but found " + returnType + ".");
         }
     }

@@ -28,7 +28,8 @@ public class Identifier extends Expression implements FieldResolvable, LValue {
         return fromClass;
     }
 
-    public Identifier(String identifier) {
+    public Identifier(String identifier, int line, int column) {
+        super(line, column);
         this.identifier = identifier;
     }
 
@@ -52,7 +53,7 @@ public class Identifier extends Expression implements FieldResolvable, LValue {
     protected ResolvedType typeCheckCore(StaticState s) {
        Optional<ResolvedType> resolvedType = typeCheckSoft(s);
        if (!resolvedType.isPresent()) {
-           throw new RuntimeException("Unbound identifier: " + identifier);
+           this.throwCompilerError("Unbound identifier: " + identifier);
        }
        return resolvedType.get();
     }
@@ -63,7 +64,7 @@ public class Identifier extends Expression implements FieldResolvable, LValue {
          if (fromClass != null) {
              String signature = BytecodeCreator.resolvedTypeToBcelType(getType()).getSignature();
              int fieldIndex = state.getConstantPoolGen().addFieldref(fromClass, getFieldName(), signature);
-             new This().toBytecode(state);
+             new This(this.getLine(), this.getColumn()).toBytecode(state);
              state.append(new GETFIELD(fieldIndex));
              return;
         }
@@ -75,7 +76,7 @@ public class Identifier extends Expression implements FieldResolvable, LValue {
     public void bind(ByteCodeState state, Expression expr) {
         assert getIndex() != null || getFromClass() != null;
         if (fromClass != null) {
-            new This().toBytecode(state);
+            new This(this.getLine(), this.getColumn()).toBytecode(state);
         }
         expr.toBytecode(state);
         if (getIndex() != null) {
