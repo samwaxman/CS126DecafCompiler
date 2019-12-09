@@ -1,40 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8efa6949-0b7f-499e-8fa9-5bae8fa8af96" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/AdvancedOperatorTests.decaf" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/ArrayTests.decaf" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/BasicOperatorTests.decaf" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/ConstructorTests.decaf" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/FieldTests.decaf" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/ForbiddenTests.decaf" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/LiteralTests.decaf" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/MethodTests.decaf" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/PrivacyTests.decaf" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/SuperAccessTests.decaf" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/WhileTests.decaf" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/MainClass.java" afterPath="$PROJECT_DIR$/src/main/java/MainClass.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/astPojos/BinaryOp.java" afterPath="$PROJECT_DIR$/src/main/java/astPojos/BinaryOp.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/astPojos/CompileError.java" afterPath="$PROJECT_DIR$/src/main/java/astPojos/CompileError.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/astPojos/FunctionCall.java" afterPath="$PROJECT_DIR$/src/main/java/astPojos/FunctionCall.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/astPojos/Identifier.java" afterPath="$PROJECT_DIR$/src/main/java/astPojos/Identifier.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/astPojos/MethodCall.java" afterPath="$PROJECT_DIR$/src/main/java/astPojos/MethodCall.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/astPojos/NewArrayExpression.java" afterPath="$PROJECT_DIR$/src/main/java/astPojos/NewArrayExpression.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bytecode/BytecodeCreator.java" afterPath="$PROJECT_DIR$/src/main/java/bytecode/BytecodeCreator.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/staticchecks/StaticChecksHelper.java" afterPath="$PROJECT_DIR$/src/main/java/staticchecks/StaticChecksHelper.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/visitors/PrimaryVisitor.java" afterPath="$PROJECT_DIR$/src/main/java/visitors/PrimaryVisitor.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/visitors/StatementVisitor.java" afterPath="$PROJECT_DIR$/src/main/java/visitors/StatementVisitor.java" />
-      <change beforePath="$PROJECT_DIR$/target/classes/MainClass.class" afterPath="$PROJECT_DIR$/target/classes/MainClass.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/astPojos/BinaryOp.class" afterPath="$PROJECT_DIR$/target/classes/astPojos/BinaryOp.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/astPojos/CompileError.class" afterPath="$PROJECT_DIR$/target/classes/astPojos/CompileError.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/astPojos/FunctionCall.class" afterPath="$PROJECT_DIR$/target/classes/astPojos/FunctionCall.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/astPojos/Identifier.class" afterPath="$PROJECT_DIR$/target/classes/astPojos/Identifier.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/astPojos/MethodCall.class" afterPath="$PROJECT_DIR$/target/classes/astPojos/MethodCall.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/bytecode/BytecodeCreator.class" afterPath="$PROJECT_DIR$/target/classes/bytecode/BytecodeCreator.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/staticchecks/StaticChecksHelper.class" afterPath="$PROJECT_DIR$/target/classes/staticchecks/StaticChecksHelper.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/visitors/StatementVisitor.class" afterPath="$PROJECT_DIR$/target/classes/visitors/StatementVisitor.class" />
-    </list>
+    <list default="true" id="8efa6949-0b7f-499e-8fa9-5bae8fa8af96" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -95,8 +62,8 @@
       <file leaf-file-name="LocalVariableInfoTable.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/staticchecks/LocalVariableInfoTable.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="376">
-              <caret line="53" column="47" lean-forward="false" selection-start-line="53" selection-start-column="47" selection-end-line="53" selection-end-column="47" />
+            <state relative-caret-position="240">
+              <caret line="45" column="0" lean-forward="true" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -712,6 +679,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1296" height="696" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -728,7 +696,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2625" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2625" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32858837" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="ANTLR Preview" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1355,8 +1323,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/staticchecks/LocalVariableInfoTable.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="376">
-          <caret line="53" column="47" lean-forward="false" selection-start-line="53" selection-start-column="47" selection-end-line="53" selection-end-column="47" />
+        <state relative-caret-position="240">
+          <caret line="45" column="0" lean-forward="true" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
           <folding />
         </state>
       </provider>
