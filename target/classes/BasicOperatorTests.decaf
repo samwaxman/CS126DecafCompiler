@@ -1,0 +1,30 @@
+class BasicOperatorTests {
+
+    public static void main(String[] args) {
+        IO.putString("Starting operator tests:\n");
+
+        
+        //Unaries
+        if ((+(1)) != 1) {
+            IO.putString("Unary + failing\n");
+        }
+        if ((+(-1)) != -1) {
+            IO.putString("Unary + failing (note, unary plus has no effect on negative numbers -- it's not an absolute value function)\n");
+        }
+
+        if ((-(1)) != -1) {
+            IO.putString("Unary - failing\n");
+        }
+        if ((-(-1)) != 1) {
+            IO.putString("Unary - failing\n");
+        }
+
+        if (1 + 3 * 4 - 2 * -+4 / 2 != 17) {
+            IO.putString("Operator precedence issues.");
+        }
+
+        IO.putString("Ending operator tests.\n");
+        return;
+    }
+}
+

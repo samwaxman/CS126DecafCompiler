@@ -1,0 +1,66 @@
+ class AdvancedOperatorTests {
+
+    public static void main(String[] args) {
+        IO.putString("Starting Advanced Operator Tests:\n");
+        //Short circuiting tests
+        // Written in an empty if to be java compatible
+        if (true || shortCircuitTest()) {}
+        if (false && shortCircuitTest()) {}
+
+        SimpleClass s0 = new SimpleClass();
+        SimpleClass s1 = new SimpleClass();
+        if ((!(s0 == s0)) || (s0 == s1)) {
+            IO.putString("Object equality failing.");
+        }
+        if ((s0 != s0) || !(s0 != s1)) {
+            IO.putString("Object inequality failing.");
+        }
+
+        if (!(null == null) || (null != null)) {
+            IO.putString("Null equality failing.");
+        }
+
+        if ((s0 == null) || !(s0 != null)) {
+            IO.putString("Object/null equality failing.");
+        }
+        if ((null == s0) || !(null != s0)) {
+            IO.putString("Object/null equality failing.");
+        }
+
+        ExtensionClass child = new ExtensionClass();
+        SimpleClass castChild = child;
+
+        if ((s0 == child) || !(s0 != child)) {
+            IO.putString("Child/Parent equality failing.");
+        }
+        if (!(child == castChild) || (child != castChild)) {
+            IO.putString("Child/Parent equality failing.");
+        }
+        if (!(castChild == child) || (castChild != child)) {
+            IO.putString("Child/Parent equality failing.");
+        }
+
+        //binding tests
+        int i;
+        SimpleClass c;
+        i = 1;
+        c = new SimpleClass();
+        c = null;
+        i = 2 + 2;
+
+        IO.putString("Ending advanced operator tests.\n");
+    }
+
+    static boolean shortCircuitTest() {
+        IO.putString("Short circuiting failing");
+        return true;
+    }
+}
+
+class SimpleClass {
+
+}
+
+class ExtensionClass extends SimpleClass {
+
+}

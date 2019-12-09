@@ -1,0 +1,44 @@
+class SuperAccessTests {
+
+    public int x;
+    public SuperAccessTests() {
+        this.x = 2;
+    }
+
+    public boolean overriddenMethod() {
+        return true;
+    }
+
+    public static void main(String[] args) {
+        IO.putString("Starting super access tests:\n");
+        new Child().testSuperAccess();
+        IO.putString("Ending super access tests.\n");
+    }
+}
+
+class Child extends SuperAccessTests {
+
+    public int x;
+    public Child() {
+        super();
+        this.x = 1;
+    }
+
+    public boolean overriddenMethod() {
+        return false;
+    }
+
+    public void testSuperAccess() {
+        if (x != 1 || overriddenMethod()) {
+            IO.putString("Issues with overriding.\n");
+        }
+        if (super.x != 2 || !super.overriddenMethod()) {
+            IO.putString("Issues with calling super fields.\n");
+        }
+        //Make sure dynamic type is being used on methods
+        SuperAccessTests staticSuperType = new Child();
+        if (staticSuperType.x != 2 || staticSuperType.overriddenMethod()) {
+          IO.putString("Dynamic method call failing!!!\n");
+        }
+    }
+}

@@ -30,7 +30,6 @@ public class PrimaryVisitor extends DecafParserBaseVisitor<Expression> {
 
     @Override
     public Expression visitNewArrayExpr(DecafParser.NewArrayExprContext ctx) {
-        //TODO: Not a raw string. Use a type visitor.
         String baseTypeId = ctx.primitiveType() != null ?
                 ctx.primitiveType().getText() :
                 ctx.IDENTIFIER().getText();
@@ -227,10 +226,6 @@ public class PrimaryVisitor extends DecafParserBaseVisitor<Expression> {
         }
         if (c.charAt(1) == 'n') {
             return '\n';
-        }
-        //TODO: Not in the decaf spec, so maybe remove later
-        if (c.charAt(1) == 'r') {
-            return '\r';
         }
         return c.charAt(1);
     }

@@ -21,8 +21,6 @@ public class NewArrayExpression extends Expression {
     public NewArrayExpression(Type baseType, List<Expression> dimensions, int line, int column) {
         super(line, column);
         this.baseType = baseType;
-        // TODO: I thought I saw some weird constructor syntax in the docs where
-        // you didn't write new String[1][4], you wrote new String[][](1,4)
         this.dimensions = dimensions;
     }
 

@@ -1,0 +1,7 @@
+class ForbiddenTests {
+
+  public static void main(String[] args) {
+     int byte = 2;
+     char throws = 'c';
+  }
+}

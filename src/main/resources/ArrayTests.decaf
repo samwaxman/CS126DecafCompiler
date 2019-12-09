@@ -1,0 +1,31 @@
+class ArrayTests {
+
+    public static void main(String[] args) {
+        IO.putString("Array tests:\n");
+        // While object arrays don't need to be initialized in
+        // decaf, they must be able to be declared
+        String[] g;
+        int[] intArr = new int[5];
+        if (intArr.length != 5) {
+            IO.putString("Array length failing.\n");
+        }
+
+        intArr[2] = 3;
+        if (intArr[2] != 3) {
+            IO.putString("Array set failing.\n");
+        }
+
+        //Arrays must be null-assignable
+        int[] nullArr = null;
+
+        boolean[][] multiArr = new boolean[1][2];
+        if (multiArr.length != 1) {
+            IO.putString("Multidimensional array length failing.\n");
+        }
+        if (multiArr[0].length != 2) {
+            IO.putString("Multidimensional array length failing.\n");
+        }
+        IO.putString("Array tests ended.\n");
+        return;
+    }
+}

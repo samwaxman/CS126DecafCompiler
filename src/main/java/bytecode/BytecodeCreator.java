@@ -17,6 +17,7 @@ import staticchecks.resolvedInfo.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URLEncoder;
+import java.nio.file.FileSystems;
 import java.util.*;
 
 import static org.apache.commons.lang3.CharEncoding.UTF_8;
@@ -202,9 +203,8 @@ public class BytecodeCreator {
                                                    .setInstructionList(body)
                                                    .build();
                 constructor.getBody().toBytecode(state);
-               // MethodGen mg = new MethodGen(access_flags, Type.VOID, Type.NO_ARGS, (String[])null, "<init>", this.class_name, il, this.cp);
 
-               MethodGen constructorGen = new MethodGen(constructorAccessFlags,
+                MethodGen constructorGen = new MethodGen(constructorAccessFlags,
                                                          Type.VOID,
                                                          argTypes,
                                                          argNames,
@@ -215,20 +215,17 @@ public class BytecodeCreator {
                 constructorGen.setMaxLocals();
                 constructorGen.setMaxStack();
                 methods.add(constructorGen.getMethod());
-               //classGen.addEmptyConstructor(Constants.ACC_PUBLIC);
             }
             classGen.setMethods(methods.toArray(new Method[methods.size()]));
             classes.add(classGen.getJavaClass());
         }
-        String[] fileParts = filepath.split("\\\\");
-        String basePath = filepath.substring(0, filepath.length() - fileParts[fileParts.length - 1].length());
+
+        String basePath = FileSystems.getDefault().getPath(filepath).getParent().toAbsolutePath().toString();
+        System.out.println("Successfully compiled:");
         for (JavaClass jClass : classes) {
-            File f = new File(basePath +
-                                      URLEncoder.encode(jClass.getClassName(), UTF_8) +
+            File f = new File(basePath, URLEncoder.encode(jClass.getClassName(), UTF_8) +
                                       ".class");
-            System.out.println(f.getPath());
-            System.out.println(basePath);
-            System.out.println(filepath);
+            System.out.println(URLEncoder.encode(jClass.getClassName(), UTF_8) + ".class");
 
             jClass.dump(f);
         }
@@ -237,7 +234,8 @@ public class BytecodeCreator {
     public static String classNameToBcelName(String className) {
         if (className.equals("Object")) {
             return "java.lang.Object";
-        } if (className.equals("String")) {
+        }
+        if (className.equals("String")) {
             return "java.lang.String";
         }
         return className;

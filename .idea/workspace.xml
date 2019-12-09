@@ -2,101 +2,38 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8efa6949-0b7f-499e-8fa9-5bae8fa8af96" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/io/IO.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/astPojos/ASTNode.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/astPojos/CompileError.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/staticchecks/resolvedInfo/NullTypeIF.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/AdvancedOperatorTests.decaf" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/ArrayTests.decaf" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/BasicOperatorTests.decaf" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/ConstructorTests.decaf" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/FieldTests.decaf" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/ForbiddenTests.decaf" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/LiteralTests.decaf" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/MethodTests.decaf" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/PrivacyTests.decaf" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/SuperAccessTests.decaf" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/WhileTests.decaf" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Lexer.java" afterPath="$PROJECT_DIR$/src/main/java/MainClass.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/astPojos/ArrayAccess.java" afterPath="$PROJECT_DIR$/src/main/java/astPojos/ArrayAccess.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/MainClass.java" afterPath="$PROJECT_DIR$/src/main/java/MainClass.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/astPojos/BinaryOp.java" afterPath="$PROJECT_DIR$/src/main/java/astPojos/BinaryOp.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/astPojos/BlockStatement.java" afterPath="$PROJECT_DIR$/src/main/java/astPojos/BlockStatement.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/astPojos/BreakStatement.java" afterPath="$PROJECT_DIR$/src/main/java/astPojos/BreakStatement.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/astPojos/CharacterLiteral.java" afterPath="$PROJECT_DIR$/src/main/java/astPojos/CharacterLiteral.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/astPojos/ConstructorCall.java" afterPath="$PROJECT_DIR$/src/main/java/astPojos/ConstructorCall.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/astPojos/ContinueStatement.java" afterPath="$PROJECT_DIR$/src/main/java/astPojos/ContinueStatement.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/astPojos/EmptyStatement.java" afterPath="$PROJECT_DIR$/src/main/java/astPojos/EmptyStatement.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/astPojos/Expression.java" afterPath="$PROJECT_DIR$/src/main/java/astPojos/Expression.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/astPojos/ExpressionStatement.java" afterPath="$PROJECT_DIR$/src/main/java/astPojos/ExpressionStatement.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/astPojos/False.java" afterPath="$PROJECT_DIR$/src/main/java/astPojos/False.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/astPojos/FieldAccess.java" afterPath="$PROJECT_DIR$/src/main/java/astPojos/FieldAccess.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/astPojos/CompileError.java" afterPath="$PROJECT_DIR$/src/main/java/astPojos/CompileError.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/astPojos/FunctionCall.java" afterPath="$PROJECT_DIR$/src/main/java/astPojos/FunctionCall.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/astPojos/Identifier.java" afterPath="$PROJECT_DIR$/src/main/java/astPojos/Identifier.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/astPojos/IfStatement.java" afterPath="$PROJECT_DIR$/src/main/java/astPojos/IfStatement.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/astPojos/IntegerLiteral.java" afterPath="$PROJECT_DIR$/src/main/java/astPojos/IntegerLiteral.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/astPojos/MethodCall.java" afterPath="$PROJECT_DIR$/src/main/java/astPojos/MethodCall.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/astPojos/NewArrayExpression.java" afterPath="$PROJECT_DIR$/src/main/java/astPojos/NewArrayExpression.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/astPojos/Null.java" afterPath="$PROJECT_DIR$/src/main/java/astPojos/Null.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/astPojos/ReturnStatement.java" afterPath="$PROJECT_DIR$/src/main/java/astPojos/ReturnStatement.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/astPojos/Statement.java" afterPath="$PROJECT_DIR$/src/main/java/astPojos/Statement.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/astPojos/StringLiteral.java" afterPath="$PROJECT_DIR$/src/main/java/astPojos/StringLiteral.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/astPojos/Super.java" afterPath="$PROJECT_DIR$/src/main/java/astPojos/Super.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/astPojos/SuperConstructorCall.java" afterPath="$PROJECT_DIR$/src/main/java/astPojos/SuperConstructorCall.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/astPojos/This.java" afterPath="$PROJECT_DIR$/src/main/java/astPojos/This.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/astPojos/True.java" afterPath="$PROJECT_DIR$/src/main/java/astPojos/True.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/astPojos/UnaryOp.java" afterPath="$PROJECT_DIR$/src/main/java/astPojos/UnaryOp.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/astPojos/VariableDeclarationStatement.java" afterPath="$PROJECT_DIR$/src/main/java/astPojos/VariableDeclarationStatement.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/astPojos/VariableDeclaratorList.java" afterPath="$PROJECT_DIR$/src/main/java/astPojos/VariableDeclaratorList.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/astPojos/WhileStatement.java" afterPath="$PROJECT_DIR$/src/main/java/astPojos/WhileStatement.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bytecode/ByteCodeStateIF.java" afterPath="$PROJECT_DIR$/src/main/java/bytecode/ByteCodeStateIF.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/bytecode/BytecodeCreator.java" afterPath="$PROJECT_DIR$/src/main/java/bytecode/BytecodeCreator.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/staticchecks/StaticChecksHelper.java" afterPath="$PROJECT_DIR$/src/main/java/staticchecks/StaticChecksHelper.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/staticchecks/resolvedInfo/ResolvedConstructorIF.java" afterPath="$PROJECT_DIR$/src/main/java/staticchecks/resolvedInfo/ResolvedConstructorIF.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/staticchecks/resolvedInfo/ResolvedType.java" afterPath="$PROJECT_DIR$/src/main/java/staticchecks/resolvedInfo/ResolvedType.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/visitors/ClassVisitor.java" afterPath="$PROJECT_DIR$/src/main/java/visitors/ClassVisitor.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/visitors/ExpressionVisitor.java" afterPath="$PROJECT_DIR$/src/main/java/visitors/ExpressionVisitor.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/visitors/FieldVisitor.java" afterPath="$PROJECT_DIR$/src/main/java/visitors/FieldVisitor.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/visitors/PrimaryVisitor.java" afterPath="$PROJECT_DIR$/src/main/java/visitors/PrimaryVisitor.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/visitors/StatementVisitor.java" afterPath="$PROJECT_DIR$/src/main/java/visitors/StatementVisitor.java" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Lexer.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/astPojos/ArrayAccess.class" afterPath="$PROJECT_DIR$/target/classes/astPojos/ArrayAccess.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/MainClass.class" afterPath="$PROJECT_DIR$/target/classes/MainClass.class" />
       <change beforePath="$PROJECT_DIR$/target/classes/astPojos/BinaryOp.class" afterPath="$PROJECT_DIR$/target/classes/astPojos/BinaryOp.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/astPojos/BlockStatement.class" afterPath="$PROJECT_DIR$/target/classes/astPojos/BlockStatement.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/astPojos/BreakStatement.class" afterPath="$PROJECT_DIR$/target/classes/astPojos/BreakStatement.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/astPojos/CharacterLiteral.class" afterPath="$PROJECT_DIR$/target/classes/astPojos/CharacterLiteral.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/astPojos/ConstructorCall.class" afterPath="$PROJECT_DIR$/target/classes/astPojos/ConstructorCall.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/astPojos/ContinueStatement.class" afterPath="$PROJECT_DIR$/target/classes/astPojos/ContinueStatement.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/astPojos/EmptyStatement.class" afterPath="$PROJECT_DIR$/target/classes/astPojos/EmptyStatement.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/astPojos/Expression.class" afterPath="$PROJECT_DIR$/target/classes/astPojos/Expression.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/astPojos/ExpressionStatement.class" afterPath="$PROJECT_DIR$/target/classes/astPojos/ExpressionStatement.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/astPojos/False.class" afterPath="$PROJECT_DIR$/target/classes/astPojos/False.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/astPojos/FieldAccess.class" afterPath="$PROJECT_DIR$/target/classes/astPojos/FieldAccess.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/astPojos/CompileError.class" afterPath="$PROJECT_DIR$/target/classes/astPojos/CompileError.class" />
       <change beforePath="$PROJECT_DIR$/target/classes/astPojos/FunctionCall.class" afterPath="$PROJECT_DIR$/target/classes/astPojos/FunctionCall.class" />
       <change beforePath="$PROJECT_DIR$/target/classes/astPojos/Identifier.class" afterPath="$PROJECT_DIR$/target/classes/astPojos/Identifier.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/astPojos/IfStatement.class" afterPath="$PROJECT_DIR$/target/classes/astPojos/IfStatement.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/astPojos/IntegerLiteral.class" afterPath="$PROJECT_DIR$/target/classes/astPojos/IntegerLiteral.class" />
       <change beforePath="$PROJECT_DIR$/target/classes/astPojos/MethodCall.class" afterPath="$PROJECT_DIR$/target/classes/astPojos/MethodCall.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/astPojos/NewArrayExpression.class" afterPath="$PROJECT_DIR$/target/classes/astPojos/NewArrayExpression.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/astPojos/Null.class" afterPath="$PROJECT_DIR$/target/classes/astPojos/Null.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/astPojos/ReturnStatement.class" afterPath="$PROJECT_DIR$/target/classes/astPojos/ReturnStatement.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/astPojos/Statement.class" afterPath="$PROJECT_DIR$/target/classes/astPojos/Statement.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/astPojos/StringLiteral.class" afterPath="$PROJECT_DIR$/target/classes/astPojos/StringLiteral.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/astPojos/Super.class" afterPath="$PROJECT_DIR$/target/classes/astPojos/Super.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/astPojos/SuperConstructorCall.class" afterPath="$PROJECT_DIR$/target/classes/astPojos/SuperConstructorCall.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/astPojos/This.class" afterPath="$PROJECT_DIR$/target/classes/astPojos/This.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/astPojos/True.class" afterPath="$PROJECT_DIR$/target/classes/astPojos/True.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/astPojos/UnaryOp.class" afterPath="$PROJECT_DIR$/target/classes/astPojos/UnaryOp.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/astPojos/VariableDeclarationStatement.class" afterPath="$PROJECT_DIR$/target/classes/astPojos/VariableDeclarationStatement.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/astPojos/VariableDeclaratorList.class" afterPath="$PROJECT_DIR$/target/classes/astPojos/VariableDeclaratorList.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/astPojos/WhileStatement.class" afterPath="$PROJECT_DIR$/target/classes/astPojos/WhileStatement.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/bytecode/ByteCodeStateIF.class" afterPath="$PROJECT_DIR$/target/classes/bytecode/ByteCodeStateIF.class" />
       <change beforePath="$PROJECT_DIR$/target/classes/bytecode/BytecodeCreator.class" afterPath="$PROJECT_DIR$/target/classes/bytecode/BytecodeCreator.class" />
       <change beforePath="$PROJECT_DIR$/target/classes/staticchecks/StaticChecksHelper.class" afterPath="$PROJECT_DIR$/target/classes/staticchecks/StaticChecksHelper.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/staticchecks/resolvedInfo/ResolvedConstructorIF.class" afterPath="$PROJECT_DIR$/target/classes/staticchecks/resolvedInfo/ResolvedConstructorIF.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/staticchecks/resolvedInfo/ResolvedType.class" afterPath="$PROJECT_DIR$/target/classes/staticchecks/resolvedInfo/ResolvedType.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/visitors/ClassVisitor.class" afterPath="$PROJECT_DIR$/target/classes/visitors/ClassVisitor.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/visitors/ExpressionVisitor.class" afterPath="$PROJECT_DIR$/target/classes/visitors/ExpressionVisitor.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/visitors/FieldVisitor.class" afterPath="$PROJECT_DIR$/target/classes/visitors/FieldVisitor.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/visitors/PrimaryVisitor.class" afterPath="$PROJECT_DIR$/target/classes/visitors/PrimaryVisitor.class" />
       <change beforePath="$PROJECT_DIR$/target/classes/visitors/StatementVisitor.class" afterPath="$PROJECT_DIR$/target/classes/visitors/StatementVisitor.class" />
-      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/staticchecks/resolvedInfo/ImmutableArrayTypeIF.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/staticchecks/resolvedInfo/ImmutableClassInfoIF.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/staticchecks/resolvedInfo/ImmutableClassTypeIF.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/staticchecks/resolvedInfo/ImmutableResolvedConstructorIF.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/staticchecks/resolvedInfo/ImmutableResolvedFieldIF.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/staticchecks/resolvedInfo/ImmutableResolvedMethodIF.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/staticchecks/resolvedInfo/ImmutableResolvedParamIF.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/staticchecks/resolvedInfo/LocalVariableInfo.java" afterPath="$PROJECT_DIR$/target/generated-sources/annotations/staticchecks/resolvedInfo/LocalVariableInfo.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -110,219 +47,107 @@
   <component name="CodeInsightWorkspaceSettings">
     <option name="optimizeImportsOnTheFly" value="true" />
   </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/decafcompiler$MainClass.coverage" NAME="MainClass Coverage Results" MODIFIED="1575877460021" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="ContinueStatement.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/ContinueStatement.java">
+      <file leaf-file-name="MainClass.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/MainClass.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="184">
-              <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+            <state relative-caret-position="187">
+              <caret line="24" column="21" lean-forward="false" selection-start-line="24" selection-start-column="21" selection-end-line="24" selection-end-column="21" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WhileStatement.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/WhileStatement.java">
+      <file leaf-file-name="BytecodeCreator.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/bytecode/BytecodeCreator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="244">
-              <caret line="61" column="9" lean-forward="true" selection-start-line="61" selection-start-column="9" selection-end-line="61" selection-end-column="9" />
+            <state relative-caret-position="278">
+              <caret line="234" column="36" lean-forward="false" selection-start-line="234" selection-start-column="36" selection-end-line="234" selection-end-column="36" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BreakStatement.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/BreakStatement.java">
+      <file leaf-file-name="AdvancedOperatorTests.decaf" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/AdvancedOperatorTests.decaf">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="InstructionHandle.class" pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/org/apache/bcel/bcel/6.4.0/bcel-6.4.0.jar!/org/apache/bcel/generic/InstructionHandle.class">
+      <file leaf-file-name="Identifier.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/Identifier.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="128">
-              <caret line="55" column="23" lean-forward="false" selection-start-line="55" selection-start-column="23" selection-end-line="55" selection-end-column="23" />
-              <folding>
-                <element signature="e#902#903#0" expanded="true" />
-                <element signature="e#941#942#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ByteCodeState.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/target/generated-sources/annotations/bytecode/ByteCodeState.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="149" column="33" lean-forward="true" selection-start-line="149" selection-start-column="33" selection-end-line="149" selection-end-column="33" />
+            <state relative-caret-position="104">
+              <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Objects.java" pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk1.8.0_144/src.zip!/java/util/Objects.java">
+      <file leaf-file-name="LocalVariableInfoTable.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/staticchecks/LocalVariableInfoTable.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="103">
-              <caret line="225" column="24" lean-forward="false" selection-start-line="225" selection-start-column="24" selection-end-line="225" selection-end-column="24" />
+            <state relative-caret-position="376">
+              <caret line="53" column="47" lean-forward="false" selection-start-line="53" selection-start-column="47" selection-end-line="53" selection-end-column="47" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BinaryOp.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/BinaryOp.java">
+      <file leaf-file-name="StaticChecksHelper.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/staticchecks/StaticChecksHelper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="605">
-              <caret line="195" column="0" lean-forward="false" selection-start-line="195" selection-start-column="0" selection-end-line="195" selection-end-column="0" />
+            <state relative-caret-position="17">
+              <caret line="72" column="31" lean-forward="false" selection-start-line="72" selection-start-column="31" selection-end-line="72" selection-end-column="31" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ByteCodeStateIF.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/bytecode/ByteCodeStateIF.java">
+      <file leaf-file-name="PrimaryVisitor.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/visitors/PrimaryVisitor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="33" column="5" lean-forward="false" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#950#951#0" expanded="true" />
-                <element signature="e#1003#1004#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="158">
+              <caret line="228" column="9" lean-forward="false" selection-start-line="228" selection-start-column="9" selection-end-line="228" selection-end-column="9" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BranchHandle.class" pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/org/apache/bcel/bcel/6.4.0/bcel-6.4.0.jar!/org/apache/bcel/generic/BranchHandle.class">
+      <file leaf-file-name="Type.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/target/generated-sources/annotations/ast/Type.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="7" column="19" lean-forward="false" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
-              <folding>
-                <marker date="1573431511096" expanded="false" signature="0:104" ph="/.../" />
-                <marker date="1573431511096" expanded="true" signature="281:327" ph="{...}" />
-                <marker date="1573431511096" expanded="false" signature="389:400" ph=" { " />
-                <marker date="1573431511096" expanded="false" signature="427:433" ph=" }" />
-                <marker date="1573431511096" expanded="false" signature="463:474" ph=" { " />
-                <marker date="1573431511096" expanded="false" signature="503:509" ph=" }" />
-                <marker date="1573431511096" expanded="true" signature="541:614" ph="{...}" />
-                <marker date="1573431511096" expanded="true" signature="677:812" ph="{...}" />
-                <marker date="1573431511096" expanded="false" signature="861:872" ph=" { " />
-                <marker date="1573431511096" expanded="false" signature="894:900" ph=" }" />
-                <marker date="1573431511096" expanded="true" signature="983:1036" ph="{...}" />
-                <marker date="1573431511096" expanded="false" signature="1078:1089" ph=" { " />
-                <marker date="1573431511096" expanded="false" signature="1116:1122" ph=" }" />
-                <marker date="1573431511096" expanded="true" signature="1170:1445" ph="{...}" />
-              </folding>
+            <state relative-caret-position="121">
+              <caret line="16" column="39" lean-forward="true" selection-start-line="16" selection-start-column="39" selection-end-line="16" selection-end-column="39" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="InstructionList.class" pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/org/apache/bcel/bcel/6.4.0/bcel-6.4.0.jar!/org/apache/bcel/generic/InstructionList.class">
+      <file leaf-file-name="TypeIF.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ast/TypeIF.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="35">
-              <caret line="718" column="31" lean-forward="false" selection-start-line="718" selection-start-column="31" selection-end-line="718" selection-end-column="31" />
-              <folding>
-                <marker date="1573431511096" expanded="false" signature="0:104" ph="/.../" />
-                <marker date="1573431511096" expanded="false" signature="147:520" ph="..." />
-                <marker date="1573431511096" expanded="true" signature="823:830" ph="{}" />
-                <marker date="1573431511096" expanded="false" signature="873:884" ph=" { " />
-                <marker date="1573431511096" expanded="false" signature="899:905" ph=" }" />
-                <marker date="1573431511096" expanded="false" signature="954:965" ph=" { " />
-                <marker date="1573431511096" expanded="false" signature="980:986" ph=" }" />
-                <marker date="1573431511096" expanded="false" signature="1037:1048" ph=" { " />
-                <marker date="1573431511096" expanded="false" signature="1084:1090" ph=" }" />
-                <marker date="1573431511096" expanded="false" signature="1120:1131" ph=" { " />
-                <marker date="1573431511096" expanded="false" signature="1157:1163" ph=" }" />
-                <marker date="1573431511096" expanded="true" signature="1271:1642" ph="{...}" />
-                <marker date="1573431511096" expanded="true" signature="1693:1982" ph="{...}" />
-                <marker date="1573431511096" expanded="true" signature="2024:4794" ph="{...}" />
-                <marker date="1573431511096" expanded="true" signature="4874:5493" ph="{...}" />
-                <marker date="1573431511096" expanded="true" signature="5566:5822" ph="{...}" />
-                <marker date="1573431511096" expanded="true" signature="5880:6316" ph="{...}" />
-                <marker date="1573431511096" expanded="true" signature="6364:6697" ph="{...}" />
-                <marker date="1573431511096" expanded="true" signature="6750:6875" ph="{...}" />
-                <marker date="1573431511096" expanded="true" signature="6929:7058" ph="{...}" />
-                <marker date="1573431511096" expanded="false" signature="7125:7136" ph=" { " />
-                <marker date="1573431511096" expanded="false" signature="7182:7188" ph=" }" />
-                <marker date="1573431511096" expanded="true" signature="7264:7326" ph="{...}" />
-                <marker date="1573431511096" expanded="false" signature="7386:7397" ph=" { " />
-                <marker date="1573431511096" expanded="false" signature="7440:7446" ph=" }" />
-                <marker date="1573431511096" expanded="true" signature="7529:7592" ph="{...}" />
-                <marker date="1573431511096" expanded="true" signature="7667:7730" ph="{...}" />
-                <marker date="1573431511096" expanded="true" signature="7806:8014" ph="{...}" />
-                <marker date="1573431511096" expanded="true" signature="8094:8717" ph="{...}" />
-                <marker date="1573431511096" expanded="true" signature="8775:8947" ph="{...}" />
-                <marker date="1573431511096" expanded="true" signature="8995:9334" ph="{...}" />
-                <marker date="1573431511096" expanded="true" signature="9407:9663" ph="{...}" />
-                <marker date="1573431511096" expanded="true" signature="9716:9841" ph="{...}" />
-                <marker date="1573431511096" expanded="true" signature="9895:10024" ph="{...}" />
-                <marker date="1573431511096" expanded="false" signature="10091:10102" ph=" { " />
-                <marker date="1573431511096" expanded="false" signature="10148:10154" ph=" }" />
-                <marker date="1573431511096" expanded="true" signature="10230:10292" ph="{...}" />
-                <marker date="1573431511096" expanded="false" signature="10352:10363" ph=" { " />
-                <marker date="1573431511096" expanded="false" signature="10406:10412" ph=" }" />
-                <marker date="1573431511096" expanded="true" signature="10487:10550" ph="{...}" />
-                <marker date="1573431511096" expanded="true" signature="10633:10696" ph="{...}" />
-                <marker date="1573431511096" expanded="true" signature="10772:10980" ph="{...}" />
-                <marker date="1573431511096" expanded="true" signature="11077:13068" ph="{...}" />
-                <marker date="1573431511096" expanded="false" signature="13138:13149" ph=" { " />
-                <marker date="1573431511096" expanded="false" signature="13175:13181" ph=" }" />
-                <marker date="1573431511096" expanded="true" signature="13282:14961" ph="{...}" />
-                <marker date="1573431511096" expanded="true" signature="15035:15091" ph="{...}" />
-                <marker date="1573431511096" expanded="true" signature="15158:15403" ph="{...}" />
-                <marker date="1573431511096" expanded="true" signature="15501:15559" ph="{...}" />
-                <marker date="1573431511096" expanded="true" signature="15645:16159" ph="{...}" />
-                <marker date="1573431511096" expanded="true" signature="16223:16427" ph="{...}" />
-                <marker date="1573431511096" expanded="true" signature="16491:16693" ph="{...}" />
-                <marker date="1573431511096" expanded="true" signature="16744:17036" ph="{...}" />
-                <marker date="1573431511096" expanded="false" signature="17080:17091" ph=" { " />
-                <marker date="1573431511096" expanded="false" signature="17131:17137" ph=" }" />
-                <marker date="1573431511096" expanded="false" signature="17169:17180" ph=" { " />
-                <marker date="1573431511096" expanded="false" signature="17205:17211" ph=" }" />
-                <marker date="1573431511096" expanded="true" signature="17257:20029" ph="{...}" />
-                <marker date="1573431511096" expanded="true" signature="20063:20592" ph="{...}" />
-                <marker date="1573431511096" expanded="true" signature="20637:21707" ph="{...}" />
-                <marker date="1573431511096" expanded="false" signature="21737:21748" ph=" { " />
-                <marker date="1573431511096" expanded="false" signature="21775:21781" ph=" }" />
-                <marker date="1573431511096" expanded="true" signature="21827:22065" ph="{...}" />
-                <marker date="1573431511096" expanded="true" signature="22117:22873" ph="{...}" />
-                <marker date="1573431511096" expanded="true" signature="22168:22866" ph="{...}" />
-                <marker date="1573431511096" expanded="true" signature="22225:22294" ph="{...}" />
-                <marker date="1573431511096" expanded="true" signature="22370:22653" ph="{...}" />
-                <marker date="1573431511096" expanded="false" signature="22687:22706" ph=" { " />
-                <marker date="1573431511096" expanded="false" signature="22748:22762" ph=" }" />
-                <marker date="1573431511096" expanded="false" signature="22800:22819" ph=" { " />
-                <marker date="1573431511096" expanded="false" signature="22842:22856" ph=" }" />
-                <marker date="1573431511096" expanded="true" signature="22930:23185" ph="{...}" />
-                <marker date="1573431511096" expanded="false" signature="23229:23240" ph=" { " />
-                <marker date="1573431511096" expanded="false" signature="23267:23273" ph=" }" />
-                <marker date="1573431511096" expanded="true" signature="23309:24779" ph="{...}" />
-                <marker date="1573431511096" expanded="true" signature="24865:25249" ph="{...}" />
-                <marker date="1573431511096" expanded="true" signature="25276:25346" ph="{...}" />
-                <marker date="1573431511096" expanded="true" signature="25374:25518" ph="{...}" />
-                <marker date="1573431511096" expanded="false" signature="25559:25570" ph=" { " />
-                <marker date="1573431511096" expanded="false" signature="25588:25594" ph=" }" />
-                <marker date="1573431511096" expanded="false" signature="25633:25644" ph=" { " />
-                <marker date="1573431511096" expanded="false" signature="25660:25666" ph=" }" />
-                <marker date="1573431511096" expanded="false" signature="25694:25705" ph=" { " />
-                <marker date="1573431511096" expanded="false" signature="25724:25730" ph=" }" />
-                <marker date="1573431511096" expanded="false" signature="25753:25764" ph=" { " />
-                <marker date="1573431511096" expanded="false" signature="25783:25789" ph=" }" />
-                <marker date="1573431511096" expanded="true" signature="25884:26691" ph="{...}" />
-                <marker date="1573431511096" expanded="true" signature="26815:27309" ph="{...}" />
-                <marker date="1573431511096" expanded="true" signature="27444:28011" ph="{...}" />
-                <marker date="1573431511096" expanded="true" signature="28068:28201" ph="{...}" />
-                <marker date="1573431511096" expanded="true" signature="28261:28355" ph="{...}" />
-                <marker date="1573431511096" expanded="true" signature="28382:28672" ph="{...}" />
-              </folding>
+            <state relative-caret-position="102">
+              <caret line="7" column="17" lean-forward="false" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NewArrayExpression.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/NewArrayExpression.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="104">
+              <caret line="22" column="33" lean-forward="false" selection-start-line="22" selection-start-column="33" selection-end-line="22" selection-end-column="33" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -340,12 +165,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>putString</find>
-      <find>constructor</find>
-      <find>BytecodeState</find>
-      <find>java.lang.</find>
-      <find>IO</find>
-      <find>&quot;IO&quot;</find>
       <find>Object</find>
       <find>&quot;Object&quot;</find>
       <find>putInt</find>
@@ -361,7 +180,6 @@
       <find>characterL</find>
       <find>object</find>
       <find>classInfo</find>
-      <find>super</find>
       <find>bytecodestate</find>
       <find>default</find>
       <find>COMMENT</find>
@@ -370,6 +188,13 @@
       <find>throw new RuntimeException</find>
       <find>subclass</find>
       <find>swapI</find>
+      <find>arrayT</find>
+      <find>super</find>
+      <find>identi</find>
+      <find>varDec</find>
+      <find>varDecl</find>
+      <find>varDeclaratorId</find>
+      <find>TODO</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -383,15 +208,11 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$USER_HOME$/Documents/BrownCS/decafCompiler/IO.java" />
         <option value="$PROJECT_DIR$/src/main/java/staticchecks/resolvedInfo/ClassInfoIF.java" />
         <option value="$PROJECT_DIR$/src/main/java/staticchecks/StaticStateIF.java" />
         <option value="$PROJECT_DIR$/src/main/java/staticchecks/resolvedInfo/IO.java" />
-        <option value="$PROJECT_DIR$/src/main/java/grammar/DecafParser.g4" />
-        <option value="$PROJECT_DIR$/src/main/java/grammar/DecafLexer.g4" />
         <option value="$PROJECT_DIR$/src/main/java/Lexer.java" />
         <option value="$PROJECT_DIR$/src/main/java/astPojos/Expression.java" />
-        <option value="$PROJECT_DIR$/src/main/java/astPojos/BinaryOp.java" />
         <option value="$PROJECT_DIR$/src/main/java/astPojos/CharacterLiteral.java" />
         <option value="$PROJECT_DIR$/src/main/java/astPojos/EmptyStatement.java" />
         <option value="$PROJECT_DIR$/src/main/java/astPojos/ExpressionStatement.java" />
@@ -400,40 +221,44 @@
         <option value="$PROJECT_DIR$/src/main/java/astPojos/BreakStatement.java" />
         <option value="$PROJECT_DIR$/src/main/java/astPojos/IfStatement.java" />
         <option value="$PROJECT_DIR$/src/main/java/astPojos/IntegerLiteral.java" />
-        <option value="$PROJECT_DIR$/src/main/java/astPojos/NewArrayExpression.java" />
         <option value="$PROJECT_DIR$/src/main/java/visitors/ExpressionVisitor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/astPojos/CompileError.java" />
         <option value="$PROJECT_DIR$/src/main/java/astPojos/BlockStatement.java" />
-        <option value="$PROJECT_DIR$/src/main/java/visitors/PrimaryVisitor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/visitors/StatementVisitor.java" />
         <option value="$PROJECT_DIR$/src/main/java/visitors/FieldVisitor.java" />
         <option value="$PROJECT_DIR$/src/main/java/visitors/ClassVisitor.java" />
         <option value="$PROJECT_DIR$/src/main/java/astPojos/ASTNode.java" />
         <option value="$PROJECT_DIR$/src/main/java/astPojos/FieldAccess.java" />
-        <option value="$PROJECT_DIR$/src/main/java/astPojos/MethodCall.java" />
         <option value="$PROJECT_DIR$/src/main/java/astPojos/SuperConstructorCall.java" />
         <option value="$PROJECT_DIR$/src/main/java/astPojos/ReturnStatement.java" />
         <option value="$PROJECT_DIR$/src/main/java/staticchecks/resolvedInfo/ResolvedConstructorIF.java" />
         <option value="$PROJECT_DIR$/src/main/java/astPojos/This.java" />
-        <option value="$PROJECT_DIR$/src/main/java/astPojos/Identifier.java" />
-        <option value="$PROJECT_DIR$/src/main/java/astPojos/FunctionCall.java" />
         <option value="$PROJECT_DIR$/src/main/java/astPojos/Statement.java" />
         <option value="$PROJECT_DIR$/src/main/java/astPojos/VariableDeclarationStatement.java" />
         <option value="$PROJECT_DIR$/src/main/java/astPojos/VariableDeclaratorList.java" />
         <option value="$PROJECT_DIR$/src/main/java/astPojos/True.java" />
         <option value="$PROJECT_DIR$/src/main/java/astPojos/Super.java" />
         <option value="$PROJECT_DIR$/src/main/java/astPojos/StringLiteral.java" />
-        <option value="$PROJECT_DIR$/src/main/java/bytecode/BytecodeCreator.java" />
         <option value="$PROJECT_DIR$/src/main/java/astPojos/UnaryOp.java" />
         <option value="$PROJECT_DIR$/src/main/java/staticchecks/resolvedInfo/NullTypeIF.java" />
         <option value="$PROJECT_DIR$/src/main/java/astPojos/Null.java" />
         <option value="$PROJECT_DIR$/src/main/java/staticchecks/resolvedInfo/ResolvedType.java" />
         <option value="$PROJECT_DIR$/src/main/java/astPojos/ConstructorCall.java" />
-        <option value="$PROJECT_DIR$/src/main/java/staticchecks/StaticChecksHelper.java" />
-        <option value="$PROJECT_DIR$/src/main/java/MainClass.java" />
         <option value="$PROJECT_DIR$/src/main/java/bytecode/ByteCodeStateIF.java" />
         <option value="$PROJECT_DIR$/src/main/java/astPojos/ContinueStatement.java" />
         <option value="$PROJECT_DIR$/src/main/java/astPojos/WhileStatement.java" />
+        <option value="$PROJECT_DIR$/src/main/java/astPojos/BinaryOp.java" />
+        <option value="$PROJECT_DIR$/src/main/java/astPojos/FunctionCall.java" />
+        <option value="$PROJECT_DIR$/src/main/java/astPojos/MethodCall.java" />
+        <option value="$PROJECT_DIR$/src/main/java/grammar/DecafParser.g4" />
+        <option value="$PROJECT_DIR$/src/main/java/grammar/DecafLexer.g4" />
+        <option value="$PROJECT_DIR$/src/main/java/visitors/StatementVisitor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/astPojos/CompileError.java" />
+        <option value="$PROJECT_DIR$/src/main/java/MainClass.java" />
+        <option value="$PROJECT_DIR$/src/main/java/bytecode/BytecodeCreator.java" />
+        <option value="$PROJECT_DIR$/src/main/java/staticchecks/StaticChecksHelper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/astPojos/NewArrayExpression.java" />
+        <option value="$PROJECT_DIR$/src/main/java/visitors/PrimaryVisitor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/astPojos/Identifier.java" />
+        <option value="$PROJECT_DIR$/src/main/java/staticchecks/LocalVariableInfoTable.java" />
       </list>
     </option>
   </component>
@@ -466,10 +291,10 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="149" />
-    <option name="y" value="-19" />
-    <option name="width" value="1500" />
-    <option name="height" value="1038" />
+    <option name="x" value="73" />
+    <option name="y" value="64" />
+    <option name="width" value="1300" />
+    <option name="height" value="740" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -601,6 +426,17 @@
             <path>
               <item name="decafcompiler" type="b2602c69:ProjectViewProjectNode" />
               <item name="decafcompiler" type="462c0819:PsiDirectoryNode" />
+              <item name="gen" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="decafcompiler" type="b2602c69:ProjectViewProjectNode" />
+              <item name="decafcompiler" type="462c0819:PsiDirectoryNode" />
+              <item name="gen" type="462c0819:PsiDirectoryNode" />
+              <item name="grammar" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="decafcompiler" type="b2602c69:ProjectViewProjectNode" />
+              <item name="decafcompiler" type="462c0819:PsiDirectoryNode" />
               <item name="io" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -680,6 +516,13 @@
             </path>
             <path>
               <item name="decafcompiler" type="b2602c69:ProjectViewProjectNode" />
+              <item name="decafcompiler" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="decafcompiler" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
           </expand>
@@ -697,18 +540,19 @@
     <property name="$PROJECT_DIR$/src/main/DecafLexer.g4::/auto-gen" value="true" />
     <property name="$PROJECT_DIR$/src/main/DecafLexer.g4::/gen-listener" value="true" />
     <property name="$PROJECT_DIR$/src/main/DecafLexer.g4::/gen-visitor" value="false" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="settings.editor.selected.configurable" value="Console" />
     <property name="SearchEverywhereHistoryKey" value="StaticH&#9;FILE&#9;file://C:/Users/Sam/Downloads/langtools-65bfdabaab9c/decafcompiler/src/main/java/staticchecks/StaticChecksHelper.java" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Sam\Downloads\langtools-65bfdabaab9c\decafcompiler\src\main\resources" />
       <recent name="C:\Users\Sam\Downloads\langtools-65bfdabaab9c\decafcompiler\src\main\java\grammar" />
       <recent name="C:\Users\Sam\Downloads\langtools-65bfdabaab9c\decafcompiler\src\main\java" />
       <recent name="C:\Users\Sam\Downloads\langtools-65bfdabaab9c\decafcompiler\src\main" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Sam\Downloads\langtools-65bfdabaab9c\decafcompiler\io" />
       <recent name="C:\Users\Sam\Downloads\langtools-65bfdabaab9c\decafcompiler\src\main\resources" />
+      <recent name="C:\Users\Sam\Downloads\langtools-65bfdabaab9c\decafcompiler\io" />
       <recent name="C:\Users\Sam\Downloads\langtools-65bfdabaab9c\decafcompiler\src\main\java\staticchecks\resolvedInfo" />
     </key>
   </component>
@@ -755,7 +599,7 @@
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="MainClass" />
       <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PROGRAM_PARAMETERS" value="C:\Users\Sam\Documents\BrownCS\decafCompiler\myDecafTests\ConstructorTests.decaf" />
+      <option name="PROGRAM_PARAMETERS" value="C:\Users\Sam\Documents\BrownCS\decafCompiler\myDecafTests\AdvancedOperatorTests.decaf" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
@@ -868,7 +712,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1296" height="696" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -878,26 +721,27 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1171875" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.40248227" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1171875" sideWeight="0.4929078" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30319148" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1171875" sideWeight="0.5070922" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2625" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2625" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32858837" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="ANTLR Preview" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.083333336" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2287234" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32858837" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -908,24 +752,18 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/astPojos/MethodCall.java</url>
-          <line>65</line>
+          <line>70</line>
           <properties />
           <option name="timeStamp" value="25" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/astPojos/BinaryOp.java</url>
-          <line>128</line>
+          <url>file://$PROJECT_DIR$/src/main/java/astPojos/VariableDeclarationStatement.java</url>
+          <line>37</line>
           <properties />
-          <option name="timeStamp" value="38" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/astPojos/ConstructorCall.java</url>
-          <line>39</line>
-          <properties />
-          <option name="timeStamp" value="72" />
+          <option name="timeStamp" value="84" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="84" />
+      <option name="time" value="88" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -970,257 +808,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/visitors/StatementVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="27" column="13" lean-forward="false" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/visitors/TypeVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/visitors/ExpressionVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="28" column="72" lean-forward="false" selection-start-line="26" selection-start-column="63" selection-end-line="28" selection-end-column="72" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/visitors/MethodVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/visitors/ProgramVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/visitors/ConstructorVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/visitors/ClassVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="36" column="20" lean-forward="false" selection-start-line="36" selection-start-column="20" selection-end-line="36" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/visitors/PrimaryVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2142">
-          <caret line="84" column="9" lean-forward="false" selection-start-line="84" selection-start-column="9" selection-end-line="84" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/visitors/FieldVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="17" lean-forward="false" selection-start-line="0" selection-start-column="17" selection-end-line="9" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/FieldAccess.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="50" column="53" lean-forward="false" selection-start-line="50" selection-start-column="53" selection-end-line="50" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/MethodCall.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="83" column="82" lean-forward="true" selection-start-line="83" selection-start-column="82" selection-end-line="83" selection-end-column="82" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/staticchecks/resolvedInfo/ResolvedConstructorIF.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="27" column="45" lean-forward="false" selection-start-line="27" selection-start-column="45" selection-end-line="27" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/ASTNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="15" column="22" lean-forward="false" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="22" />
-          <folding>
-            <element signature="e#390#391#0" expanded="false" />
-            <element signature="e#417#418#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/Identifier.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="78" column="53" lean-forward="false" selection-start-line="78" selection-start-column="53" selection-end-line="78" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/io/IO.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1574582908967" expanded="true" signature="0:104" ph="/.../" />
-            <marker date="1574582908967" expanded="false" signature="113:224" ph="..." />
-            <marker date="1574582908967" expanded="true" signature="261:268" ph="{}" />
-            <marker date="1574582908967" expanded="false" signature="311:322" ph=" { " />
-            <marker date="1574582908967" expanded="false" signature="345:351" ph=" }" />
-            <marker date="1574582908967" expanded="false" signature="392:403" ph=" { " />
-            <marker date="1574582908967" expanded="false" signature="426:432" ph=" }" />
-            <marker date="1574582908967" expanded="false" signature="479:490" ph=" { " />
-            <marker date="1574582908967" expanded="false" signature="513:519" ph=" }" />
-            <marker date="1574582908967" expanded="true" signature="572:612" ph="{...}" />
-            <marker date="1574582908967" expanded="true" signature="645:730" ph="{...}" />
-            <marker date="1574582908967" expanded="true" signature="786:909" ph="{...}" />
-            <marker date="1574582908967" expanded="true" signature="959:1100" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_144/src.zip!/java/nio/file/Files.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="1273" column="0" lean-forward="false" selection-start-line="1273" selection-start-column="0" selection-end-line="1273" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_144/jre/lib/rt.jar!/sun/nio/fs/WindowsFileSystemProvider.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="243" column="0" lean-forward="false" selection-start-line="243" selection-start-column="0" selection-end-line="243" selection-end-column="0" />
-          <folding>
-            <marker date="1503697003011" expanded="false" signature="0:104" ph="/.../" />
-            <marker date="1503697003011" expanded="false" signature="134:1577" ph="..." />
-            <marker date="1503697003011" expanded="true" signature="1924:1931" ph="{}" />
-            <marker date="1503697003011" expanded="false" signature="1962:1973" ph=" { " />
-            <marker date="1503697003011" expanded="false" signature="1987:1993" ph=" }" />
-            <marker date="1503697003011" expanded="true" signature="2031:2831" ph="{...}" />
-            <marker date="1503697003011" expanded="true" signature="2919:3009" ph="{...}" />
-            <marker date="1503697003011" expanded="true" signature="3063:3134" ph="{...}" />
-            <marker date="1503697003011" expanded="false" signature="3169:3180" ph=" { " />
-            <marker date="1503697003011" expanded="false" signature="3239:3245" ph=" }" />
-            <marker date="1503697003011" expanded="true" signature="3370:4249" ph="{...}" />
-            <marker date="1503697003011" expanded="true" signature="4420:5419" ph="{...}" />
-            <marker date="1503697003011" expanded="true" signature="5531:6516" ph="{...}" />
-            <marker date="1503697003011" expanded="true" signature="6643:7180" ph="{...}" />
-            <marker date="1503697003011" expanded="true" signature="7283:7992" ph="{...}" />
-            <marker date="1503697003011" expanded="true" signature="8125:8710" ph="{...}" />
-            <marker date="1503697003011" expanded="true" signature="8779:9812" ph="{...}" />
-            <marker date="1503697003011" expanded="true" signature="9896:10005" ph="{...}" />
-            <marker date="1503697003011" expanded="true" signature="10089:10198" ph="{...}" />
-            <marker date="1503697003011" expanded="true" signature="10291:10769" ph="{...}" />
-            <marker date="1503697003011" expanded="true" signature="10841:11326" ph="{...}" />
-            <marker date="1503697003011" expanded="true" signature="11406:13679" ph="{...}" />
-            <marker date="1503697003011" expanded="true" signature="13752:15579" ph="{...}" />
-            <marker date="1503697003011" expanded="true" signature="15639:16007" ph="{...}" />
-            <marker date="1503697003011" expanded="true" signature="16073:16398" ph="{...}" />
-            <marker date="1503697003011" expanded="true" signature="16485:17279" ph="{...}" />
-            <marker date="1503697003011" expanded="true" signature="17390:17643" ph="{...}" />
-            <marker date="1503697003011" expanded="true" signature="17744:19847" ph="{...}" />
-            <marker date="1503697003011" expanded="true" signature="19917:20495" ph="{...}" />
-            <marker date="1503697003011" expanded="true" signature="20560:21220" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_144/src.zip!/java/nio/file/Path.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="124" column="9" lean-forward="false" selection-start-line="124" selection-start-column="9" selection-end-line="124" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/VariableDeclarationStatement.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="19" column="28" lean-forward="false" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/VariableDeclaratorList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="12" column="41" lean-forward="false" selection-start-line="12" selection-start-column="41" selection-end-line="12" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/True.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="10" column="37" lean-forward="false" selection-start-line="10" selection-start-column="37" selection-end-line="10" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/This.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="10" column="37" lean-forward="false" selection-start-line="10" selection-start-column="37" selection-end-line="10" selection-end-column="37" />
-          <folding>
-            <element signature="e#299#300#0" expanded="false" />
-            <element signature="e#334#335#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/SuperConstructorCall.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="23" column="12" lean-forward="false" selection-start-line="23" selection-start-column="12" selection-end-line="23" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/Super.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="11" column="38" lean-forward="false" selection-start-line="11" selection-start-column="38" selection-end-line="11" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/StringLiteral.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="11" column="61" lean-forward="false" selection-start-line="11" selection-start-column="61" selection-end-line="11" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/Statement.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -1282,58 +869,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/Null.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="19" column="42" lean-forward="false" selection-start-line="19" selection-start-column="42" selection-end-line="19" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/staticchecks/resolvedInfo/ResolvedType.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" column="20" lean-forward="false" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/FunctionCall.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="21" column="92" lean-forward="false" selection-start-line="21" selection-start-column="92" selection-end-line="21" selection-end-column="92" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/ConstructorCall.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/staticchecks/StaticChecksHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="400" column="0" lean-forward="true" selection-start-line="400" selection-start-column="0" selection-end-line="400" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/MainClass.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="23" column="89" lean-forward="false" selection-start-line="23" selection-start-column="89" selection-end-line="23" selection-end-column="89" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/bytecode/BytecodeCreator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="185" column="0" lean-forward="false" selection-start-line="185" selection-start-column="0" selection-end-line="185" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1343,8 +882,8 @@
         <state relative-caret-position="102">
           <caret line="6" column="17" lean-forward="false" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
           <folding>
-            <element signature="e#133#134#0" expanded="true" />
-            <element signature="e#205#206#0" expanded="true" />
+            <element signature="e#133#134#0" expanded="false" />
+            <element signature="e#205#206#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1353,14 +892,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="103">
           <caret line="132" column="13" lean-forward="false" selection-start-line="132" selection-start-column="13" selection-end-line="132" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/BinaryOp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="605">
-          <caret line="195" column="0" lean-forward="false" selection-start-line="195" selection-start-column="0" selection-end-line="195" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1393,9 +924,9 @@
         <state relative-caret-position="170">
           <caret line="33" column="5" lean-forward="false" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#950#951#0" expanded="true" />
-            <element signature="e#1003#1004#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#950#951#0" expanded="false" />
+            <element signature="e#1003#1004#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1537,17 +1068,295 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="128">
           <caret line="55" column="23" lean-forward="false" selection-start-line="55" selection-start-column="23" selection-end-line="55" selection-end-column="23" />
-          <folding>
-            <element signature="e#902#903#0" expanded="true" />
-            <element signature="e#941#942#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/WhileStatement.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="244">
+        <state relative-caret-position="499">
           <caret line="61" column="9" lean-forward="true" selection-start-line="61" selection-start-column="9" selection-end-line="61" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/Null.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/Super.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="11" column="38" lean-forward="false" selection-start-line="11" selection-start-column="38" selection-end-line="11" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/FieldAccess.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="47" column="36" lean-forward="false" selection-start-line="47" selection-start-column="36" selection-end-line="47" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/FunctionCall.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="46" column="46" lean-forward="false" selection-start-line="40" selection-start-column="8" selection-end-line="46" selection-end-column="46" />
+          <folding>
+            <element signature="e#3262#3263#0" expanded="false" />
+            <element signature="e#3294#3295#0" expanded="false" />
+            <element signature="e#3331#3332#0" expanded="false" />
+            <element signature="e#3364#3365#0" expanded="false" />
+            <element signature="e#3400#3401#0" expanded="false" />
+            <element signature="e#3432#3433#0" expanded="false" />
+            <element signature="e#3482#3483#0" expanded="false" />
+            <element signature="e#3524#3525#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/PrivacyTests.decaf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/MethodCall.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="219">
+          <caret line="72" column="13" lean-forward="true" selection-start-line="72" selection-start-column="13" selection-end-line="72" selection-end-column="13" />
+          <folding>
+            <element signature="e#6088#6089#0" expanded="false" />
+            <element signature="e#6117#6118#0" expanded="false" />
+            <element signature="e#6154#6155#0" expanded="false" />
+            <element signature="e#6187#6188#0" expanded="false" />
+            <element signature="e#6233#6234#0" expanded="false" />
+            <element signature="e#6265#6266#0" expanded="false" />
+            <element signature="e#6301#6302#0" expanded="false" />
+            <element signature="e#6333#6334#0" expanded="false" />
+            <element signature="e#6375#6376#0" expanded="false" />
+            <element signature="e#6415#6416#0" expanded="false" />
+            <element signature="e#6479#6480#0" expanded="false" />
+            <element signature="e#6521#6522#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/visitors/FieldVisitor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="139">
+          <caret line="22" column="16" lean-forward="false" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/visitors/ConstructorVisitor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/visitors/ClassVisitor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-11">
+          <caret line="36" column="20" lean-forward="false" selection-start-line="36" selection-start-column="20" selection-end-line="36" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/grammar/DecafLexer.g4">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1003">
+          <caret line="77" column="11" lean-forward="false" selection-start-line="77" selection-start-column="11" selection-end-line="77" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gen/grammar/DecafLexer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/VariableDeclaratorList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="12" column="41" lean-forward="false" selection-start-line="12" selection-start-column="41" selection-end-line="12" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/VariableDeclarationStatement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/grammar/DecafParser.g4">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="134">
+          <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/visitors/TypeVisitor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="8" column="16" lean-forward="false" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/visitors/StatementVisitor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-296">
+          <caret line="95" column="71" lean-forward="false" selection-start-line="95" selection-start-column="71" selection-end-line="95" selection-end-column="71" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/ConstructorCall.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/BlockStatement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="44" column="0" lean-forward="false" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/LValue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="9" lean-forward="false" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/BinaryOp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="133" column="23" lean-forward="false" selection-start-line="133" selection-start-column="23" selection-end-line="133" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/ASTNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="104">
+          <caret line="12" column="23" lean-forward="false" selection-start-line="12" selection-start-column="23" selection-end-line="12" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/CompileError.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="24" column="8" lean-forward="false" selection-start-line="24" selection-start-column="8" selection-end-line="24" selection-end-column="8" />
+          <folding>
+            <element signature="e#695#696#0" expanded="true" />
+            <element signature="e#722#723#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/AdvancedOperatorTests.decaf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/bytecode/BytecodeCreator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="278">
+          <caret line="234" column="36" lean-forward="false" selection-start-line="234" selection-start-column="36" selection-end-line="234" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/MainClass.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="24" column="21" lean-forward="false" selection-start-line="24" selection-start-column="21" selection-end-line="24" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/staticchecks/StaticChecksHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="72" column="31" lean-forward="false" selection-start-line="72" selection-start-column="31" selection-end-line="72" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/NewArrayExpression.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="104">
+          <caret line="22" column="33" lean-forward="false" selection-start-line="22" selection-start-column="33" selection-end-line="22" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ast/TypeIF.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="7" column="17" lean-forward="false" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/target/generated-sources/annotations/ast/Type.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="121">
+          <caret line="16" column="39" lean-forward="true" selection-start-line="16" selection-start-column="39" selection-end-line="16" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/visitors/PrimaryVisitor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="158">
+          <caret line="228" column="9" lean-forward="false" selection-start-line="228" selection-start-column="9" selection-end-line="228" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/astPojos/Identifier.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="104">
+          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/staticchecks/LocalVariableInfoTable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="376">
+          <caret line="53" column="47" lean-forward="false" selection-start-line="53" selection-start-column="47" selection-end-line="53" selection-end-column="47" />
           <folding />
         </state>
       </provider>

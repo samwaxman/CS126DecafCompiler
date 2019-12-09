@@ -4,8 +4,6 @@ import bytecode.ByteCodeState;
 import org.apache.bcel.generic.*;
 import staticchecks.StaticChecksHelper;
 import staticchecks.StaticState;
-import staticchecks.resolvedInfo.ArrayType;
-import staticchecks.resolvedInfo.ClassType;
 import staticchecks.resolvedInfo.PrimitiveType;
 import staticchecks.resolvedInfo.ResolvedType;
 
@@ -126,7 +124,6 @@ public class BinaryOp extends Expression {
         firstBranch.setTarget(falseCase);
         secondBranch.setTarget(falseCase);
         after.setTarget(state.append(new NOP()));
-        return;
     }
 
 
@@ -171,7 +168,7 @@ public class BinaryOp extends Expression {
             case "!=":
                 negate = true;
             case "==":
-                if (left.getType() instanceof ClassType || left.getType() instanceof ArrayType) {
+                if (left.getType().isRef()) {
                     branch = new IF_ACMPEQ(null);
                 } else {
                     branch = new IF_ICMPEQ(null);

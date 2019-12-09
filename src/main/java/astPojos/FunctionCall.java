@@ -1,5 +1,6 @@
 package astPojos;
 
+import ast.Modifier;
 import bytecode.ByteCodeState;
 import org.apache.bcel.classfile.Method;
 import org.apache.bcel.generic.*;
@@ -27,15 +28,23 @@ public class FunctionCall extends Expression implements MethodResolvable {
 
     @Override
     protected ResolvedType typeCheckCore(StaticState s) {
-        //TODO: Probably can't make a virtual function call from a static function.
         ResolvedMethod m = StaticChecksHelper.resolveMethod(this, s.getCurrentClass(), s);
+        if (s.isMethodStatic() && !m.getModifiers().contains(Modifier.STATIC)) {
+            this.throwCompilerError("Cannot reference virtual method " + methodName + " from static context.");
+        }
         List<ResolvedType> argumentTypes = arguments.stream()
                                                     .map(e -> e.typeCheck(s))
                                                     .collect(Collectors.toList());
         List<ResolvedType> expectedArgumentTypes = m.getArguments().stream()
                                                     .map(ResolvedParam::getType)
                                                     .collect(Collectors.toList());
-
+        StaticChecksHelper.checkPrivacy(m.getModifiers(),
+                                        s.getCurrentClass(),
+                                        fromClass,
+                                        methodName,
+                                        "method",
+                                        s,
+                                        this);
         StaticChecksHelper.checkIfValidArguments(argumentTypes, expectedArgumentTypes, s);
         return m.getReturnType();
     }

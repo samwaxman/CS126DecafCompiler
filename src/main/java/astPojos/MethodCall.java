@@ -3,6 +3,7 @@ package astPojos;
 import ast.Modifier;
 import bytecode.ByteCodeState;
 import org.apache.bcel.classfile.Method;
+import org.apache.bcel.generic.INVOKESPECIAL;
 import org.apache.bcel.generic.INVOKESTATIC;
 import org.apache.bcel.generic.INVOKEVIRTUAL;
 import org.apache.bcel.generic.POP;
@@ -35,9 +36,6 @@ public class MethodCall extends Expression implements MethodResolvable {
 
     @Override
     protected ResolvedType typeCheckCore(StaticState s) {
-        //TODO: Does this include supers and statics? If so,
-        //just check if object is an instance of a raw identifier,
-        //then check it against "super" or the class names.
         List<ResolvedType> argumentTypes = arguments.stream()
                                                     .map(a -> a.typeCheck(s))
                                                     .collect(Collectors.toList());
@@ -56,14 +54,21 @@ public class MethodCall extends Expression implements MethodResolvable {
                                                                      .map(ResolvedParam::getType)
                                                                      .collect(Collectors.toList());
                             StaticChecksHelper.checkIfValidArguments(argumentTypes, expectedTypes, s);
+                            StaticChecksHelper.checkPrivacy(method.getModifiers(),
+                                                            s.getCurrentClass(),
+                                                            fromClass,
+                                                            methodName,
+                                                            "method",
+                                                            s,
+                                                            this);
                             return method.getReturnType();
                         }
                         this.throwCompilerError("Cannot call non-static method " +
-                                                           methodName +
-                                                           "without an class instance.");
+                                                        methodName +
+                                                        " without a class instance.");
                     }
                     this.throwCompilerError("Could not find method " + methodName +
-                                                       " in class " + objectIdentifier.getIdentifier());
+                                                    " in class " + objectIdentifier.getIdentifier());
                 }
             }
         }
@@ -72,8 +77,6 @@ public class MethodCall extends Expression implements MethodResolvable {
             this.throwCompilerError("Attempted to call a method on non-object type " + objectType);
         }
         ClassType classType = (ClassType) objectType;
-        //TODO WARNING: Recall that when making the bytecode, you don't use this class name.
-        //Method calls are determined at runtime.
         ResolvedMethod method = StaticChecksHelper.resolveMethod(this,
                                                                  classType.getClassName(),
                                                                  s);
@@ -82,6 +85,13 @@ public class MethodCall extends Expression implements MethodResolvable {
                                                  .map(ResolvedParam::getType)
                                                  .collect(Collectors.toList());
         StaticChecksHelper.checkIfValidArguments(argumentTypes, expectedTypes, s);
+        StaticChecksHelper.checkPrivacy(method.getModifiers(),
+                                        s.getCurrentClass(),
+                                        fromClass,
+                                        methodName,
+                                        "method",
+                                        s,
+                                        this);
         return method.getReturnType();
 
     }
@@ -107,11 +117,12 @@ public class MethodCall extends Expression implements MethodResolvable {
         for (Expression expression : arguments) {
             expression.toBytecode(state);
         }
-        //TODO : Is this okay? FromClass might be above the actual class virtual wise
-        //will INVOKEVIRTUAL know that and do it properly?
+
         int poolLoc = state.getConstantPoolGen().addMethodref(fromClass, method.getName(), method.getSignature());
         if (method.isStatic()) {
             state.append(new INVOKESTATIC(poolLoc));
+        } else if (object instanceof Super) {
+            state.append(new INVOKESPECIAL(poolLoc));
         } else {
             state.append(new INVOKEVIRTUAL(poolLoc));
         }

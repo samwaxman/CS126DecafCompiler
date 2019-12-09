@@ -1,0 +1,25 @@
+class LiteralTests {
+
+    public static void main(String[] args) {
+        IO.putString("Starting literal tests:\n");
+        IO.putString("Should print 5:");
+        IO.putInt(5);
+        IO.putString("\nShould print x, x, and \\\n");
+        IO.putChar('x');
+        IO.putChar('\n');
+        //Note, different than Java, which would not allow this character
+        IO.putChar('\x');
+        IO.putChar('\n');
+        IO.putChar('\\');
+        IO.putChar('\n');
+        if (true) {
+          IO.putString("True literal working.\n");
+        }
+        if (false) {} else {
+          IO.putString("False literal working.\n");
+        }
+        //Not testing null here, as to test it requires other more advanced constructs like object equality
+        IO.putString("Literal tests finished.\n");
+        return;
+    }
+}

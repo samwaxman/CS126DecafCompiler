@@ -1,0 +1,39 @@
+class ConstructorTests {
+
+    public static void main(String[] args) {
+        IO.putString("Starting constructor tests:\n");
+        IO.putString("Should print out '1 2':");
+        A a = new A();
+        B b = new B();
+        C c = new C();
+        D d = new D(1, 2);
+        IO.putString("Ending constructor tests.\n");
+        return;
+    }
+}
+
+class A {
+    public A() {
+        super();
+        return;
+    }
+}
+
+class B extends A {
+    public B() {
+        //empty constructor should make a valid super call and return
+    }
+}
+
+class C extends A {
+    //Lack of constructor should give it the default
+}
+
+class D {
+    public D(int x, int y) {
+        IO.putInt(x);
+        IO.putChar(' ');
+        IO.putInt(y);
+        IO.putChar('\n');
+    }
+}

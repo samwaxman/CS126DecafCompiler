@@ -1,0 +1,29 @@
+class MethodTests {
+
+    public static void main(String[] args) {
+        IO.putString("Starting method tests:\n");
+        IO.putString("Should see 'static method - success' twice followed by 'instance-method success'\n");
+        if (!staticMethod(true) || !MethodTests.staticMethod(true)) {
+            IO.putString("Something went wrong with static method calls.\n");
+        }
+
+        MethodTests m = new MethodTests();
+        if (m.instanceMethod(false)) {
+            IO.putString("Something went wrong with instance method calls.\n");
+        }
+
+        IO.putString("Method tests ending.\n");
+    }
+
+    public static boolean staticMethod(boolean x) {
+        IO.putString("static method - success\n");
+        return x;
+    }
+
+    public boolean instanceMethod(boolean x) {
+        IO.putString("instance method - success\n");
+        return x;
+    }
+
+
+}

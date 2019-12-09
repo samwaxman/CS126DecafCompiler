@@ -86,7 +86,14 @@ public class StatementVisitor extends DecafParserBaseVisitor<Statement> {
                 if (varListContext.varDeclarator().BIND() != null) {
                     initialValue = Optional.of(expressionVisitor.visitExpression(varDeclarator.expression()));
                 }
-                declarations.add(new VariableDeclarationStatement(varDeclarator.varDeclaratorId().getText(),
+                int dimensionCount = 0;
+                DecafParser.VarDeclaratorIdContext idCtx = varDeclarator.varDeclaratorId();
+                while (idCtx.LEFT_BRACKET() != null) {
+                    dimensionCount++;
+                    idCtx = idCtx.varDeclaratorId();
+                }
+                type = type.withArrayLevel(type.getArrayLevel() + dimensionCount);
+                declarations.add(new VariableDeclarationStatement(idCtx.getText(),
                                                                   initialValue,
                                                                   type,
                                                                   ctx.getStart().getLine(),

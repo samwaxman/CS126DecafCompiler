@@ -1,0 +1,109 @@
+
+class PrivacyTests {
+    //Child class and grandchild class should be able to access protected
+    //constructors, fields, static methods, virtual methods, and function calls,
+    //but non-child classes should not.
+    public static void main(String[] args) {
+        IO.putString("Starting privacy tests. Note, tests that cause errors are commented out.");
+        IO.putString("To fully test, go into the file and uncomment them:\n");
+        new BasicClass().testProtected();
+        new ExtendClass().testProtected();
+        
+        //Assuming public is working properly as this would be seen in other tests quickly.
+        
+        //Private should be accessible in class.
+        new ExtendClass().testPrivate();
+        
+        //ERROR tests. Private should not be accessible in any spot but the defining class
+        //Protected shouldn't be accessible outside of children/grandchildren
+        //(Have to go into the methods and uncomment)
+        new BasicClass().testError();
+        new ExtendPrivate().testError();
+        
+        IO.putString("Finished privacy tests.\n");
+    }
+    
+}
+
+class SuperClass {
+    protected int y;
+    protected SuperClass() {}
+    protected static void protectedStatic() {}
+    protected void protectedVirtual() {}
+    
+    private int j;
+    
+    public void testProtected() {
+        y;
+        SuperClass sc = new SuperClass();
+        sc.protectedVirtual();
+        protectedStatic();
+        protectedVirtual();
+        sc.y;
+        SuperClass.protectedStatic();
+    }
+}
+
+
+class BasicClass extends SuperClass {
+    public void testProtected() {
+        y;
+        SuperClass sc = new SuperClass();
+        sc.protectedVirtual();
+        protectedVirtual();
+        protectedStatic();
+        sc.y;
+        SuperClass.protectedStatic();
+        sc.testProtected();
+    }
+
+    public void testError() {
+        //j;
+        //new SuperClass().j;
+        //new ExtendClass().z;
+    }
+}
+
+class ExtendClass extends BasicClass {
+    
+    private int x;
+    private void virtual() {}
+    private static void staticM() {}
+    
+    public ExtendClass() {}
+    protected int z;
+    
+    public void testPrivate() {
+        x;
+        this.x;
+        virtual();
+        this.virtual();
+        staticM();
+        ExtendClass.staticM();
+        new ExtendClass();
+    }
+
+    public void testProtected() {
+        y;
+        SuperClass sc = new SuperClass();
+        sc.protectedVirtual();
+        protectedVirtual();
+        protectedStatic();
+        sc.y;
+        SuperClass.protectedStatic();
+        sc.testProtected();
+    }
+}
+
+class PrivateSuper {
+    private PrivateSuper() { }
+    private static void privateStatic() {}
+}
+
+class ExtendPrivate extends PrivateSuper {
+
+    public void testError() {
+        //new PrivateSuper();
+        //PrivateSuper.privateStatic();
+    }
+}

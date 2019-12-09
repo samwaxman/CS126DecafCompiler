@@ -1,0 +1,32 @@
+class FieldTests {
+
+    public static void main(String[] args) {
+        IO.putString("Starting field tests:\n");
+        new FieldClass().testFields();
+        IO.putString("Ending field tests.\n");
+    }
+}
+
+class FieldClass {
+    public int x;
+    private boolean b;
+    //should be allowed to do this!
+    private FieldClass objectField;
+
+    public FieldClass() {
+        x = 3;
+        this.b = true;
+        objectField = this;
+    }
+
+    public void testFields() {
+        if ((this.x != 3) || (b != true) || (objectField != this)) {
+            IO.putString("Field access/setting failing.\n");
+        }
+
+        x = 1;
+        if (this.x != 1) {
+            IO.putString("Field access/setting failing.\n");
+        }
+    }
+}

@@ -15,10 +15,6 @@ import java.util.Optional;
 // to a field, but rather, if it's not found in the environment,
 // it has the potential to.
 
-// TODO: One imagines that if it's a local, it needs to know which local.
-// That is, in nested scopes, it must be aware of which local it is.
-// I'm not sure to what extent DECAF allows shadowing though, as regular Java
-// is pretty strict on when it's possible to shadow already
 public class Identifier extends Expression implements FieldResolvable, LValue {
     private final String identifier;
     private String fromClass;
@@ -44,6 +40,13 @@ public class Identifier extends Expression implements FieldResolvable, LValue {
                                                           s.getCurrentClass(),
                                                           s);
         if (field.isPresent()) {
+            StaticChecksHelper.checkPrivacy(field.get().getModifiers(),
+                                            s.getCurrentClass(),
+                                            fromClass,
+                                            identifier,
+                                            "field",
+                                            s,
+                                            this);
             return Optional.of(field.get().getType());
         }
         return Optional.empty();
@@ -60,7 +63,6 @@ public class Identifier extends Expression implements FieldResolvable, LValue {
 
     @Override
     public void toBytecode(ByteCodeState state) {
-        //TODO: Make it play nicely with super
          if (fromClass != null) {
              String signature = BytecodeCreator.resolvedTypeToBcelType(getType()).getSignature();
              int fieldIndex = state.getConstantPoolGen().addFieldref(fromClass, getFieldName(), signature);
@@ -82,7 +84,11 @@ public class Identifier extends Expression implements FieldResolvable, LValue {
         if (getIndex() != null) {
             //TODO: Only necessary if this is being used as an expression
             state.append(new DUP());
-            state.append(new ISTORE(getIndex()));
+            if (expr.getType().isRef()) {
+                state.append(new ASTORE(getIndex()));
+            } else {
+                state.append(new ISTORE(getIndex()));
+            }
             return;
         }
         //TODO: Same logic as the other FieldResolvable. Merge.

@@ -18,7 +18,6 @@ public class StaticChecksHelper {
             return true;
         }
         if ((sub == PrimitiveType.CHAR && parent == PrimitiveType.INT) ||
-                //TODO: This is mad sketch
                 (sub == PrimitiveType.INT && parent == PrimitiveType.CHAR)) {
             return true;
         }
@@ -109,7 +108,6 @@ public class StaticChecksHelper {
         String methodName = methodResolvable.getMethodName();
         //TODO: Object should be a constant string somewhere (not for performance,
         //it'll get interned anyway -- just for clean revision and centrality)
-        //TODO make sure this doesn't mess up instantiating an Object
         if (className.equals("Object")) {
             throw new RuntimeException("Could not find method " + methodName);
         }
@@ -219,7 +217,6 @@ public class StaticChecksHelper {
                                         .setConstructor(ResolvedConstructorIF.defaultConstructor())
                                         .build();
         classInfoMap.put("String", stringInfo);
-        //TODO: Private constructor
         ResolvedMethod putString = ResolvedMethod.builder()
                                                  .setReturnType(PrimitiveType.VOID)
                                                  .setArguments(Lists.newArrayList(
@@ -229,7 +226,8 @@ public class StaticChecksHelper {
                                                                                         .setClassName("String")
                                                                                         .build())
                                                                       .build()))
-                                                 .setBody(new BlockStatement(Collections.emptyList(), null, null))                            .setModifiers(new HashSet<>(Arrays.asList(Modifier.STATIC, Modifier.PUBLIC)))
+                                                 .setBody(new BlockStatement(Collections.emptyList(), null, null))
+                                                 .setModifiers(new HashSet<>(Arrays.asList(Modifier.STATIC, Modifier.PUBLIC)))
                                                  .build();
         ResolvedMethod putChar = putString.withArguments(putString.getArguments().get(0)
                                                                   .withType(PrimitiveType.CHAR));
@@ -338,8 +336,7 @@ public class StaticChecksHelper {
                                                            .setType(resolveType(f.getParam().getType(), state))
                                                            .setModifiers(modifierSet)
                                                            .build();
-                //TODO: Static state can't be an immutable. This is an immutable map.
-                //put isn't allowed.
+
                 fields.put(f.getParam().getName(), resolvedField);
             }
             Optional<Constructor> constructor = classNode.getConstructor();
@@ -400,14 +397,14 @@ public class StaticChecksHelper {
                                     ASTNode node) {
 
         if (modifiers.contains(Modifier.PRIVATE) && !s.getCurrentClass().equals(parentName)) {
-            node.throwCompilerError("Cannot access private " + toCheck + fieldOrMethodName + " of class " + parentName
+            node.throwCompilerError("Cannot access private " + toCheck +  " " + fieldOrMethodName + " of class " + parentName
                                             + " from class " + subName);
         }
         ResolvedType currentType = ClassType.builder().setClassName(subName).build();
         ResolvedType parentType = ClassType.builder().setClassName(parentName).build();
         if (modifiers.contains(Modifier.PROTECTED) &&
                 !StaticChecksHelper.isSubclass(currentType, parentType, s)) {
-            node.throwCompilerError("Cannot access protected " + toCheck + fieldOrMethodName + " of class " + parentName +
+            node.throwCompilerError("Cannot access protected " + toCheck + " " + fieldOrMethodName + " of class " + parentName +
                                             ". Class " + subName + " does not extend " + parentName + ".");
         }
     }
