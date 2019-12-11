@@ -7,4 +7,4 @@ Uses ANTLR4 for the lexer/parser and BCEL for java bytecode manipulation.
 
 Tests are in the resources folder, and the compiler passes them all.
 
-In the future, I might revisit and do a quick pass to remove the extraneous NOPs currently introduced by branch statements, as well as combine conditions with if statements so that `if (1 > 2)` can turn directly into a `if_icmpeq` as opposed to evaluating `1 > 2` and sending it to an `ifeq`.
+In the future, I might revisit and do a quick pass to remove the extraneous NOPs currently introduced by branch statements, as well as combine conditions with if statements so that `if (1 > 2)` can turn directly into a `if_icmpeq` as opposed to evaluating `1 > 2` and sending it to an `ifeq`. One imagines that both of these things are likely done by the JIT, but it would make reading the bytecode a bit more clean.
